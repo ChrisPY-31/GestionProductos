@@ -11,11 +11,43 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.scene.control.Label;
-
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class AgregarProductosController {
+
     @FXML
     private Label txtAgregar;
+
+    @FXML
+    private TextField txtCantidad;
+
+    @FXML
+    private Button txtInicio;
+
+    @FXML
+    private TextField txtnombreProducto;
+
+    @FXML
+    private TextField txtprecio;
+
+    @FXML
+    void AgregarProducto(ActionEvent event) {
+
+    }
+
+    @FXML
+    void ElegirCategoria(ActionEvent event) {
+
+    }
+
+    @FXML
+    void Inicio(ActionEvent event) {
+
+    }
 
     public void closeWindows() {
         try {
