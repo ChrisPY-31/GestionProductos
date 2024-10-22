@@ -1,4 +1,4 @@
-package com.example.gestion_productos;
+package Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ public class HelloController {
 
     @FXML
     void AgregarProductos(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AgregarProductos.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/AgregarProductos.fxml"));
         Parent root = loader.load();
         AgregarProductosController controller = loader.getController();
         Scene scene = new Scene(root);
