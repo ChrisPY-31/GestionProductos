@@ -1,4 +1,4 @@
-package com.example.gestion_productos;
+package Modelo;
 
 public class AgregarProductos {
     public String nombreProducto;
