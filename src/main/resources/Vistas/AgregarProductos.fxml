@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="368.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gestion_productos.AgregarProductosController">
+<AnchorPane prefHeight="368.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AgregarProductosController">
    <children>
       <Label fx:id="txtAgregar" layoutX="98.0" layoutY="27.0" text="Agregar Productos">
          <font>
