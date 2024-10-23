@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegistroController">
+<AnchorPane prefHeight="500.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegistroController">
    <children>
       <SplitPane dividerPositions="0.31616671091053883" layoutX="130.0" layoutY="103.0" prefHeight="546.0" prefWidth="755.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -37,7 +37,7 @@
                               <Font name="Britannic Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="31.0" prefWidth="344.0" />
+                        <TextField fx:id="txtNombreUsuario" prefHeight="31.0" prefWidth="344.0" />
                      </children>
                   </HBox>
                   <HBox layoutX="15.0" layoutY="154.0" prefHeight="32.0" prefWidth="482.0">
@@ -47,7 +47,7 @@
                               <Font name="Britannic Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="31.0" prefWidth="364.0" />
+                        <TextField fx:id="txtTelefonoUsuario" prefHeight="31.0" prefWidth="364.0" />
                      </children>
                   </HBox>
                   <HBox layoutX="15.0" layoutY="233.0" prefHeight="32.0" prefWidth="482.0">
@@ -57,7 +57,7 @@
                               <Font name="Britannic Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="32.0" prefWidth="394.0" />
+                        <TextField fx:id="txtCorreoUsuario" prefHeight="32.0" prefWidth="394.0" />
                      </children>
                   </HBox>
                   <HBox layoutX="15.0" layoutY="327.0" prefHeight="32.0" prefWidth="482.0">
@@ -67,13 +67,15 @@
                               <Font name="Britannic Bold" size="18.0" />
                            </font>
                         </Label>
-                        <PasswordField prefHeight="32.0" prefWidth="354.0" />
+                        <PasswordField fx:id="txtContraseñaUsuario" prefHeight="32.0" prefWidth="354.0" />
                      </children>
                   </HBox>
-                  <Button layoutX="429.0" layoutY="433.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="128.0" style="-fx-background-color: #094293;" text="Registrarse" textFill="WHITE">
+                  <Button layoutX="264.0" layoutY="395.0" mnemonicParsing="false" onAction="#btnRegistrarUsuario" prefHeight="42.0" prefWidth="202.0" style="-fx-background-color: #094293;" text="Registrarse" textFill="WHITE">
                      <font>
                         <Font name="Britannic Bold" size="18.0" />
                      </font></Button>
+                  <Label layoutX="388.0" layoutY="467.0" text="Ya tienes cuenta?" />
+                  <Label fx:id="lblVentanaSesion" layoutX="488.0" layoutY="467.0" text="Inicia Sesion" />
                </children>
             </AnchorPane>
         </items>

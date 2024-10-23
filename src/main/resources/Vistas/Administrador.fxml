@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="497.0" prefWidth="851.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdministradorController">
+<AnchorPane prefHeight="497.0" prefWidth="851.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdministradorController">
    <children>
       <Text fill="WHITE" layoutX="437.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Productos" wrappingWidth="281.51361083984375">
          <font>
@@ -23,28 +23,28 @@
                   <Font name="Britannic Bold" size="18.0" />
                </font>
             </Text>
+            <Button layoutX="42.0" layoutY="124.0" mnemonicParsing="false" onAction="#btnAgregarProductos" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #05437e;" text="Agregar" textFill="WHITE">
+               <font>
+                  <Font name="Britannic Bold" size="16.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
-      <TableView layoutX="250.0" layoutY="96.0" prefHeight="286.0" prefWidth="563.0">
+      <TableView fx:id="tblProductos" layoutX="250.0" layoutY="96.0" prefHeight="286.0" prefWidth="563.0">
         <columns>
-          <TableColumn prefWidth="100.79998779296875" text="ID" />
-          <TableColumn prefWidth="98.39996337890625" text="Nombre " />
-            <TableColumn prefWidth="102.40005493164062" text="Categoria" />
-            <TableColumn prefWidth="112.800048828125" text="Precio" />
-            <TableColumn prefWidth="148.800048828125" text="Cantidad " />
+          <TableColumn fx:id="colId" prefWidth="100.79998779296875" text="ID" />
+          <TableColumn fx:id="colNombre" prefWidth="131.20001220703125" text="Nombre " />
+            <TableColumn fx:id="colCategoria" prefWidth="103.99996948242188" text="Categoria" />
+            <TableColumn fx:id="colPrecio" prefWidth="120.00006103515625" text="Precio" />
+            <TableColumn fx:id="colCategoira" prefWidth="111.199951171875" text="Cantidad " />
         </columns>
       </TableView>
-      <Button layoutX="388.0" layoutY="416.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="74.0" style="-fx-background-color: #05437e;" text="Agregar" textFill="WHITE">
+      <Button layoutX="338.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnEditarProductos" prefHeight="36.0" prefWidth="87.0" style="-fx-background-color: #012E46; -fx-border-color: WHITE;" text="Editar " textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="496.0" layoutY="420.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="87.0" style="-fx-background-color: #012E46; -fx-border-color: WHITE;" text="Editar " textFill="WHITE">
-         <font>
-            <Font name="Britannic Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button layoutX="614.0" layoutY="420.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="79.0" style="-fx-background-color: #cf2525;" text="Eliminar" textFill="WHITE">
+      <Button layoutX="614.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnEliminarProductos" prefHeight="36.0" prefWidth="79.0" style="-fx-background-color: #cf2525;" text="Eliminar" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="12.0" />
          </font>
