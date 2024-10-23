@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="504.0" prefWidth="850.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CompraController">
+   <children>
+      <AnchorPane layoutX="-82.0" prefHeight="504.0" prefWidth="286.0" style="-fx-background-color: #05437e;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="160.0" layoutX="92.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="184.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c9c48" height="58.0" layoutX="117.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="134.0" />
+            <Circle fill="WHITE" layoutX="184.0" layoutY="94.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
+            <Text layoutX="174.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
+               <font>
+                  <Font name="Britannic Bold" size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Text fill="WHITE" layoutX="425.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMPRA">
+         <font>
+            <Font name="Britannic Bold" size="48.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="251.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Producto:">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
+      </Text>
+      <TextField layoutX="432.0" layoutY="111.0" prefHeight="26.0" prefWidth="302.0" />
+      <Text fill="WHITE" layoutX="251.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad:">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
+      </Text>
+      <TextField layoutX="428.0" layoutY="161.0" prefHeight="26.0" prefWidth="302.0" />
+      <TableView layoutX="256.0" layoutY="214.0" prefHeight="174.0" prefWidth="564.0">
+        <columns>
+          <TableColumn prefWidth="112.800048828125" text="ID" />
+          <TableColumn prefWidth="336.0" text="NOMBRE" />
+            <TableColumn prefWidth="114.39996337890625" text="PRECIO" />
+        </columns>
+      </TableView>
+      <Text fill="WHITE" layoutX="263.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total:">
+         <font>
+            <Font name="Britannic Bold" size="36.0" />
+         </font>
+      </Text>
+      <TextField layoutX="370.0" layoutY="423.0" prefHeight="26.0" prefWidth="322.0" />
+      <Button layoutX="711.0" layoutY="421.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="78.0" style="-fx-background-color: #cf2525;" text="Pagar" textFill="WHITE">
+         <font>
+            <Font name="Britannic Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
