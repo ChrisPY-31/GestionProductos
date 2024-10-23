@@ -17,24 +17,19 @@ import javafx.scene.control.TextField;
 public class AgregarProductosController {
 
     @FXML
+    private Button GuardarProducto;
+
+    @FXML
     private Label txtAgregar;
 
     @FXML
     private TextField txtCantidad;
 
     @FXML
-    private Button txtInicio;
+    private TextField txtNombreProducto;
 
     @FXML
-    private TextField txtnombreProducto;
-
-    @FXML
-    private TextField txtprecio;
-
-    @FXML
-    void AgregarProducto(ActionEvent event) {
-
-    }
+    private TextField txtPrecio;
 
     @FXML
     void ElegirCategoria(ActionEvent event) {
@@ -42,7 +37,12 @@ public class AgregarProductosController {
     }
 
     @FXML
-    void Inicio(ActionEvent event) {
+    void btnAgregarProducto(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnInicio(ActionEvent event) {
 
     }
 

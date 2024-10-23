@@ -12,17 +12,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InicioSesionController">
+<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InicioSesionController">
    <children>
-      <SplitPane orientation="VERTICAL" prefHeight="330.0" prefWidth="284.0" style="-fx-border-color: # B0E0E6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane orientation="VERTICAL" prefHeight="330.0" prefWidth="284.0" style="-fx-border-color: #B0E0E6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="503.0" prefWidth="850.0">
                <children>
-                  <Button layoutX="380.0" layoutY="427.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="155.0" style="-fx-background-color: #05437e;" text="Crear cuenta " textFill="WHITE">
-                     <font>
-                        <Font name="Britannic Bold" size="18.0" />
-                     </font>
-                  </Button>
                   <HBox layoutX="23.0" layoutY="235.0" prefHeight="30.0" prefWidth="118.0" />
                   <HBox layoutX="91.0" layoutY="284.0" prefHeight="31.0" prefWidth="99.0">
                      <children>
@@ -33,12 +28,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Button layoutX="584.0" layoutY="427.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="155.0" style="-fx-background-color: #05437e;" text="Cancelar" textFill="WHITE">
-                     <font>
-                        <Font name="Britannic Bold" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="151.0" layoutY="426.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="142.0" style="-fx-background-color: #012E46;" text="Iniciar Sesión" textFill="WHITE">
+                  <Button layoutX="480.0" layoutY="400.0" mnemonicParsing="false" onAction="#btnIniciarSesion" prefHeight="39.0" prefWidth="228.0" style="-fx-background-color: #012E46;" text="Iniciar Sesión" textFill="WHITE">
                      <font>
                         <Font name="Britannic Bold" size="18.0" />
                      </font>
@@ -57,8 +47,8 @@
                         <Font name="Britannic Bold" size="24.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="234.0" layoutY="284.0" prefHeight="26.0" prefWidth="526.0" />
-                  <PasswordField layoutX="235.0" layoutY="355.0" prefHeight="26.0" prefWidth="525.0" />
+                  <TextField fx:id="txtCorreo" layoutX="234.0" layoutY="284.0" prefHeight="26.0" prefWidth="526.0" />
+                  <PasswordField fx:id="txtContraseña" layoutX="235.0" layoutY="355.0" prefHeight="26.0" prefWidth="525.0" />
                   <AnchorPane layoutX="380.0" layoutY="96.0" prefHeight="153.0" prefWidth="155.0">
                      <children>
                         <Circle fill="#012e46" layoutX="78.0" layoutY="77.0" radius="71.0" stroke="BLACK" strokeType="INSIDE" />
@@ -66,6 +56,8 @@
                         <Ellipse fill="WHITE" layoutX="78.0" layoutY="116.0" radiusX="45.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" />
                      </children>
                   </AnchorPane>
+                  <Label layoutX="640.0" layoutY="455.0" text="¿No tienes cuenta?" />
+                  <Label fx:id="lblRegistrarse" layoutX="749.0" layoutY="455.0" text="Registrate" />
                </children>
             </AnchorPane>
         </items>
