@@ -23,7 +23,7 @@
                   <Font name="Britannic Bold" size="18.0" />
                </font>
             </Text>
-            <Button layoutX="42.0" layoutY="124.0" mnemonicParsing="false" onAction="#btnAgregarProductos" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #05437e;" text="Agregar" textFill="WHITE">
+            <Button layoutX="42.0" layoutY="124.0" mnemonicParsing="false" onAction="#btnVentanaAgregarProductos" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #05437e;" text="Agregar" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font>
