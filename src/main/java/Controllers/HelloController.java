@@ -25,7 +25,7 @@ public class HelloController {
         stage.setScene(scene);
         stage.show();
 
-        stage.setOnCloseRequest(e -> controller.closeWindows());
+        //stage.setOnCloseRequest(e -> controller.closeWindows());
 
         Stage myStage = (Stage) this.btnAgregarProductos.getScene().getWindow();
         myStage.close();
