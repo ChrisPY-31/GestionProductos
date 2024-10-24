@@ -75,7 +75,7 @@
                         <Font name="Britannic Bold" size="18.0" />
                      </font></Button>
                   <Label layoutX="388.0" layoutY="467.0" text="Ya tienes cuenta?" />
-                  <Label fx:id="lblVentanaSesion" layoutX="488.0" layoutY="467.0" text="Inicia Sesion" />
+                  <Button layoutX="486.0" layoutY="463.0" mnemonicParsing="false" onAction="#btnIniciaSesion" text="Inicia Sesion" />
                </children>
             </AnchorPane>
         </items>

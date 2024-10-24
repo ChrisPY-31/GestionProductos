@@ -57,7 +57,7 @@
                      </children>
                   </AnchorPane>
                   <Label layoutX="640.0" layoutY="455.0" text="¿No tienes cuenta?" />
-                  <Label fx:id="lblRegistrarse" layoutX="749.0" layoutY="455.0" text="Registrate" />
+                  <Button layoutX="744.0" layoutY="451.0" mnemonicParsing="false" onAction="#btnRegister" text="Registrate" />
                </children>
             </AnchorPane>
         </items>

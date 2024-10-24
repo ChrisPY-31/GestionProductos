@@ -42,20 +42,29 @@ public class AgregarProductosController {
     }
 
     @FXML
-    void btnInicio(ActionEvent event) {
-
-    }
-
-    public void closeWindows() {
+    void btnInicio() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Administrador.fxml"));
             Parent root = loader.load();
-            HelloController controller = loader.getController();
+            AdministradorController controller = loader.getController();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
 
+            stage.setOnCloseRequest(e -> controller.btnVentanaAgregarProductos());
+            stage.setOnCloseRequest(e -> controller.closeWindowsAdministrador());
+
+            Stage myStage = (Stage) this.txtAgregar.getScene().getWindow();
+            myStage.close();
+
+        } catch (Exception e) {
+            Logger.getLogger(AgregarProductosController.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    public void closeWindowsProductos() {
+        try {
             Stage myStage = (Stage) this.txtAgregar.getScene().getWindow();
             myStage.close();
 
