@@ -22,24 +22,29 @@
                   <Font name="Britannic Bold" size="18.0" />
                </font>
             </Text>
-            <Button layoutX="54.0" layoutY="112.0" mnemonicParsing="false" onAction="#btnVistaVender" prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: #05437e;" text="Vender" textFill="WHITE">
+            <Button layoutX="54.0" layoutY="173.0" mnemonicParsing="false" onAction="#btnVistaVender" prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: #05437e;" text="Vender" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="54.0" layoutY="188.0" mnemonicParsing="false" onAction="#btnVistaComprar" prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: #05437e;" text="Comprar" textFill="WHITE">
+            <Button layoutX="54.0" layoutY="242.0" mnemonicParsing="false" onAction="#btnVistaComprar" prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: #05437e;" text="Comprar" textFill="WHITE">
+               <font>
+                  <Font name="Britannic Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="54.0" layoutY="115.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: #05437e;" text="Inicio" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <Text fill="WHITE" layoutX="377.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Productos">
+      <Text fx:id="txtProductosTitulo" fill="WHITE" layoutX="367.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mis Productos">
          <font>
             <Font name="Britannic Bold" size="36.0" />
          </font>
       </Text>
-      <TableView layoutX="229.0" layoutY="81.0" prefHeight="270.0" prefWidth="478.0">
+      <TableView layoutX="229.0" layoutY="81.0" onSort="#tblVerProductos" prefHeight="270.0" prefWidth="478.0">
         <columns>
           <TableColumn prefWidth="75.0" text="ID" />
           <TableColumn prefWidth="143.20001220703125" text="Nombre" />
