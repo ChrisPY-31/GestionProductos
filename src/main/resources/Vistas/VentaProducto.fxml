@@ -21,9 +21,12 @@
                   <Font name="Britannic Bold" size="37.0" />
                </font>
             </Text>
+            <Button layoutX="200.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnVistaInicio" text="Inicio" />
+            <Button layoutX="195.0" layoutY="366.0" mnemonicParsing="false" onAction="#btnVistaComprar" text="Comprar" />
+            <Button layoutX="199.0" layoutY="297.0" mnemonicParsing="false" text="Vender" />
          </children>
       </AnchorPane>
-      <Text fill="WHITE" layoutX="451.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Productos">
+      <Text fx:id="TituloProductos" fill="WHITE" layoutX="371.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vender Productos">
          <font>
             <Font name="Britannic Bold" size="48.0" />
          </font>
@@ -37,7 +40,7 @@
             <TableColumn prefWidth="131.199951171875" text="EXISTENCIAS" />
         </columns>
       </TableView>
-      <Button layoutX="525.0" layoutY="432.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="109.0" style="-fx-background-color: #cf2525;" text="Vender" textFill="WHITE">
+      <Button layoutX="525.0" layoutY="432.0" mnemonicParsing="false" onAction="#btnVenderProductos" prefHeight="38.0" prefWidth="109.0" style="-fx-background-color: #cf2525;" text="Vender" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font></Button>
