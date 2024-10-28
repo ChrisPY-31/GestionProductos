@@ -56,8 +56,11 @@
                         <Ellipse fill="WHITE" layoutX="78.0" layoutY="116.0" radiusX="45.0" radiusY="29.0" stroke="BLACK" strokeType="INSIDE" />
                      </children>
                   </AnchorPane>
-                  <Label layoutX="640.0" layoutY="455.0" text="¿No tienes cuenta?" />
-                  <Button layoutX="744.0" layoutY="451.0" mnemonicParsing="false" onAction="#btnRegister" text="Registrate" />
+                  <Label layoutX="634.0" layoutY="455.0" text="¿No tienes cuenta?" underline="true" />
+                  <Button layoutX="744.0" layoutY="451.0" mnemonicParsing="false" onAction="#btnRegister" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #315db0;" text="Registrate" textFill="WHITE">
+                     <font>
+                        <Font name="Britannic Bold" size="13.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
         </items>
