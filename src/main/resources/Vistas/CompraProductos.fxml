@@ -12,9 +12,8 @@
 
 <AnchorPane prefHeight="504.0" prefWidth="850.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CompraController">
    <children>
-      <AnchorPane layoutX="-82.0" prefHeight="504.0" prefWidth="286.0" style="-fx-background-color: #05437e;">
+      <AnchorPane layoutX="-84.0" prefHeight="508.0" prefWidth="286.0" style="-fx-background-color: #05437e;">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="160.0" layoutX="92.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="184.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c9c48" height="58.0" layoutX="117.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="134.0" />
             <Circle fill="WHITE" layoutX="184.0" layoutY="94.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
             <Text layoutX="174.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
@@ -22,9 +21,18 @@
                   <Font name="Britannic Bold" size="33.0" />
                </font>
             </Text>
-            <Button layoutX="139.0" layoutY="252.0" mnemonicParsing="false" onAction="#btnVender" prefHeight="26.0" prefWidth="110.0" text="Vender" />
-            <Button layoutX="139.0" layoutY="189.0" mnemonicParsing="false" onAction="#btnInicio" prefHeight="26.0" prefWidth="110.0" text="Inicio" />
-            <Button layoutX="139.0" layoutY="326.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Comprar" />
+            <Button layoutX="129.0" layoutY="293.0" mnemonicParsing="false" onAction="#btnVender" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #d05a04;" text="Vender" textFill="WHITE">
+               <font>
+                  <Font name="Britannic Bold" size="16.0" />
+               </font></Button>
+            <Button layoutX="129.0" layoutY="223.0" mnemonicParsing="false" onAction="#btnInicio" prefHeight="29.0" prefWidth="110.0" style="-fx-background-color: #3d8de8;" text="Inicio" textFill="WHITE">
+               <font>
+                  <Font name="Britannic Bold" size="16.0" />
+               </font></Button>
+            <Button layoutX="129.0" layoutY="360.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #5c4bee;" text="Comprar" textFill="WHITE">
+               <font>
+                  <Font name="Britannic Bold" size="16.0" />
+               </font></Button>
          </children>
       </AnchorPane>
       <Text fx:id="txtCompraTitulo" fill="WHITE" layoutX="329.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comprar Productos">
@@ -44,7 +52,7 @@
          </font>
       </Text>
       <TextField layoutX="428.0" layoutY="161.0" prefHeight="26.0" prefWidth="302.0" />
-      <TableView layoutX="256.0" layoutY="214.0" prefHeight="174.0" prefWidth="564.0">
+      <TableView layoutX="256.0" layoutY="214.0" prefHeight="174.0" prefWidth="564.0" style="-fx-background-color: #dfe7f7;">
         <columns>
           <TableColumn prefWidth="112.800048828125" text="ID" />
           <TableColumn prefWidth="336.0" text="NOMBRE" />
@@ -57,7 +65,7 @@
          </font>
       </Text>
       <TextField layoutX="370.0" layoutY="423.0" prefHeight="26.0" prefWidth="322.0" />
-      <Button layoutX="711.0" layoutY="421.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="78.0" style="-fx-background-color: #cf2525;" text="Pagar" textFill="WHITE">
+      <Button layoutX="711.0" layoutY="421.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="101.0" style="-fx-background-color: #c09512;" text="Pagar" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font>

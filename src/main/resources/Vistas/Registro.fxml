@@ -18,7 +18,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #012E46; -fx-border-width: black;">
                <children>
-                  <Text fill="WHITE" layoutX="10.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registro de Usuario">
+                  <Text fill="WHITE" layoutX="80.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registro">
                      <font>
                         <Font name="Britannic Bold" size="28.0" />
                      </font>
@@ -47,7 +47,7 @@
                               <Font name="Britannic Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtTelefonoUsuario" prefHeight="31.0" prefWidth="364.0" />
+                        <TextField fx:id="txtTelefonoUsuario" prefHeight="31.0" prefWidth="361.0" />
                      </children>
                   </HBox>
                   <HBox layoutX="15.0" layoutY="233.0" prefHeight="32.0" prefWidth="482.0">
@@ -57,25 +57,25 @@
                               <Font name="Britannic Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtCorreoUsuario" prefHeight="32.0" prefWidth="394.0" />
+                        <TextField fx:id="txtCorreoUsuario" prefHeight="32.0" prefWidth="397.0" />
                      </children>
                   </HBox>
-                  <HBox layoutX="15.0" layoutY="327.0" prefHeight="32.0" prefWidth="482.0">
-                     <children>
-                        <Label prefHeight="32.0" prefWidth="245.0" text="Contraseña:">
-                           <font>
-                              <Font name="Britannic Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="txtContraseñaUsuario" prefHeight="32.0" prefWidth="354.0" />
-                     </children>
-                  </HBox>
-                  <Button layoutX="264.0" layoutY="395.0" mnemonicParsing="false" onAction="#btnRegistrarUsuario" prefHeight="42.0" prefWidth="202.0" style="-fx-background-color: #094293;" text="Registrarse" textFill="WHITE">
+                  <HBox layoutX="15.0" layoutY="327.0" prefHeight="32.0" prefWidth="482.0" />
+                  <Button layoutX="187.0" layoutY="387.0" mnemonicParsing="false" onAction="#btnRegistrarUsuario" prefHeight="42.0" prefWidth="202.0" style="-fx-background-color: #094293;" text="Registrarse" textFill="WHITE">
                      <font>
                         <Font name="Britannic Bold" size="18.0" />
                      </font></Button>
-                  <Label layoutX="388.0" layoutY="467.0" text="Ya tienes cuenta?" />
-                  <Button layoutX="486.0" layoutY="463.0" mnemonicParsing="false" onAction="#btnIniciaSesion" text="Inicia Sesion" />
+                  <Label layoutX="364.0" layoutY="466.0" text="Ya tienes cuenta?" textFill="#1334d9" underline="true" />
+                  <Button layoutX="464.0" layoutY="462.0" mnemonicParsing="false" onAction="#btnIniciaSesion" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #315db0;" text="Inicia Sesion" textFill="WHITE">
+                     <font>
+                        <Font name="Britannic Bold" size="12.0" />
+                     </font></Button>
+                  <Label layoutX="14.0" layoutY="311.0" prefHeight="32.0" prefWidth="142.0" text="Contraseña:">
+                     <font>
+                        <Font name="Britannic Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="txtContraseñaUsuario" layoutX="193.0" layoutY="311.0" prefHeight="32.0" prefWidth="305.0" />
                </children>
             </AnchorPane>
         </items>

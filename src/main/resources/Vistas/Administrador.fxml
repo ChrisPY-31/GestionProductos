@@ -15,22 +15,22 @@
             <Font name="Britannic Bold" size="36.0" />
          </font>
       </Text>
-      <AnchorPane layoutY="-4.0" prefHeight="514.0" prefWidth="154.0" style="-fx-background-color: #05437e;">
+      <AnchorPane layoutY="-4.0" prefHeight="514.0" prefWidth="174.0" style="-fx-background-color: #05437e;">
          <children>
             <Circle fill="WHITE" layoutX="29.0" layoutY="43.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
-            <Text fill="WHITE" layoutX="52.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMINISTRADOR" wrappingWidth="139.1136474609375">
+            <Text fill="WHITE" layoutX="50.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMINISTRADOR" wrappingWidth="147.1136474609375">
                <font>
                   <Font name="Britannic Bold" size="18.0" />
                </font>
             </Text>
-            <Button layoutX="42.0" layoutY="124.0" mnemonicParsing="false" onAction="#btnVentanaAgregarProductos" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #05437e;" text="Agregar" textFill="WHITE">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="125.0" mnemonicParsing="false" onAction="#btnVentanaAgregarProductos" prefHeight="42.0" prefWidth="125.0" style="-fx-background-color: #1d9627;" text="Agregar" textFill="WHITE">
                <font>
-                  <Font name="Britannic Bold" size="16.0" />
+                  <Font name="Britannic Bold" size="18.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblProductos" layoutX="250.0" layoutY="96.0" prefHeight="286.0" prefWidth="563.0">
+      <TableView fx:id="tblProductos" layoutX="250.0" layoutY="96.0" prefHeight="286.0" prefWidth="563.0" style="-fx-background-color: #dfe7f7;">
         <columns>
           <TableColumn fx:id="colId" prefWidth="100.79998779296875" text="ID" />
           <TableColumn fx:id="colNombre" prefWidth="131.20001220703125" text="Nombre " />
@@ -39,14 +39,14 @@
             <TableColumn fx:id="colCategoira" prefWidth="111.199951171875" text="Cantidad " />
         </columns>
       </TableView>
-      <Button layoutX="338.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnEditarProductos" prefHeight="36.0" prefWidth="87.0" style="-fx-background-color: #012E46; -fx-border-color: WHITE;" text="Editar " textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="338.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnEditarProductos" prefHeight="36.0" prefWidth="87.0" style="-fx-background-color: #315db0;" text="Editar " textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Britannic Bold" size="12.0" />
+            <Font name="Britannic Bold" size="16.0" />
          </font>
       </Button>
-      <Button layoutX="614.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnEliminarProductos" prefHeight="36.0" prefWidth="79.0" style="-fx-background-color: #cf2525;" text="Eliminar" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="614.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnEliminarProductos" prefHeight="36.0" prefWidth="95.0" style="-fx-background-color: #cf2525;" text="Eliminar" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Britannic Bold" size="12.0" />
+            <Font name="Britannic Bold" size="16.0" />
          </font>
       </Button>
    </children>
