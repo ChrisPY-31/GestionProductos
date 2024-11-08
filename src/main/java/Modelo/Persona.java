@@ -1,25 +1,34 @@
 package Modelo;
 
-public class Persona {
-    private String idPersona;
-    private String nombre;
-    private int telefono;
-    private String correo;
-    private String contraseña;
+import BaseDatos.ConexionPostgreSQL;
 
-    public Persona(String nombre, int telefono, String correo, String contraseña) {
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Persona {
+    private String nombre;
+    private String telefono;
+    private String correo;
+    private String contrasena;
+    private String rol;
+    private String rolBD;
+
+    public Persona(String nombre, String telefono, String correo, String contrasena, String rol) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.correo = correo;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
+        this.rol = rol;
     }
 
-    public String getIdPersona() {
-        return idPersona;
+    public Persona(String correo, String contrasena) {
+        this.correo = correo;
+        this.contrasena = contrasena;
     }
 
-    public void setIdPersona(String idPersona) {
-        this.idPersona = idPersona;
+    public Persona() {
+
     }
 
     public String getNombre() {
@@ -30,12 +39,12 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public int getTelefono() {
-        return telefono;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
+    public String getTelefono() {
+        return telefono;
     }
 
     public String getCorreo() {
@@ -46,11 +55,63 @@ public class Persona {
         this.correo = correo;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public boolean InsertarDatos() throws SQLException {
+        String SQL = "INSERT INTO usuarios (nombre, correo, contrasena, rol, telefono) VALUES(?,?,?,?,?)";
+
+        try (Connection con = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = con.prepareStatement(SQL)) {
+
+            // Establece los valores para los parámetros
+            pstmt.setString(1, getNombre());
+            pstmt.setString(2, getCorreo());
+            pstmt.setString(3, getContrasena());
+            pstmt.setString(4, getRol());
+            pstmt.setString(5, getTelefono());
+
+            pstmt.executeUpdate();
+            System.out.println("Successfully created.");
+            return true;
+
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Persona.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            return false;
+        }
+
+    }
+
+    public boolean autenticacion() {
+        String query = "SELECT * FROM usuarios WHERE correo = ? AND contrasena = ?";
+        try (Connection con = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = con.prepareStatement(query)) {
+
+            pstmt.setString(1, correo);
+            pstmt.setString(2, contrasena);
+
+            ResultSet resultSet = pstmt.executeQuery();
+
+            //this.rolBD = resultSet.getString("rol");
+            return resultSet.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
