@@ -1,12 +1,12 @@
 package Modelo;
 
-public class AgregarProductos {
+public class Productos {
     public String nombreProducto;
     public String categoria;
     public double precio;
     public int cantidad;
 
-    public AgregarProductos(String nombre, String categoria, double precio, int cantidad) {
+    public Productos(String nombre, String categoria, double precio, int cantidad) {
         this.nombreProducto = nombre;
         this.categoria = categoria;
         this.precio = precio;

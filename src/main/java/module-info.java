@@ -4,7 +4,7 @@ module com.example.gestion_productos {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
-    requires java.logging;
+    requires java.sql;
 
     //opens Vistas to javafx.fxml;
     //exports Modelo;
