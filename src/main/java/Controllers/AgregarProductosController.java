@@ -1,11 +1,17 @@
 package Controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,7 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class AgregarProductosController {
+public class AgregarProductosController implements Initializable {
 
     @FXML
     private Button GuardarProducto;
@@ -30,6 +36,9 @@ public class AgregarProductosController {
 
     @FXML
     private TextField txtPrecio;
+
+    @FXML
+    private ComboBox<String> CategoriaList;
 
     @FXML
     void ElegirCategoria(ActionEvent event) {
@@ -72,4 +81,13 @@ public class AgregarProductosController {
             Logger.getLogger(AgregarProductosController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<String> list = FXCollections.observableArrayList("Alimentos", "Bebidas", "Salud", "Belleza", "Hogar");
+        CategoriaList.setItems(list);
+    }
+
 }
+
+
