@@ -94,22 +94,20 @@ public class RegistroController implements Initializable {
 
         Persona persona = new Persona(nombreUsuario, correoUsuario, contrasenaUsuario, rol);
 
-
         String response = persona.InsertarDatos();
-        System.out.println(response);
-        //String registro = response ? "Se Registro correctamente" : "No se registro";
-        //alertas(registro);
-        //if (response) {
-          //  navegacinoUsuario();
-        //limpiarFormulario();
-        // } else {
-        //   alertas(registro);
-        // }
-
+        if(response.equals("Administrador")){
+            navegacionAdministrador();
+        }
+        if(response.equals("usuario")){
+            navegacionUsuario();
+        }
+        if(response.equals("Error")){
+            alertas("Hubo un error intentelo mas tarde" );
+        }
 
     }
 
-    public void navegacinoUsuario() {
+    public void navegacionUsuario() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Usuario.fxml"));
             Parent root = loader.load();
@@ -125,6 +123,26 @@ public class RegistroController implements Initializable {
             myStage.close();
         } catch (IOException e) {
             Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+    }
+
+    public void navegacionAdministrador(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Administrador.fxml"));
+            Parent root = loader.load();
+            AdministradorController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnCloseRequest(e -> controller.closeWindowsAdministrador());
+
+            Stage myStage = (Stage) this.txtNombreUsuario.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, e);
 
         }
     }

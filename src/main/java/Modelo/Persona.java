@@ -35,10 +35,6 @@ public class Persona {
         this.id = id;
     }
 
-    public Persona() {
-
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -73,31 +69,29 @@ public class Persona {
 
 
     public String InsertarDatos() throws SQLException {
-        String SQL = "INSERT INTO usuario (id, nombre, correo, contrasena, rol) VALUES(?,?,?,?,?)";
+        String SQL = "INSERT INTO usuario (nombre, correo, contrasena, rol) VALUES(?,?,?,?) RETURNING rol";
 
         try (Connection con = new ConexionPostgreSQL().getConnection();
              PreparedStatement pstmt = con.prepareStatement(SQL)) {
 
-            pstmt.setInt(1, getId());
-            pstmt.setString(2, getNombre());
-            pstmt.setString(3, getCorreo());
-            pstmt.setString(4, getContrasena());
-            pstmt.setString(5, getRol());
+            pstmt.setString(1, getNombre());
+            pstmt.setString(2, getCorreo());
+            pstmt.setString(3, getContrasena());
+            pstmt.setString(4, getRol());
 
-            pstmt.executeUpdate();
             ResultSet resultSet = pstmt.executeQuery();
 
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 return resultSet.getString("rol");
+            } else {
+                return "Error: No se pudo obtener el rol";
             }
-
 
         } catch (SQLException ex) {
             Logger lgr = Logger.getLogger(Persona.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
             return "Error";
         }
-return "no hay nada";
     }
 
     public String autenticacion() {
