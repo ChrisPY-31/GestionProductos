@@ -22,19 +22,24 @@
                   <Font name="Britannic Bold" size="18.0" />
                </font>
             </Text>
-            <Button layoutX="33.0" layoutY="215.0" mnemonicParsing="false" onAction="#btnVistaVender" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #d05a04;" text="Vender" textFill="WHITE">
+            <Button layoutX="33.0" layoutY="187.0" mnemonicParsing="false" onAction="#btnVistaVender" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #d05a04;" text="Vender" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="33.0" layoutY="293.0" mnemonicParsing="false" onAction="#btnVistaComprar" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #5c4bee;" text="Comprar" textFill="WHITE">
+            <Button layoutX="33.0" layoutY="265.0" mnemonicParsing="false" onAction="#btnVistaComprar" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #5c4bee;" text="Comprar" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="33.0" layoutY="137.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #3d8de8;" text="Inicio" textFill="WHITE">
+            <Button layoutX="33.0" layoutY="109.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #3d8de8;" text="Inicio" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="txtCloseUsuario" layoutX="33.0" layoutY="371.0" mnemonicParsing="false" onAction="#btnCerrarSesionUsuario" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #3d8de8; -fx-border-color: white;" text="Cerrar Sesión" textFill="WHITE">
+               <font>
+                  <Font name="Britannic Bold" size="14.0" />
                </font>
             </Button>
          </children>

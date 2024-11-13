@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -32,6 +33,9 @@ public class AdministradorController {
 
     @FXML
     private TableView<?> tblProductos;
+
+    @FXML
+    private Button txtCerrarV;
 
     @FXML
     void btnVentanaAgregarProductos() {
@@ -75,6 +79,27 @@ public class AdministradorController {
         }
     }
 
+    @FXML
+    void btnCerrarSesion(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/InicioSesion.fxml"));
+            Parent root = loader.load();
+            InicioSesionController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnCloseRequest(e -> controller.btnRegister());
+            stage.setOnCloseRequest(e -> controller.closeWindowsInicioSesion());
+
+            Stage myStage = (Stage) this.txtCerrarV.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+    }
 
 
 }

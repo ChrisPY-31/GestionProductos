@@ -28,6 +28,11 @@
                   <Font name="Britannic Bold" size="18.0" />
                </font>
             </Button>
+            <Button fx:id="txtCerrarV" layoutX="33.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnCerrarSesion" prefHeight="36.0" prefWidth="132.0" style="-fx-background-color: #3383de; -fx-border-color: white;" text=" Cerrar Sesión" textFill="WHITE">
+               <font>
+                  <Font name="Britannic Bold" size="16.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <TableView fx:id="tblProductos" layoutX="250.0" layoutY="96.0" prefHeight="286.0" prefWidth="563.0" style="-fx-background-color: #dfe7f7;">
