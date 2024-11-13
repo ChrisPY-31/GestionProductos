@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 
 public class ConexionPostgreSQL {
     private Connection connection;
-
     private String usuario = "postgres"; // Usuario de PostgreSQL
     private String password = "eytFkUccrxxPpBuZjyCvdYVfnCjFLcGd"; // Cambia a la contraseña de tu usuario de PostgreSQL
     private String servidor = "autorack.proxy.rlwy.net";
@@ -40,4 +39,5 @@ public class ConexionPostgreSQL {
     public Connection getConnection() {
         return connection;
     }
+
 }
