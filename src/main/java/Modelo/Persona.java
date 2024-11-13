@@ -8,18 +8,17 @@ import java.util.logging.Logger;
 
 public class Persona {
     private String nombre;
-    private String telefono;
     private String correo;
     private String contrasena;
     private String rol;
-    private String rolBD;
+    private String IDUsuario;
 
-    public Persona(String nombre, String telefono, String correo, String contrasena, String rol) {
+    public Persona(String nombre, String correo, String contrasena, String rol, String IDUsuario) {
         this.nombre = nombre;
-        this.telefono = telefono;
         this.correo = correo;
         this.contrasena = contrasena;
         this.rol = rol;
+        this.IDUsuario = IDUsuario;
     }
 
     public Persona(String correo, String contrasena) {
@@ -37,14 +36,6 @@ public class Persona {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getTelefono() {
-        return telefono;
     }
 
     public String getCorreo() {
@@ -71,6 +62,13 @@ public class Persona {
         this.rol = rol;
     }
 
+    public String getIDUsuario() {
+        return IDUsuario;
+    }
+    public void setIDUsuario(String IDUsuario) {
+        this.IDUsuario = IDUsuario;
+    }
+
     public boolean InsertarDatos() throws SQLException {
         String SQL = "INSERT INTO usuarios (nombre, correo, contrasena, rol, telefono) VALUES(?,?,?,?,?)";
 
@@ -82,7 +80,6 @@ public class Persona {
             pstmt.setString(2, getCorreo());
             pstmt.setString(3, getContrasena());
             pstmt.setString(4, getRol());
-            pstmt.setString(5, getTelefono());
 
             pstmt.executeUpdate();
             System.out.println("Successfully created.");
