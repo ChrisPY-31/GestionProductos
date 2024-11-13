@@ -30,19 +30,20 @@ public class InicioSesionController {
         String contrasena = txtContraseña.getText();
         Persona persona = new Persona(correo, contrasena);
 
-        boolean role = persona.autenticacion();
-        String mensaje = "";
-        if (!role) {
-            mensaje += "La contraseña o el correo esta mal";
-            alertas(mensaje, role);
-        } else {
-            mensaje += "Bievenido";
-            alertas(mensaje, role);
+        String role = persona.autenticacion();
+        if(role.equals("Administrador")){
+            navegacinoAdministrador();
+        }
+        if(role.equals("usuario")){
             navegacinoUsuario();
-
+        }
+        if(role.equals("Error de contraseña")){
+            alertas("La contraseña o el correo son incorrectos" ,false);
         }
 
+
     }
+
 
     public void alertas(String mensaje, boolean rol) {
         if (rol) {
@@ -111,6 +112,26 @@ public class InicioSesionController {
             myStage.close();
         } catch (IOException e) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+    }
+
+    public void navegacinoAdministrador() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Administrador.fxml"));
+            Parent root = loader.load();
+            AdministradorController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnCloseRequest(e -> controller.closeWindowsAdministrador());
+
+            Stage myStage = (Stage) this.txtCorreo.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, e);
 
         }
     }

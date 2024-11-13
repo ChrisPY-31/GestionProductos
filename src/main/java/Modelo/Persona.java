@@ -3,6 +3,7 @@ package Modelo;
 import BaseDatos.ConexionPostgreSQL;
 
 import java.sql.*;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,19 +12,27 @@ public class Persona {
     private String correo;
     private String contrasena;
     private String rol;
-    private String IDUsuario;
+    private int id;
 
-    public Persona(String nombre, String correo, String contrasena, String rol, String IDUsuario) {
+    public Persona(String nombre, String correo, String contrasena, String rol) {
         this.nombre = nombre;
         this.correo = correo;
         this.contrasena = contrasena;
         this.rol = rol;
-        this.IDUsuario = IDUsuario;
+        this.id = UUID.randomUUID().hashCode();
     }
 
     public Persona(String correo, String contrasena) {
         this.correo = correo;
         this.contrasena = contrasena;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Persona() {
@@ -62,39 +71,37 @@ public class Persona {
         this.rol = rol;
     }
 
-    public String getIDUsuario() {
-        return IDUsuario;
-    }
-    public void setIDUsuario(String IDUsuario) {
-        this.IDUsuario = IDUsuario;
-    }
 
-    public boolean InsertarDatos() throws SQLException {
-        String SQL = "INSERT INTO usuarios (nombre, correo, contrasena, rol, telefono) VALUES(?,?,?,?,?)";
+    public String InsertarDatos() throws SQLException {
+        String SQL = "INSERT INTO usuario (id, nombre, correo, contrasena, rol) VALUES(?,?,?,?,?)";
 
         try (Connection con = new ConexionPostgreSQL().getConnection();
              PreparedStatement pstmt = con.prepareStatement(SQL)) {
 
-            // Establece los valores para los parámetros
-            pstmt.setString(1, getNombre());
-            pstmt.setString(2, getCorreo());
-            pstmt.setString(3, getContrasena());
-            pstmt.setString(4, getRol());
+            pstmt.setInt(1, getId());
+            pstmt.setString(2, getNombre());
+            pstmt.setString(3, getCorreo());
+            pstmt.setString(4, getContrasena());
+            pstmt.setString(5, getRol());
 
             pstmt.executeUpdate();
-            System.out.println("Successfully created.");
-            return true;
+            ResultSet resultSet = pstmt.executeQuery();
+
+            if(resultSet.next()) {
+                return resultSet.getString("rol");
+            }
+
 
         } catch (SQLException ex) {
             Logger lgr = Logger.getLogger(Persona.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
-            return false;
+            return "Error";
         }
-
+return "no hay nada";
     }
 
-    public boolean autenticacion() {
-        String query = "SELECT * FROM usuarios WHERE correo = ? AND contrasena = ?";
+    public String autenticacion() {
+        String query = "SELECT * FROM usuario WHERE correo = ? AND contrasena = ?";
         try (Connection con = new ConexionPostgreSQL().getConnection();
              PreparedStatement pstmt = con.prepareStatement(query)) {
 
@@ -103,12 +110,16 @@ public class Persona {
 
             ResultSet resultSet = pstmt.executeQuery();
 
-            //this.rolBD = resultSet.getString("rol");
-            return resultSet.next();
+            while (resultSet.next()) {
+                return resultSet.getString("rol");
+            }
+            return "Error de contraseña";
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return "false";
         }
     }
+
 }
+

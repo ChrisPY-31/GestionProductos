@@ -42,11 +42,8 @@ public class RegistroController implements Initializable {
     private ComboBox<String> RolList;
 
 
-    //Validaciones
-    // Expresión regular para validar el correo electrónico
     private static final String EMAIL_REGEX = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
-    // Expresión regular para validar la contraseña
     private static final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,}$";
 
     public static boolean validateEmail(String email) {
@@ -86,27 +83,30 @@ public class RegistroController implements Initializable {
     @FXML
     void btnRegistrarUsuario(ActionEvent event) throws SQLException {
         String nombreUsuario = txtNombreUsuario.getText();
-        String telefonoUsuario = txtTelefonoUsuario.getText();
         String correoUsuario = txtCorreoUsuario.getText();
         String contrasenaUsuario = txtContraseñaUsuario.getText();
-        String rol = "usuario";
+        String rol = RolList.getSelectionModel().getSelectedItem();
 
-        if(!validateEmail(correoUsuario) || !validatePassword(contrasenaUsuario)) {
 
-        }
+        //if(!validateEmail(correoUsuario) || !validatePassword(contrasenaUsuario)) {
+          //  alertas("Debe tener un caracter especial");
+        //}
 
-        Persona persona = new Persona(nombreUsuario, telefonoUsuario, correoUsuario, contrasenaUsuario, rol);
+        Persona persona = new Persona(nombreUsuario, correoUsuario, contrasenaUsuario, rol);
 
-        boolean response = persona.InsertarDatos();
 
-        String registro = response ? "Se Registro correctamente" : "No se registro";
-        alertas(registro);
-        if (response) {
-            navegacinoUsuario();
-            limpiarFormulario();
-        } else {
-            alertas(registro);
-        }
+        String response = persona.InsertarDatos();
+        System.out.println(response);
+        //String registro = response ? "Se Registro correctamente" : "No se registro";
+        //alertas(registro);
+        //if (response) {
+          //  navegacinoUsuario();
+        //limpiarFormulario();
+        // } else {
+        //   alertas(registro);
+        // }
+
+
     }
 
     public void navegacinoUsuario() {
@@ -169,7 +169,7 @@ public class RegistroController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> list = FXCollections.observableArrayList("Administrador", "Nuevo usuario");
+        ObservableList<String> list = FXCollections.observableArrayList("Administrador", "usuario");
         RolList.setItems(list);
     }
 
