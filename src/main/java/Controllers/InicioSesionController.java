@@ -32,10 +32,10 @@ public class InicioSesionController {
 
         String role = persona.autenticacion();
         if(role.equals("Administrador")){
-            navegacinoAdministrador();
+            navegacionAdministrador();
         }
         if(role.equals("usuario")){
-            navegacinoUsuario();
+            navegacionUsuario();
         }
         if(role.equals("Error de contraseña")){
             alertas("La contraseña o el correo son incorrectos" ,false);
@@ -96,7 +96,7 @@ public class InicioSesionController {
         }
     }
 
-    public void navegacinoUsuario() {
+    public void navegacionUsuario() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Usuario.fxml"));
             Parent root = loader.load();
@@ -116,7 +116,7 @@ public class InicioSesionController {
         }
     }
 
-    public void navegacinoAdministrador() {
+    public void navegacionAdministrador() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Administrador.fxml"));
             Parent root = loader.load();
