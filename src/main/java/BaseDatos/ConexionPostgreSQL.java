@@ -13,22 +13,9 @@ public class ConexionPostgreSQL {
 
     // Concatenar la URL de conexión para PostgreSQL
     private String url = "jdbc:postgresql://" + servidor + ":" + puerto + "/" + nombreBD;
-
     private String driver = "org.postgresql.Driver"; // Driver de PostgreSQL
 
     public ConexionPostgreSQL() {
-
-        verificarVariables();
-
-            //  variables de entorno
-            usuario = System.getenv("DB_USER");
-            password = System.getenv("DB_PASSWORD");
-            servidor = System.getenv("DB_HOST");
-            puerto = System.getenv("DB_PORT");
-            nombreBD = System.getenv("DB_NAME");
-
-            url = "jdbc:postgresql://" + servidor + ":" + puerto + "/" + nombreBD;
-
         try {
             // Cargar el driver de PostgreSQL
             Class.forName(driver);
@@ -36,6 +23,7 @@ public class ConexionPostgreSQL {
             // Crear la conexión y asignarla a la variable connection
             connection = DriverManager.getConnection(url, usuario, password);
 
+            // Verificar si la conexión es exitosa
             if (connection != null) {
                 System.out.println("Conexión exitosa a PostgreSQL");
             }
@@ -48,18 +36,8 @@ public class ConexionPostgreSQL {
         }
     }
 
-    private void verificarVariables() {
-        if (System.getenv("DB_HOST") == null ||
-                System.getenv("DB_NAME") == null ||
-                System.getenv("DB_USER") == null ||
-                System.getenv("DB_PASSWORD") == null ||
-                System.getenv("DB_PORT") == null) {
-            throw new IllegalStateException("Algunas variables de entorno necesarias no están configuradas.");
-        }
-    }
-
     public Connection getConnection() {
         return connection;
     }
-}
 
+}
