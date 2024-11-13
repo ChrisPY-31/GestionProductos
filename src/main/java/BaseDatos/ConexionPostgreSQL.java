@@ -10,6 +10,7 @@ public class ConexionPostgreSQL {
     private String servidor = "localhost";
     private String puerto = "5433"; // Puerto predeterminado de PostgreSQL
     private String nombreBD = "GestionProductos";
+    //Actu
 
     // Concatenar la URL de conexión para PostgreSQL
     private String url = "jdbc:postgresql://" + servidor + ":" + puerto + "/" + nombreBD;
