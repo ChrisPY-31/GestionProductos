@@ -1,24 +1,30 @@
 package Controllers;
 
 import Modelo.Persona;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegistroController {
+public class RegistroController implements Initializable {
 
     @FXML
     private PasswordField txtContraseñaUsuario;
@@ -31,6 +37,9 @@ public class RegistroController {
 
     @FXML
     private TextField txtTelefonoUsuario;
+
+    @FXML
+    private ComboBox<String> RolList;
 
 
     //Validaciones
@@ -151,6 +160,17 @@ public class RegistroController {
         } catch (Exception e) {
             Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+    @FXML
+    void ElegirRol(ActionEvent event) {
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<String> list = FXCollections.observableArrayList("Administrador", "Nuevo usuario");
+        RolList.setItems(list);
     }
 
 }

@@ -1,6 +1,7 @@
 package Modelo;
 
 public class Productos {
+    public String IDProducto;
     public String nombreProducto;
     public String categoria;
     public double precio;
@@ -11,6 +12,7 @@ public class Productos {
         this.categoria = categoria;
         this.precio = precio;
         this.cantidad = cantidad;
+        this.IDProducto = IDProducto;
     }
 
     public String getNombre(){
@@ -37,6 +39,11 @@ public class Productos {
     public void setCantidad(int cantidad){
         this.cantidad = cantidad;
     }
-
+    public String getID(){
+        return IDProducto;
+    }
+    public void setID(String ID){
+        this.IDProducto = ID;
+    }
 
 }
