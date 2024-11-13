@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 
 public class ConexionPostgreSQL {
     private Connection connection;
+
     private String usuario = "postgres"; // Usuario de PostgreSQL
-    private String password = "Chripeya01."; // Cambia a la contraseña de tu usuario de PostgreSQL
-    private String servidor = "localhost";
-    private String puerto = "5433"; // Puerto predeterminado de PostgreSQL
-    private String nombreBD = "GestionProductos";
-    //Actu
+    private String password = "eytFkUccrxxPpBuZjyCvdYVfnCjFLcGd"; // Cambia a la contraseña de tu usuario de PostgreSQL
+    private String servidor = "autorack.proxy.rlwy.net";
+    private String puerto = "18347"; // Puerto predeterminado de PostgreSQL
+    private String nombreBD = "railway";
 
     // Concatenar la URL de conexión para PostgreSQL
     private String url = "jdbc:postgresql://" + servidor + ":" + puerto + "/" + nombreBD;
@@ -41,3 +41,4 @@ public class ConexionPostgreSQL {
         return connection;
     }
 }
+
