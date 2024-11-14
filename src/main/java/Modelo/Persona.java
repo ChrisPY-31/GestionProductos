@@ -115,5 +115,10 @@ public class Persona {
         }
     }
 
+    public boolean actualizarDatos() throws SQLException {
+        return false;
+    }
+
+
 }
 

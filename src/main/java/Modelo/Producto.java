@@ -54,4 +54,15 @@ public class Producto {
         this.id = id;
     }
 
+    public void AgregarProducto(){}
+
+    public void ActualizarProducto(){}
+
+    public boolean EliminarProducto(int IDProducto){
+        return false;
+    }
+
+    public void BuscarProducto(){}
+
+
 }
