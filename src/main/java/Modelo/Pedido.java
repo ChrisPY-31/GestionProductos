@@ -1,50 +1,67 @@
 package Modelo;
 
-public class PedidoProducto {
-    private String idPedido;
+public class Pedido {
+    private String id;
     private String idProducto;
     private String idUsuario;
     private int cantidadProductos;
     private double precio;
     private double Total;
 
+    public Pedido(String idProducto, String idUsuario, int cantidadProductos, double precio, double total) {
+        this.idProducto = idProducto;
+        this.idUsuario = idUsuario;
+        this.cantidadProductos = cantidadProductos;
+        this.precio = precio;
+        Total = total;
+    }
+
     public String getidPedido() {
-        return idPedido;
+        return id;
     }
+
     public void setidPedido() {
-        this.idPedido = idPedido;
+        this.id = id;
     }
+
     public String getidProducto() {
         return idProducto;
     }
+
     public void setidProducto() {
         this.idProducto = idProducto;
     }
+
     public String getidUsuario() {
         return idUsuario;
     }
+
     public void setidUsuario() {
         this.idUsuario = idUsuario;
     }
+
     public int getCantidadProductos() {
         return cantidadProductos;
     }
+
     public void setCantidadProductos() {
         this.cantidadProductos = cantidadProductos;
     }
+
     public double getPrecio() {
         return precio;
     }
+
     public void setPrecio() {
         this.precio = precio;
     }
+
     public double getTotal() {
         return Total;
     }
+
     public void setTotal() {
         this.Total = Total;
     }
-
-
 
 }
