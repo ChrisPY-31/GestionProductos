@@ -41,7 +41,7 @@
           <TableColumn fx:id="colNombre" prefWidth="131.20001220703125" text="Nombre " />
             <TableColumn fx:id="colCategoria" prefWidth="103.99996948242188" text="Categoria" />
             <TableColumn fx:id="colPrecio" prefWidth="120.00006103515625" text="Precio" />
-            <TableColumn fx:id="colCategoira" prefWidth="111.199951171875" text="Cantidad " />
+            <TableColumn fx:id="colCantidad" prefWidth="111.199951171875" text="Cantidad " />
         </columns>
       </TableView>
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="338.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnEditarProductos" prefHeight="36.0" prefWidth="87.0" style="-fx-background-color: #315db0;" text="Editar " textAlignment="CENTER" textFill="WHITE">

@@ -1,10 +1,16 @@
 package Controllers;
 
+import Modelo.Producto;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -15,7 +21,47 @@ import java.util.logging.Logger;
 public class CompraController {
 
     @FXML
+    private TableColumn<Producto, Integer> colCantidad;
+
+    @FXML
+    private TableColumn<Producto, String> colCategoria;
+
+    @FXML
+    private TableColumn<Producto, Integer> colId;
+
+    @FXML
+    private TableColumn<Producto, String> colNombre;
+
+    @FXML
+    private TableColumn<Producto, Double> colPrecio;
+
+    @FXML
+    private TableView<Producto> tblProductos;
+
+    @FXML
     private Text txtCompraTitulo;
+
+    @FXML
+    private TextField txtIdCantidad;
+
+    @FXML
+    private TextField txtIdProducto;
+
+    @FXML
+    private TextField txtTotal;
+
+    public void initialize() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+        colCategoria.setCellValueFactory(new PropertyValueFactory<>("Categoria"));
+        colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+        colPrecio.setCellValueFactory(new PropertyValueFactory<>("Precio"));
+
+        Producto producto = new Producto();
+        ObservableList<Producto> obs = producto.getProductos();
+        tblProductos.setItems(obs);
+    }
+
 
     @FXML
     void btnInicio() {
@@ -37,6 +83,12 @@ public class CompraController {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, e);
 
         }
+
+    }
+
+    @FXML
+    void btnPagar(ActionEvent event) {
+
     }
 
     @FXML
@@ -58,6 +110,7 @@ public class CompraController {
             Logger.getLogger(CompraController.class.getName()).log(Level.SEVERE, null, e);
 
         }
+
     }
 
     public void closeWindowsCompra() {
@@ -68,6 +121,6 @@ public class CompraController {
         } catch (Exception e) {
             Logger.getLogger(AgregarProductosController.class.getName()).log(Level.SEVERE, null, e);
         }
-    }
 
+    }
 }
