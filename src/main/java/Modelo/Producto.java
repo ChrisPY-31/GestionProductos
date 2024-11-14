@@ -99,12 +99,37 @@ public class Producto {
     }
 
 
-    public void ActualizarProducto() {
+    public boolean ActualizarProductos() {
+        String SQL = "UPDATE producto SET nombre = ?, categoria = ?, cantidad = ?, precio = ? WHERE id = ?";
+        try (Connection con = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            pstmt.setString(1, this.nombre);
+            pstmt.setString(2, this.categoria);
+            pstmt.setInt(3, this.cantidad);
+            pstmt.setDouble(4, this.precio);
+            pstmt.setInt(5, this.id);  // Usa el ID del producto seleccionado
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            Logger lgr = Logger.getLogger(Producto.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
+            return false;
+        }
+    }
+    public boolean EliminarProducto(int id) {
+        String SQL = "DELETE FROM producto WHERE producto.id = ?";
+        try (Connection con = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            pstmt.setInt(1, id);  // Asigna el parámetro id
+            int affectedRows = pstmt.executeUpdate();  // Usa executeUpdate() en lugar de executeQuery()
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            Logger lgr = Logger.getLogger(Producto.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
+            return false;
+        }
     }
 
-    public boolean EliminarProducto(int IDProducto) {
-        return false;
-    }
 
     public void BuscarProducto() {
     }

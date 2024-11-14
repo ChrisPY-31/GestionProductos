@@ -44,18 +44,20 @@ public class AgregarProductosController implements Initializable {
     }
 
     @FXML
-    void btnAgregarProducto(ActionEvent event) {
-        String nombre = txtNombreProducto.getText();
-        String categoria = CategoriaList.getSelectionModel().getSelectedItem();
-        int cantidad = Integer.parseInt(txtCantidad.getText());
-        double precio = Double.parseDouble(txtPrecio.getText());
+    void btnAgregarProducto() {
 
-        Producto producto = new Producto(nombre, categoria, cantidad, precio);
+            String nombre = txtNombreProducto.getText();
+            String categoria = CategoriaList.getSelectionModel().getSelectedItem();
+            int cantidad = Integer.parseInt(txtCantidad.getText());
+            double precio = Double.parseDouble(txtPrecio.getText());
 
-        boolean response = producto.AgregarProducto();
-        alertas(response);
-        restablecesAtributes();
-        btnInicio();
+            Producto producto = new Producto(nombre, categoria, cantidad, precio);
+
+            boolean response = producto.AgregarProducto();
+            alertas(response);
+            restablecesAtributes();
+            btnInicio();
+
     }
 
     @FXML

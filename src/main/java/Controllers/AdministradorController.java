@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -53,6 +54,7 @@ public class AdministradorController {
         Producto producto = new Producto();
         ObservableList<Producto> items = producto.getProductos();
         this.tblProductos.setItems(items);
+        tblProductos.refresh();
     }
 
     @FXML
@@ -65,7 +67,6 @@ public class AdministradorController {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-
             stage.setOnCloseRequest(e -> controller.btnInicio());
             stage.setOnCloseRequest(e -> controller.closeWindowsProductos());
 
@@ -79,11 +80,25 @@ public class AdministradorController {
 
     @FXML
     void btnEditarProductos(ActionEvent event) {
+        btnVentanaAgregarProductos();
+        //Producto p = tblProductos.getSelectionModel().getSelectedItem();
 
     }
 
     @FXML
     void btnEliminarProductos(ActionEvent event) {
+        Producto p = tblProductos.getSelectionModel().getSelectedItem();
+        boolean response = false;
+        if (p != null) {
+            response = p.EliminarProducto(p.getId());
+            if (response){
+                alertas(response);
+                p.getProductos();
+            }
+
+        } else {
+            alertas(response);
+        }
 
     }
 
@@ -115,6 +130,24 @@ public class AdministradorController {
             myStage.close();
         } catch (IOException e) {
             Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+    }
+
+    public void alertas(boolean response) {
+        if (response) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Producto");
+            alert.setHeaderText(null);
+            alert.setContentText("Producto Eliminado Correctamente");
+            alert.showAndWait();
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Producto");
+            alert.setHeaderText(null);
+            alert.setContentText("Error No se elimino el producto");
+            alert.showAndWait();
 
         }
     }
