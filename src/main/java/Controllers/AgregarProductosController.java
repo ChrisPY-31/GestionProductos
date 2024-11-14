@@ -1,5 +1,6 @@
 package Controllers;
 
+import Modelo.Producto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -7,7 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -15,10 +16,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 
 public class AgregarProductosController implements Initializable {
 
@@ -47,7 +45,17 @@ public class AgregarProductosController implements Initializable {
 
     @FXML
     void btnAgregarProducto(ActionEvent event) {
+        String nombre = txtNombreProducto.getText();
+        String categoria = CategoriaList.getSelectionModel().getSelectedItem();
+        int cantidad = Integer.parseInt(txtCantidad.getText());
+        double precio = Double.parseDouble(txtPrecio.getText());
 
+        Producto producto = new Producto(nombre, categoria, cantidad, precio);
+
+        boolean response = producto.AgregarProducto();
+        alertas(response);
+        restablecesAtributes();
+        btnInicio();
     }
 
     @FXML
@@ -86,6 +94,32 @@ public class AgregarProductosController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> list = FXCollections.observableArrayList("Alimentos", "Bebidas", "Salud", "Belleza", "Hogar");
         CategoriaList.setItems(list);
+    }
+
+    public void alertas(boolean response) {
+        System.out.println("Entro a alertas");
+        if (response) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Producto");
+            alert.setHeaderText(null);
+            alert.setContentText("producto agregado correctamente");
+            alert.showAndWait();
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Producto");
+            alert.setHeaderText(null);
+            alert.setContentText("Error al agregar un producto");
+            alert.showAndWait();
+
+        }
+    }
+
+    public void restablecesAtributes(){
+        txtNombreProducto.setText("");
+        CategoriaList.getSelectionModel().clearSelection();
+        txtCantidad.setText("");
+        txtPrecio.setText("");
     }
 
 }

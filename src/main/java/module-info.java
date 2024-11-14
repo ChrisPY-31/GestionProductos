@@ -6,8 +6,7 @@ module com.example.gestion_productos {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires java.desktop;
-
-    //opens Vistas to javafx.fxml;
+    opens Modelo to javafx.base;
     //exports Modelo;
     exports Application;
     opens Application to javafx.fxml;

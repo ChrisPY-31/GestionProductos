@@ -1,5 +1,9 @@
 package Controllers;
 
+import Modelo.Persona;
+import Modelo.Producto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,25 +22,38 @@ import java.util.logging.Logger;
 public class AdministradorController {
 
     @FXML
-    private TableColumn<?, ?> colCategoira;
+    private TableColumn <Producto , Integer>colId;
 
     @FXML
-    private TableColumn<?, ?> colCategoria;
+    private TableColumn <Producto , String>colNombre;
 
     @FXML
-    private TableColumn<?, ?> colId;
+    private TableColumn <Producto , String >colCategoria;
 
     @FXML
-    private TableColumn<?, ?> colNombre;
+    private TableColumn<Producto , Integer> colCantidad;
 
     @FXML
-    private TableColumn<?, ?> colPrecio;
+    private TableColumn <Producto , Double>colPrecio;
 
     @FXML
-    private TableView<?> tblProductos;
+    private TableView<Producto> tblProductos;
 
     @FXML
     private Button txtCerrarV;
+
+    public void initialize() {
+
+        this.colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        this.colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+        this.colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+        this.colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+
+        Producto producto = new Producto();
+        ObservableList<Producto> items = producto.getProductos();
+        this.tblProductos.setItems(items);
+    }
 
     @FXML
     void btnVentanaAgregarProductos() {

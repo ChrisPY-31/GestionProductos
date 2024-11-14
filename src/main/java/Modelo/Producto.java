@@ -1,32 +1,63 @@
 package Modelo;
 
-public class Producto {
-    public String id;
-    public String nombreProducto;
-    public String categoria;
-    public double precio;
-    public int cantidad;
+import BaseDatos.ConexionPostgreSQL;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-    public Producto(String nombre, String categoria, double precio, int cantidad) {
-        this.nombreProducto = nombre;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Producto {
+    private int id;
+    private String nombre;
+    private String categoria;
+    private double precio;
+    private int cantidad;
+
+    public Producto(){
+
+    }
+
+    public Producto(String nombre, String categoria, int cantidad, double precio) {
+        this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
         this.cantidad = cantidad;
     }
 
-    public String getNombre() {
-        return nombreProducto;
+    public Producto(int id, String nombre, String categoria, int cantidad, double precio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.categoria = categoria;
+        this.precio = precio;
+        this.cantidad = cantidad;
     }
 
-    public void setnombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getCategoria() {
         return categoria;
     }
 
-    public void setcategoria(String categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
@@ -46,23 +77,61 @@ public class Producto {
         this.cantidad = cantidad;
     }
 
-    public String getID() {
-        return id;
+    public boolean AgregarProducto() {
+        String SQL = "INSERT INTO Producto (nombre, categoria, cantidad, precio) VALUES(?,?,?,?)";
+
+        try (Connection con = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = con.prepareStatement(SQL)) {
+
+            pstmt.setString(1, nombre);
+            pstmt.setString(2, categoria);
+            pstmt.setInt(3, cantidad);
+            pstmt.setDouble(4, precio);
+
+            int filas = pstmt.executeUpdate();  // Ejecuta el INSERT
+            return filas > 0;
+
+        } catch (SQLException e) {
+            Logger lgr = Logger.getLogger(Producto.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
+            return false;
+        }
     }
 
-    public void setID(String id) {
-        this.id = id;
+
+    public void ActualizarProducto() {
     }
 
-    public void AgregarProducto(){}
-
-    public void ActualizarProducto(){}
-
-    public boolean EliminarProducto(int IDProducto){
+    public boolean EliminarProducto(int IDProducto) {
         return false;
     }
 
-    public void BuscarProducto(){}
+    public void BuscarProducto() {
+    }
 
+    public ObservableList<Producto> getProductos() {
+        ObservableList<Producto> obs = FXCollections.observableArrayList();
+
+        String SQL = "SELECT * FROM producto";
+        try (Connection con = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                String categoria = rs.getString("categoria");
+                int cantidad = rs.getInt("cantidad");
+                double precio = rs.getDouble("precio");
+                Producto producto = new Producto(id, nombre, categoria, cantidad, precio);
+                obs.add(producto);
+            }
+        } catch (SQLException e) {
+            Logger lgr = Logger.getLogger(Producto.class.getName());
+            lgr.log(Level.SEVERE, e.getMessage(), e);
+        }
+        return obs;
+    }
 
 }
