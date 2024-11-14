@@ -123,4 +123,11 @@ public class CompraController {
         }
 
     }
+
+    @FXML
+    void btnBuscarProducto(ActionEvent event) {
+
+    }
+
+
 }
