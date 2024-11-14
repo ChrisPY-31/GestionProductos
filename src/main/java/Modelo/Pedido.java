@@ -64,4 +64,14 @@ public class Pedido {
         this.Total = Total;
     }
 
+    public void AgregarPedidoProducto() {}
+
+    public double CalcularTotal(){
+        return Total;
+    }
+
+    public boolean EliminarPedidoProducto(int idPedido) {
+        return false;
+    }
+
 }
