@@ -21,8 +21,7 @@ import javafx.event.ActionEvent;
 public class AgregarProductosController implements Initializable {
 
     @FXML
-    private Button GuardarProducto;
-
+    private Button AgregarProducto;
     @FXML
     private Label txtAgregar;
 
@@ -43,23 +42,82 @@ public class AgregarProductosController implements Initializable {
 
     }
 
+    int id = 0;
+
+    //este agrega o actualiza productos
     @FXML
     void btnAgregarProducto() {
-
-            String nombre = txtNombreProducto.getText();
-            String categoria = CategoriaList.getSelectionModel().getSelectedItem();
-            int cantidad = Integer.parseInt(txtCantidad.getText());
-            double precio = Double.parseDouble(txtPrecio.getText());
-
-            Producto producto = new Producto(nombre, categoria, cantidad, precio);
-
-            boolean response = producto.AgregarProducto();
-            alertas(response);
-            restablecesAtributes();
-            btnInicio();
+        if (txtNombreProducto.getText().equals("") || txtPrecio.getText().equals("") || CategoriaList.getSelectionModel().getSelectedItem() == null || txtCantidad.getText().equals("")) {
+            alertasdelFormulario();
+        } else {
+            responseEditarAgregar(id);
+        }
 
     }
 
+    //aqui recibe el id si el id = 0 agrega un producto nuevo
+    //si el id es mayor a 0 es porque se va editar el producto con ese id
+    public void responseEditarAgregar(int id) {
+        if (id == 0) {
+            boolean responseValidacion = validaciondeCantidadPrecio();
+            if (responseValidacion) {
+                String nombre = txtNombreProducto.getText();
+                String categoria = CategoriaList.getSelectionModel().getSelectedItem();
+                int cantidad = Integer.parseInt(txtCantidad.getText());
+                double precio = Double.parseDouble(txtPrecio.getText());
+                Producto producto = new Producto(nombre, categoria, cantidad, precio);
+                boolean response = producto.AgregarProducto();
+                alertas(response, producto.getId());
+                restablecesAtributes();
+                btnInicio();
+
+            }
+        }
+        if (id > 0) {
+            boolean responseValidacion = validaciondeCantidadPrecio();
+            if (responseValidacion) {
+                String nombre = txtNombreProducto.getText();
+                String categoria = CategoriaList.getSelectionModel().getSelectedItem();
+                int cantidad = Integer.parseInt(txtCantidad.getText());
+                double precio = Double.parseDouble(txtPrecio.getText());
+                Producto producto = new Producto(id, nombre, categoria, cantidad, precio);
+
+                boolean response = producto.ActualizarProductos();
+
+                alertas(response, id);
+                restablecesAtributes();
+                AgregarProducto.setText("Agregar Producto");
+                btnInicio();
+            }
+
+        }
+    }
+
+    //validacion de para que sea precio = decimal cantidad = entero;
+    public boolean validaciondeCantidadPrecio() {
+        String cantidadTexto = txtCantidad.getText();
+        String precioTexto = txtPrecio.getText();
+
+        if (!esEntero(cantidadTexto)) {
+            mostrarAlerta("Cantidad debe ser un número entero.");
+            return false;
+        }
+
+        if (!esDecimal(precioTexto)) {
+            mostrarAlerta("Precio debe ser un número con decimales.");
+            return false;
+        }
+        return true;
+    }
+
+    //nos trae el producto extraemos su id para saber si estamos editando o agregando productos
+    public void editarProducto(Producto producto) {
+        id = producto.getId();
+        atributoSeleccionadoEditado(producto);
+        AgregarProducto.setText("Actualizar Producto");
+    }
+
+    //este es la navegabilidad nos manda a la ventana inicio
     @FXML
     void btnInicio() {
         try {
@@ -98,31 +156,81 @@ public class AgregarProductosController implements Initializable {
         CategoriaList.setItems(list);
     }
 
-    public void alertas(boolean response) {
-        System.out.println("Entro a alertas");
-        if (response) {
+    //este son alertas cuando se agrega y se actualiza el producto
+    public void alertas(boolean response, int id) {
+        if (response && id > 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Producto");
             alert.setHeaderText(null);
-            alert.setContentText("producto agregado correctamente");
+            alert.setContentText("Producto Actualizado correctamente");
             alert.showAndWait();
-
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+        }
+        if (response && id == 0) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Producto");
             alert.setHeaderText(null);
-            alert.setContentText("Error al agregar un producto");
+            alert.setContentText("Producto agregado correctamente");
             alert.showAndWait();
 
         }
     }
 
-    public void restablecesAtributes(){
+    //valida que todos los campos sean obligatorios
+    public void alertasdelFormulario() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Producto");
+        alert.setHeaderText(null);
+        alert.setContentText("Error todos lo campos son obligatorios");
+        alert.showAndWait();
+
+    }
+
+    //este metodo cuando le das editar los atributos se rellenan con la informacion
+    //del producto que seleccionamos
+    public void atributoSeleccionadoEditado(Producto producto) {
+        txtNombreProducto.setText(producto.getNombre());
+        txtCantidad.setText(String.valueOf(producto.getCantidad()));
+        txtPrecio.setText(String.valueOf(producto.getPrecio()));
+        CategoriaList.getSelectionModel().select(producto.getCategoria());
+    }
+
+    //este reinicia los atributos
+    public void restablecesAtributes() {
         txtNombreProducto.setText("");
         CategoriaList.getSelectionModel().clearSelection();
         txtCantidad.setText("");
         txtPrecio.setText("");
     }
+
+    //validacion de string a decimal
+    public boolean esDecimal(String valor) {
+        try {
+            Double.parseDouble(valor);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    //validacino de string a entero
+    public boolean esEntero(String valor) {
+        try {
+            Integer.parseInt(valor);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    //muestra el mensaje de la validacion
+    public void mostrarAlerta(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error de Validación");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
 
 }
 
