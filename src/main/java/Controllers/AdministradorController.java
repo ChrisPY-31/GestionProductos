@@ -23,19 +23,19 @@ import java.util.logging.Logger;
 public class AdministradorController {
 
     @FXML
-    private TableColumn <Producto , Integer>colId;
+    private TableColumn<Producto, Integer> colId;
 
     @FXML
-    private TableColumn <Producto , String>colNombre;
+    private TableColumn<Producto, String> colNombre;
 
     @FXML
-    private TableColumn <Producto , String >colCategoria;
+    private TableColumn<Producto, String> colCategoria;
 
     @FXML
-    private TableColumn<Producto , Integer> colCantidad;
+    private TableColumn<Producto, Integer> colCantidad;
 
     @FXML
-    private TableColumn <Producto , Double>colPrecio;
+    private TableColumn<Producto, Double> colPrecio;
 
     @FXML
     private TableView<Producto> tblProductos;
@@ -43,6 +43,7 @@ public class AdministradorController {
     @FXML
     private Button txtCerrarV;
 
+    //este mete los valores a la tabla
     public void initialize() {
 
         this.colId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -57,6 +58,7 @@ public class AdministradorController {
         tblProductos.refresh();
     }
 
+    //este es la navegabilidad de la ventana Agregar Productos
     @FXML
     void btnVentanaAgregarProductos() {
         try {
@@ -78,40 +80,53 @@ public class AdministradorController {
         }
     }
 
+    //boton editar Productos
     @FXML
     void btnEditarProductos(ActionEvent event) {
-        btnVentanaAgregarProductos();
-        //Producto p = tblProductos.getSelectionModel().getSelectedItem();
+        Producto p = tblProductos.getSelectionModel().getSelectedItem();
+        boolean response = validacionDeBotones(p);
+        if (!response) {
 
+        } else {
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/AgregarProductos.fxml"));
+                Parent root = loader.load();
+
+                AgregarProductosController controller = loader.getController();
+                controller.editarProducto(p);
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+
+                Stage myStage = (Stage) this.tblProductos.getScene().getWindow();
+                myStage.close();
+            } catch (IOException e) {
+                Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
     }
+
+    //boton eliminar Productos
 
     @FXML
     void btnEliminarProductos(ActionEvent event) {
         Producto p = tblProductos.getSelectionModel().getSelectedItem();
-        boolean response = false;
-        if (p != null) {
-            response = p.EliminarProducto(p.getId());
-            if (response){
+        boolean validation = validacionDeBotones(p);
+        if (validation) {
+            boolean response = p.EliminarProducto(p.getId());
+            if (response) {
+                ventanaAdministrar();
                 alertas(response);
                 p.getProductos();
+            } else {
+                alertas(response);
             }
-
-        } else {
-            alertas(response);
-        }
-
-    }
-
-    public void closeWindowsAdministrador() {
-        try {
-            Stage myStage = (Stage) this.tblProductos.getScene().getWindow();
-            myStage.close();
-
-        } catch (Exception e) {
-            Logger.getLogger(AgregarProductosController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
+    //Este cierra la sesion del administrador
     @FXML
     void btnCerrarSesion(ActionEvent event) {
         try {
@@ -130,11 +145,32 @@ public class AdministradorController {
             myStage.close();
         } catch (IOException e) {
             Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, e);
-
         }
     }
 
+    //Este es la navegabilidad de Adminsitrador
+    public void ventanaAdministrar() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Administrador.fxml"));
+            Parent root = loader.load();
+
+            AdministradorController controller = loader.getController();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage myStage = (Stage) this.tblProductos.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            Logger.getLogger(AdministradorController.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+
+    //alertas
     public void alertas(boolean response) {
+
         if (response) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Producto");
@@ -152,5 +188,26 @@ public class AdministradorController {
         }
     }
 
+    //validacion de botones
+    public boolean validacionDeBotones(Producto producto) {
+        if (producto == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText(null);
+            alert.setContentText("Por favor, selecciona un producto para editar o eliminar.");
+            alert.showAndWait();
+            return false;
+        }
+        return true;
+    }
 
+    public void closeWindowsAdministrador() {
+        try {
+            Stage myStage = (Stage) this.tblProductos.getScene().getWindow();
+            myStage.close();
+
+        } catch (Exception e) {
+            Logger.getLogger(AgregarProductosController.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 }

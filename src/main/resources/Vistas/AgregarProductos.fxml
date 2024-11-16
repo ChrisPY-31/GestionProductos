@@ -38,7 +38,7 @@
             <Font name="Britannic Bold" size="18.0" />
          </font></Label>
       <ComboBox fx:id="CategoriaList" layoutX="398.0" layoutY="325.0" onAction="#ElegirCategoria" prefHeight="26.0" prefWidth="363.0" promptText="Categoria" />
-      <Button fx:id="GuardarProducto" layoutX="453.0" layoutY="404.0" mnemonicParsing="false" onAction="#btnAgregarProducto" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #1d9627;" text="Guardar" textFill="WHITE">
+      <Button fx:id="AgregarProducto" layoutX="453.0" layoutY="404.0" mnemonicParsing="false" onAction="#btnAgregarProducto" prefHeight="31.0" prefWidth="227.0" style="-fx-background-color: #1d9627;" text="Agregar Producto" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font></Button>
