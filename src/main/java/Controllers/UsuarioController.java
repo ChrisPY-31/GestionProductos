@@ -28,6 +28,16 @@ public class UsuarioController {
     }
 
     @FXML
+    void btnFiltros(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnVender(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnVistaComprar() {
         //Navegabilidad de la vista Comprar comcluida
         try {
@@ -50,10 +60,9 @@ public class UsuarioController {
         }
     }
 
+    //Navegabilidad de la vista VenderCompletada
     @FXML
     void btnVistaVender(ActionEvent event) {
-        //Navegabilidad de la vista VenderCompletada
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/VentaProducto.fxml"));
             Parent root = loader.load();
@@ -79,6 +88,7 @@ public class UsuarioController {
     void tblVerProductos(ActionEvent event) {
 
     }
+
     public void closeWindowsUser() {
         try {
             Stage myStage = (Stage) this.txtProductosTitulo.getScene().getWindow();
