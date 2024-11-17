@@ -3,54 +3,83 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="852.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.VentaProductoController">
+<AnchorPane prefHeight="550.0" prefWidth="880.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.VentaProductoController">
    <children>
-      <AnchorPane layoutX="-83.0" layoutY="-19.0" prefHeight="518.0" prefWidth="339.0" style="-fx-background-color: #05437e;">
+      <AnchorPane prefHeight="571.0" prefWidth="178.0" style="-fx-background-color: #05437e;">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c9c48" height="58.0" layoutX="148.0" layoutY="84.0" stroke="BLACK" strokeType="INSIDE" width="134.0" />
-            <Circle fill="WHITE" layoutX="215.0" layoutY="113.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
-            <Text layoutX="204.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c9c48" height="58.0" layoutX="22.0" layoutY="84.0" stroke="BLACK" strokeType="INSIDE" width="134.0" />
+            <Circle fill="WHITE" layoutX="89.0" layoutY="113.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
+            <Text layoutX="78.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
                <font>
                   <Font name="Britannic Bold" size="37.0" />
                </font>
             </Text>
-            <Button layoutX="160.0" layoutY="215.0" mnemonicParsing="false" onAction="#btnVistaInicio" prefHeight="29.0" prefWidth="110.0" style="-fx-background-color: #3d8de8;" text="Inicio" textAlignment="CENTER" textFill="WHITE">
+            <Button layoutX="33.0" layoutY="216.0" mnemonicParsing="false" onAction="#btnVistaInicio" prefHeight="29.0" prefWidth="110.0" style="-fx-background-color: #3d8de8;" text="Inicio" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font></Button>
-            <Button layoutX="160.0" layoutY="384.0" mnemonicParsing="false" onAction="#btnVistaComprar" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #5c4bee;" text="Comprar" textAlignment="CENTER" textFill="WHITE">
+            <Button layoutX="34.0" layoutY="380.0" mnemonicParsing="false" onAction="#btnVistaComprar" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #5c4bee;" text="Comprar" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font></Button>
-            <Button layoutX="160.0" layoutY="298.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #d05a04;" text="Vender" textAlignment="CENTER" textFill="WHITE">
+            <Button layoutX="33.0" layoutY="299.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #d05a04;" text="Vender" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font></Button>
          </children>
       </AnchorPane>
-      <Text fx:id="TituloProductos" fill="WHITE" layoutX="371.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vender Productos">
+      <Text fx:id="TituloProductos" fill="WHITE" layoutX="336.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vender Productos">
          <font>
             <Font name="Britannic Bold" size="48.0" />
          </font>
       </Text>
-      <TableView layoutX="296.0" layoutY="101.0" prefHeight="310.0" prefWidth="528.0" style="-fx-background-color: #dfe7f7;">
+      <TableView layoutX="205.0" layoutY="271.0" prefHeight="128.0" prefWidth="659.0" style="-fx-background-color: #dfe7f7;">
         <columns>
-          <TableColumn prefWidth="91.199951171875" text="ID" />
-          <TableColumn prefWidth="83.20001220703125" text="CATEGORIA" />
-            <TableColumn minWidth="0.0" prefWidth="152.00009155273438" text="PRODUCTO" />
-            <TableColumn prefWidth="68.0" text="PRECIO" />
-            <TableColumn prefWidth="131.199951171875" text="EXISTENCIAS" />
+          <TableColumn fx:id="colId" prefWidth="91.199951171875" text="ID" />
+          <TableColumn fx:id="colNombre" prefWidth="231.20001220703125" text="NOMBRE" />
+            <TableColumn fx:id="colCategoria" minWidth="0.0" prefWidth="335.99993896484375" text="CATEGORIA" />
         </columns>
       </TableView>
-      <Button layoutX="525.0" layoutY="432.0" mnemonicParsing="false" onAction="#btnVenderProductos" prefHeight="38.0" prefWidth="109.0" style="-fx-background-color: #c09512;" text="Vender" textFill="WHITE">
+      <Button layoutX="723.0" layoutY="454.0" mnemonicParsing="false" onAction="#btnVenderProductos" prefHeight="38.0" prefWidth="109.0" style="-fx-background-color: #c09512;" text="Vender" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font></Button>
+      <Text fill="WHITE" layoutX="199.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Producto:">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="515.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad:">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="205.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio:">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="468.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio Venta:">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="222.0" layoutY="481.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ganancias del dia :">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
+      </Text>
+      <TextField layoutX="444.0" layoutY="460.0" prefHeight="26.0" prefWidth="242.0" promptText="\$ 0" />
+      <TextField fx:id="txtIdProducto" layoutX="336.0" layoutY="111.0" prefHeight="26.0" prefWidth="126.0" promptText="ID" />
+      <TextField fx:id="txtPrecio" layoutX="294.0" layoutY="190.0" prefHeight="26.0" prefWidth="150.0" promptText="0" />
+      <TextField fx:id="txtCantidad" layoutX="638.0" layoutY="111.0" prefHeight="26.0" prefWidth="150.0" promptText="0" />
+      <TextField fx:id="txtPrecioVenta" layoutX="628.0" layoutY="191.0" prefHeight="26.0" prefWidth="150.0" promptText="0" />
    </children>
 </AnchorPane>

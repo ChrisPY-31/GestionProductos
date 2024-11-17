@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -18,13 +20,33 @@ public class VentaProductoController {
     private Text TituloProductos;
 
     @FXML
+    private TableColumn<?, ?> colCategoria;
+
+    @FXML
+    private TableColumn<?, ?> colId;
+
+    @FXML
+    private TableColumn<?, ?> colNombre;
+
+    @FXML
+    private TextField txtCantidad;
+
+    @FXML
+    private TextField txtIdProducto;
+
+    @FXML
+    private TextField txtPrecio;
+
+    @FXML
+    private TextField txtPrecioVenta;
+
+    @FXML
     void btnVenderProductos() {
-        //vista vender
 
     }
 
     @FXML
-    void btnVistaComprar(ActionEvent event) {
+    void btnVistaComprar() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/CompraProductos.fxml"));
             Parent root = loader.load();
@@ -74,5 +96,4 @@ public class VentaProductoController {
             Logger.getLogger(VentaProductoController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
 }
