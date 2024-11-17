@@ -105,6 +105,7 @@ public class Persona {
             ResultSet resultSet = pstmt.executeQuery();
 
             while (resultSet.next()) {
+                this.id = resultSet.getInt("id");
                 return resultSet.getString("rol");
             }
             return "Error de contraseña";

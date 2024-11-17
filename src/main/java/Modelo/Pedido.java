@@ -1,5 +1,14 @@
 package Modelo;
 
+import BaseDatos.ConexionPostgreSQL;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Pedido {
     private String id;
     private String idProducto;
@@ -7,6 +16,10 @@ public class Pedido {
     private int cantidadProductos;
     private double precio;
     private double Total;
+
+    public Pedido(){
+
+    }
 
     public Pedido(String idProducto, String idUsuario, int cantidadProductos, double precio, double total) {
         this.idProducto = idProducto;
@@ -64,7 +77,10 @@ public class Pedido {
         this.Total = Total;
     }
 
-    public void AgregarPedidoProducto() {}
+
+    public void AgregarPedidoProducto() {
+
+    }
 
     public double CalcularTotal(){
         return Total;
