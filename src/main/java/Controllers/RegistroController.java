@@ -9,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -36,15 +33,18 @@ public class RegistroController implements Initializable {
     private TextField txtNombreUsuario;
 
     @FXML
-    private TextField txtTelefonoUsuario;
+    private ComboBox<String> RolList;
 
     @FXML
-    private ComboBox<String> RolList;
+    private Label lblPasswordMensaje;
+
+    @FXML
+    private Label lblCorreoMensaje;
 
 
     private static final String EMAIL_REGEX = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-
-    private static final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,}$";
+    //ajuste de 6-8 caracteres en {6,8}
+    private static final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,8}$";
 
     public static boolean validateEmail(String email) {
         Pattern pattern = Pattern.compile(EMAIL_REGEX);
@@ -82,29 +82,70 @@ public class RegistroController implements Initializable {
 
     @FXML
     void btnRegistrarUsuario(ActionEvent event) throws SQLException {
+
+        if (!FormularioCompleto()){
+            alertaFormulario();
+            return;
+        }
+
         String nombreUsuario = txtNombreUsuario.getText();
         String correoUsuario = txtCorreoUsuario.getText();
         String contrasenaUsuario = txtContraseñaUsuario.getText();
         String rol = RolList.getSelectionModel().getSelectedItem();
 
 
-        //if(!validateEmail(correoUsuario) || !validatePassword(contrasenaUsuario)) {
-          //  alertas("Debe tener un caracter especial");
-        //}
+        //validaciones
+        if (!validateEmail(correoUsuario)){
+            alertas("Correo invalido");
+            return;
+        }
+
+        if (!validatePassword(contrasenaUsuario)){
+            alertas("Contraseña invalida");
+            return;
+        }
 
         Persona persona = new Persona(nombreUsuario, correoUsuario, contrasenaUsuario, rol);
 
-        String response = persona.InsertarDatos();
-        if(response.equals("Administrador")){
-            navegacionAdministrador();
-        }
-        if(response.equals("usuario")){
-            navegacionUsuario();
-        }
-        if(response.equals("Error")){
-            alertas("Hubo un error intentelo mas tarde" );
+        try{
+            String response = persona.InsertarDatos();
+            if(response.equals("Administrador")){
+                navegacionAdministrador();
+            }
+            if(response.equals("usuario")){
+                navegacionUsuario();
+            }
+            if(response.equals("Error")){
+                alertas("Hubo un error intentelo mas tarde" );
+            }
+        }catch (SQLException ex) {
+            mostrarAlerta("No se registro el usuario");
+            Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    private void mostrarAlerta(String mensaje) {
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Error");
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
+    }
+
+    private boolean FormularioCompleto() {
+        return !txtNombreUsuario.getText().isEmpty()
+                && !txtCorreoUsuario.getText().isEmpty()
+                && !txtContraseñaUsuario.getText().isEmpty()
+                && RolList.getSelectionModel().getSelectedItem() != null;
+    }
+
+    public void alertaFormulario(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Registro incompleto");
+        alert.setHeaderText(null);
+        alert.setContentText("Todos los campos son obligatorios");
+        alert.showAndWait();
     }
 
     public void navegacionUsuario() {
@@ -189,6 +230,43 @@ public class RegistroController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> list = FXCollections.observableArrayList("Administrador", "usuario");
         RolList.setItems(list);
+
+        //lblPasswordError.setVisible(false);
+
+        txtContraseñaUsuario.focusedProperty().addListener((observable, oldValue, newValue  ) -> {
+            if (newValue) {
+                lblPasswordMensaje.setVisible(true);
+            } else {
+                lblPasswordMensaje.setVisible(false); //se oculta mensaje de recomendaciones
+            }
+        });
+
+        txtContraseñaUsuario.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (validatePassword(newValue)) {
+                lblPasswordMensaje.setVisible(false);
+            } else{
+                lblPasswordMensaje.setVisible(true); //invalido; muestra mensaje de error
+            }
+        });
+
+        txtCorreoUsuario.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                lblCorreoMensaje.setVisible(true);
+            }else {
+                lblCorreoMensaje.setVisible(false);
+            }
+        });
+
+        txtCorreoUsuario.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (validateEmail(newValue)) {
+                lblCorreoMensaje.setVisible(false);
+            } else {
+                lblCorreoMensaje.setVisible(true);
+            }
+        });
+
     }
+
+
 
 }
