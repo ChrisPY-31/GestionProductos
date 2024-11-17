@@ -134,8 +134,26 @@ public class Producto {
         }
     }
 
+    public boolean buscarProducto(int idBuscar){
+        String SQL = "SELECT id, nombre , cantidad , precio FROM producto WHERE id = '" + idBuscar + "'";
 
-    public void BuscarProducto() {
+        try(Connection con = new ConexionPostgreSQL().getConnection();
+            PreparedStatement pstmt = con.prepareStatement(SQL)
+        ){
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                this.id = rs.getInt("id");
+                this.nombre = rs.getString("nombre");
+                this.cantidad = rs.getInt("cantidad");
+                this.precio = rs.getDouble("precio");
+            return true;
+            }
+            return false;
+        }catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Producto.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            return false;
+        }
     }
 
     public ObservableList<Producto> getProductos() {

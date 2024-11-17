@@ -7,9 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -42,13 +40,20 @@ public class CompraController {
     private Text txtCompraTitulo;
 
     @FXML
-    private TextField txtIdCantidad;
+    private TextField txtCantidad;
 
     @FXML
     private TextField txtIdProducto;
 
     @FXML
+    private TextField txtNombreProducto;
+
+    @FXML
     private TextField txtTotal;
+
+    @FXML
+    private Button Comprar;
+
 
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -86,8 +91,21 @@ public class CompraController {
 
     }
 
+    int cantidadProducto = 0;
+    int idProducto = 0;
+
     @FXML
     void btnPagar(ActionEvent event) {
+        int cantidadtxt = Integer.parseInt(txtCantidad.getText());
+        String valorId = txtIdProducto.getText();
+        String valorCantidad = txtCantidad.getText();
+        if (!(validacionCantidadId(valorCantidad) && validacionCantidadId(valorId))) {
+            alertasValidacion("Los campos deben ser numeros positivos y mayores a 0 y no deben tener letras");
+        }
+        if (cantidadtxt > cantidadProducto) {
+            String mensaje = "Cantidad insuficiente";
+            alertasValidacion(mensaje);
+        }
 
     }
 
@@ -113,6 +131,59 @@ public class CompraController {
 
     }
 
+
+    @FXML
+    void btnAgregarProducto(ActionEvent event) {
+        Producto p = tblProductos.getSelectionModel().getSelectedItem();
+        if (p != null) {
+            setearValores(p);
+            Comprar.setDisable(false);
+        } else {
+            String mensaje = "Por favor selecione un producto";
+            alertasValidacion(mensaje);
+        }
+
+    }
+
+    @FXML
+    void btnBuscarProducto(ActionEvent event) {
+        if (txtIdProducto.getText().equals("")) {
+            String mensaje = "Selecione un producto";
+            alertasValidacion(mensaje);
+        } else {
+            int id = Integer.parseInt(txtIdProducto.getText());
+            Producto producto = new Producto();
+            boolean responseProductos = producto.buscarProducto(id);
+            if (responseProductos) {
+                setearValores(producto);
+                Comprar.setDisable(false);
+
+            } else {
+                String mensaje = "No se encontro el producto con el id: " + id;
+                reinicarValores();
+                alertasValidacion(mensaje);
+            }
+        }
+    }
+
+    public void setearValores(Producto p) {
+        txtIdProducto.setText(String.valueOf(p.getId()));
+        txtNombreProducto.setText(p.getNombre());
+        txtCantidad.setText(String.valueOf(p.getCantidad()));
+        txtTotal.setText(String.valueOf(p.getPrecio() * p.getCantidad()));
+        txtCantidad.setEditable(true);
+        cantidadProducto = p.getCantidad();
+        idProducto = p.getId();
+
+    }
+
+    public void reinicarValores() {
+        txtIdProducto.setText("");
+        txtNombreProducto.setText("");
+        txtCantidad.setText("");
+        txtTotal.setText("");
+    }
+
     public void closeWindowsCompra() {
         try {
             Stage myStage = (Stage) this.txtCompraTitulo.getScene().getWindow();
@@ -124,10 +195,21 @@ public class CompraController {
 
     }
 
-    @FXML
-    void btnBuscarProducto(ActionEvent event) {
+    public void alertasValidacion(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error de Validación");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
 
     }
 
-
+    public boolean validacionCantidadId(String atributo) {
+        try {
+            int valor = Integer.parseInt(atributo);
+            return valor > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
