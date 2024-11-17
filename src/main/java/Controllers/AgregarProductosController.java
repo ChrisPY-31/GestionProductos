@@ -49,9 +49,14 @@ public class AgregarProductosController implements Initializable {
     void btnAgregarProducto() {
         if (txtNombreProducto.getText().equals("") || txtPrecio.getText().equals("") || CategoriaList.getSelectionModel().getSelectedItem() == null || txtCantidad.getText().equals("")) {
             alertasdelFormulario();
-        } else {
-            responseEditarAgregar(id);
+            return ;
         }
+        if (Integer.parseInt(txtCantidad.getText()) < 1 || Integer.parseInt(txtPrecio.getText()) < 1) {
+            String mensaje = "la cantidad o el precion o puede ser negativa ni debe ser ceros";
+            mostrarAlerta(mensaje);
+            return ;
+        }
+            responseEditarAgregar(id);
 
     }
 
