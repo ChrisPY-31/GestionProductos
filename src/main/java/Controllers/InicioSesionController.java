@@ -32,9 +32,11 @@ public class InicioSesionController {
 
         String role = persona.autenticacion();
         if(role.equals("Administrador")){
+            alertaSesion("Administrador");
             navegacionAdministrador();
         }
         if(role.equals("usuario")){
+            alertaSesion("Usuario");
             navegacionComprarUsuario(persona);
 
 
@@ -43,9 +45,7 @@ public class InicioSesionController {
             alertas("La contraseña o el correo son incorrectos" ,false);
         }
 
-
     }
-
 
     public void alertas(String mensaje, boolean rol) {
         if (rol) {
@@ -61,7 +61,6 @@ public class InicioSesionController {
             alert.setHeaderText(null);
             alert.setContentText(mensaje);
             alert.showAndWait();
-
         }
     }
 
@@ -100,6 +99,7 @@ public class InicioSesionController {
 
     public void navegacionUsuario(Persona persona) {
         try {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/CompraProductos.fxml"));
             Parent root = loader.load();
             CompraController controller = loader.getController();
@@ -144,6 +144,7 @@ public class InicioSesionController {
 
     public void navegacionAdministrador() {
         try {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Administrador.fxml"));
             Parent root = loader.load();
             AdministradorController controller = loader.getController();
@@ -162,5 +163,12 @@ public class InicioSesionController {
         }
     }
 
+    public void alertaSesion(String mensaje){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bienvenido");
+        alert.setHeaderText(null);
+        alert.setContentText("Bienvenido " + mensaje);
+        alert.showAndWait();
+    }
 
 }
