@@ -38,6 +38,9 @@ public class AgregarProductosController implements Initializable {
     private ComboBox<String> CategoriaList;
 
     @FXML
+    private Label lblMensajePrecio;
+
+    @FXML
     void ElegirCategoria(ActionEvent event) {
 
     }
@@ -159,6 +162,22 @@ public class AgregarProductosController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> list = FXCollections.observableArrayList("Alimentos", "Bebidas", "Salud", "Belleza", "Hogar");
         CategoriaList.setItems(list);
+
+        txtPrecio.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Cuando pierde el foco
+                lblMensajePrecio.setVisible(false); // Ocultar el mensaje
+            }
+        });
+
+        txtPrecio.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty()) {
+                lblMensajePrecio.setVisible(true); // Mostrar mensaje mientras escribe
+            } else {
+                lblMensajePrecio.setVisible(false); // Ocultar mensaje si está vacío
+            }
+        });
+
+
     }
 
     //este son alertas cuando se agrega y se actualiza el producto
