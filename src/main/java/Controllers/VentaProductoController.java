@@ -40,6 +40,12 @@ public class VentaProductoController {
     @FXML
     private TextField txtPrecioVenta;
 
+
+    //importante esto es el id que lo llamamos en todas las ventanas
+
+    public int idUsuario;
+
+
     @FXML
     void btnVenderProductos() {
 
@@ -51,6 +57,7 @@ public class VentaProductoController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/CompraProductos.fxml"));
             Parent root = loader.load();
             CompraController controller = loader.getController();
+            controller.idUsuario = idUsuario;
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -72,6 +79,7 @@ public class VentaProductoController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Usuario.fxml"));
             Parent root = loader.load();
             UsuarioController controller = loader.getController();
+            controller.setIdUsuario(idUsuario);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);

@@ -50,14 +50,14 @@
             <Font name="Britannic Bold" size="36.0" />
          </font>
       </Text>
-      <TableView layoutX="186.0" layoutY="163.0" onSort="#tblVerProductos" prefHeight="324.0" prefWidth="685.0" style="-fx-background-color: #dfe7f7;">
+      <TableView fx:id="tblPedidos" layoutX="186.0" layoutY="163.0" prefHeight="324.0" prefWidth="685.0" style="-fx-background-color: #dfe7f7;">
         <columns>
-          <TableColumn prefWidth="64.0" text="ID" />
-          <TableColumn prefWidth="124.79998779296875" text="Nombre" />
-            <TableColumn prefWidth="92.0" text="Categoria" />
-            <TableColumn prefWidth="107.2000732421875" text="Precio" />
-            <TableColumn prefWidth="92.7999267578125" text="Cantidad" />
-            <TableColumn prefWidth="92.7999267578125" text="Precio Venta" />
+          <TableColumn fx:id="colIdPedido" prefWidth="64.0" text="ID" />
+          <TableColumn fx:id="colNombre" prefWidth="124.79998779296875" text="Nombre" />
+            <TableColumn fx:id="colCategoria" prefWidth="92.0" text="Categoria" />
+            <TableColumn fx:id="colPrecio" prefWidth="107.2000732421875" text="Precio" />
+            <TableColumn fx:id="colCantidad" prefWidth="92.7999267578125" text="Cantidad" />
+            <TableColumn fx:id="colPrecioVenta" prefWidth="92.7999267578125" text="Precio Venta" />
         </columns>
       </TableView>
       <Button layoutX="378.0" layoutY="500.0" mnemonicParsing="false" onAction="#btnEditarPrecio" prefHeight="36.0" prefWidth="111.0" style="-fx-background-color: #315db0;" text="Editar" textFill="WHITE">
