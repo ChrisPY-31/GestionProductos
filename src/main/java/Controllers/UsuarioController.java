@@ -1,13 +1,16 @@
 package Controllers;
 
 import Modelo.Pedido;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,10 +18,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class UsuarioController {
+public class UsuarioController implements Initializable {
 
     @FXML
     private TableColumn<Pedido, Integer> colCantidad;
@@ -40,6 +45,13 @@ public class UsuarioController {
 
     @FXML
     private TableView<Pedido> tblPedidos;
+
+
+    @FXML
+    private ComboBox<String> CategListFiltro;
+
+    @FXML
+    private ComboBox<String> PrecioList;
 
 
     @FXML
@@ -79,6 +91,16 @@ public class UsuarioController {
 
     @FXML
     void btnFiltros(ActionEvent event) {
+
+    }
+
+    @FXML
+    void ElegirFiltroCategoria(ActionEvent event) {
+
+    }
+
+    @FXML
+    void ElegirFlitroPrecio(ActionEvent event) {
 
     }
 
@@ -173,7 +195,15 @@ public class UsuarioController {
         }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ObservableList<String> list = FXCollections.observableArrayList("Alimentos", "Bebidas", "Salud", "Belleza", "Hogar");
+        CategListFiltro.setItems(list);
 
+        ObservableList<String> listPrecio = FXCollections.observableArrayList("Menor precio", "Mayor precio");
+        PrecioList.setItems(listPrecio);
+
+    }
 
 }
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="550.0" prefWidth="880.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UsuarioController">
+<AnchorPane prefHeight="551.0" prefWidth="880.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.UsuarioController">
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="550.0" prefWidth="178.0" style="-fx-background-color: #05437e;">
          <children>
@@ -38,48 +39,48 @@
                   <Font name="Britannic Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="txtCloseUsuario" layoutX="33.0" layoutY="371.0" mnemonicParsing="false" onAction="#btnCerrarSesionUsuario" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #3d8de8; -fx-border-color: white;" text="Cerrar Sesión" textFill="WHITE">
+            <Button fx:id="txtCloseUsuario" layoutX="33.0" layoutY="468.0" mnemonicParsing="false" onAction="#btnCerrarSesionUsuario" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #3d8de8; -fx-border-color: white;" text="Cerrar Sesión" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="14.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <Text fx:id="txtProductosTitulo" fill="WHITE" layoutX="416.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mis Productos">
+      <Text fx:id="txtProductosTitulo" fill="WHITE" layoutX="395.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mis Productos">
          <font>
             <Font name="Britannic Bold" size="36.0" />
          </font>
       </Text>
-      <TableView fx:id="tblPedidos" layoutX="186.0" layoutY="163.0" prefHeight="324.0" prefWidth="685.0" style="-fx-background-color: #dfe7f7;">
+      <TableView fx:id="tblPedidos" layoutX="192.0" layoutY="163.0" prefHeight="318.0" prefWidth="673.0" style="-fx-background-color: #dfe7f7;">
         <columns>
-          <TableColumn fx:id="colIdPedido" prefWidth="64.0" text="ID" />
-          <TableColumn fx:id="colNombre" prefWidth="124.79998779296875" text="Nombre" />
-            <TableColumn fx:id="colCategoria" prefWidth="92.0" text="Categoria" />
-            <TableColumn fx:id="colPrecio" prefWidth="107.2000732421875" text="Precio" />
-            <TableColumn fx:id="colCantidad" prefWidth="92.7999267578125" text="Cantidad" />
-            <TableColumn fx:id="colPrecioVenta" prefWidth="92.7999267578125" text="Precio Venta" />
+          <TableColumn fx:id="colIdPedido" prefWidth="78.39996337890625" text="ID" />
+          <TableColumn fx:id="colNombre" prefWidth="125.60003662109375" text="Nombre" />
+            <TableColumn fx:id="colCategoria" prefWidth="129.5999755859375" text="Categoria" />
+            <TableColumn fx:id="colPrecio" prefWidth="104.00006103515625" text="Precio" />
+            <TableColumn fx:id="colCantidad" prefWidth="112.79998779296875" text="Cantidad" />
+            <TableColumn fx:id="colPrecioVenta" prefWidth="127.99993896484375" text="Precio Venta" />
         </columns>
       </TableView>
-      <Button layoutX="378.0" layoutY="500.0" mnemonicParsing="false" onAction="#btnEditarPrecio" prefHeight="36.0" prefWidth="111.0" style="-fx-background-color: #315db0;" text="Editar" textFill="WHITE">
+      <Button layoutX="339.0" layoutY="492.0" mnemonicParsing="false" onAction="#btnEditarPrecio" prefHeight="36.0" prefWidth="111.0" style="-fx-background-color: #315db0;" text="Editar" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>
       </Button>
-      <Button layoutX="547.0" layoutY="500.0" mnemonicParsing="false" onAction="#btnVender" prefHeight="36.0" prefWidth="125.0" style="-fx-background-color: #315db0;" text="Vender" textFill="WHITE">
+      <Button layoutX="592.0" layoutY="492.0" mnemonicParsing="false" onAction="#btnVender" prefHeight="36.0" prefWidth="125.0" style="-fx-background-color: #315db0;" text="Vender" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>
       </Button>
-      <TextField layoutX="248.0" layoutY="60.0" />
-      <TextField layoutX="491.0" layoutY="60.0" />
-      <TextField layoutX="721.0" layoutY="60.0" />
-      <Text fill="WHITE" layoutX="186.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" wrappingWidth="124.53668212890625" />
-      <Text fill="WHITE" layoutX="655.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" wrappingWidth="124.53668212890625" />
-      <Text fill="WHITE" layoutX="422.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio" wrappingWidth="124.53668212890625" />
-      <Button layoutX="440.0" layoutY="106.0" mnemonicParsing="false" onAction="#btnFiltros" prefHeight="36.0" prefWidth="159.0" style="-fx-background-color: #315db0;" text="Buscar Filtro" textFill="WHITE">
+      <TextField layoutX="245.0" layoutY="68.0" />
+      <Text fill="WHITE" layoutX="189.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" wrappingWidth="53.33673095703125" />
+      <Text fill="WHITE" layoutX="649.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" wrappingWidth="61.734375" />
+      <Text fill="WHITE" layoutX="419.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio" wrappingWidth="53.33673095703125" />
+      <Button layoutX="422.0" layoutY="112.0" mnemonicParsing="false" onAction="#btnFiltros" prefHeight="36.0" prefWidth="159.0" style="-fx-background-color: #315db0;" text="Buscar Filtro" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>
       </Button>
+      <ComboBox fx:id="PrecioList" layoutX="459.0" layoutY="68.0" onAction="#ElegirFlitroPrecio" prefWidth="150.0" />
+      <ComboBox fx:id="CategListFiltro" layoutX="711.0" layoutY="66.0" onAction="#ElegirFiltroCategoria" prefWidth="150.0" />
    </children>
 </AnchorPane>
