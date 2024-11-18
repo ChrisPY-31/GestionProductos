@@ -1,5 +1,6 @@
 package Controllers;
 
+import Modelo.Pedido;
 import Modelo.Producto;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -54,6 +55,8 @@ public class CompraController {
     @FXML
     private Button Comprar;
 
+    //importante esto es el id que lo llamamos en todas las ventanas
+    public int idUsuario;
 
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -68,43 +71,29 @@ public class CompraController {
     }
 
 
-    @FXML
-    void btnInicio() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Usuario.fxml"));
-            Parent root = loader.load();
-            UsuarioController controller = loader.getController();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-
-            stage.setOnCloseRequest(e -> controller.btnVistaComprar());
-            stage.setOnCloseRequest(e -> controller.closeWindowsUser());
-
-            Stage myStage = (Stage) this.txtCompraTitulo.getScene().getWindow();
-            myStage.close();
-        } catch (IOException e) {
-            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, e);
-
-        }
-
-    }
-
     int cantidadProducto = 0;
     int idProducto = 0;
 
     @FXML
     void btnPagar(ActionEvent event) {
-        int cantidadtxt = Integer.parseInt(txtCantidad.getText());
         String valorId = txtIdProducto.getText();
         String valorCantidad = txtCantidad.getText();
         if (!(validacionCantidadId(valorCantidad) && validacionCantidadId(valorId))) {
             alertasValidacion("Los campos deben ser numeros positivos y mayores a 0 y no deben tener letras");
+            return;
         }
+        int cantidadtxt = Integer.parseInt(txtCantidad.getText());
         if (cantidadtxt > cantidadProducto) {
             String mensaje = "Cantidad insuficiente";
             alertasValidacion(mensaje);
+            return;
+        }
+
+        Pedido pedido = new Pedido(idProducto, idUsuario, cantidadProducto);
+        boolean response = pedido.AgregarPedidoProducto();
+        if (response) {
+            alertasCorrectas("Producto agregado Correctamente");
+            navegabilidadInicio(pedido);
         }
 
     }
@@ -129,6 +118,52 @@ public class CompraController {
 
         }
 
+    }
+
+    @FXML
+    void btnInicio() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Usuario.fxml"));
+            Parent root = loader.load();
+            UsuarioController controller = loader.getController();
+            controller.setIdUsuario(idUsuario);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnCloseRequest(e -> controller.btnVistaComprar());
+            stage.setOnCloseRequest(e -> controller.closeWindowsUser());
+
+            Stage myStage = (Stage) this.txtCompraTitulo.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+
+    }
+
+    public void navegabilidadInicio(Pedido pedido) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Usuario.fxml"));
+            Parent root = loader.load();
+            UsuarioController controller = loader.getController();
+            controller.setIdUsuario(pedido.getIdUsuario());
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnCloseRequest(e -> controller.btnVistaComprar());
+            stage.setOnCloseRequest(e -> controller.closeWindowsUser());
+
+            Stage myStage = (Stage) this.txtCompraTitulo.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, e);
+
+        }
     }
 
 
@@ -212,4 +247,14 @@ public class CompraController {
             return false;
         }
     }
+
+    public void alertasCorrectas(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Correcto");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+
 }
