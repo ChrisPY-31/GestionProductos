@@ -234,7 +234,6 @@ public class AgregarProductosController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Error todos lo campos son obligatorios");
         alert.showAndWait();
-
     }
 
     //este metodo cuando le das editar los atributos se rellenan con la informacion
