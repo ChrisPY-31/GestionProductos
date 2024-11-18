@@ -41,6 +41,12 @@ public class AgregarProductosController implements Initializable {
     private Label lblMensajePrecio;
 
     @FXML
+    private Label lblMensajeCantidad;
+
+    @FXML
+    private Label lblSeleccionaCategoria;
+
+    @FXML
     void ElegirCategoria(ActionEvent event) {
 
     }
@@ -177,6 +183,28 @@ public class AgregarProductosController implements Initializable {
             }
         });
 
+        txtCantidad.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Cuando pierde el foco
+                lblMensajeCantidad.setVisible(false); // Ocultar el mensaje
+            }
+        });
+
+        txtCantidad.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty()) {
+                lblMensajeCantidad.setVisible(true); // Mostrar mensaje mientras escribe
+            } else {
+                lblMensajeCantidad.setVisible(false); // Ocultar mensaje si está vacío
+            }
+        });
+
+        // Listener para detectar selección de una opción
+        CategoriaList.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && !newValue.isEmpty()) {
+                lblSeleccionaCategoria.setVisible(false); // Oculta el Label
+            } else {
+                lblSeleccionaCategoria.setVisible(true); // Muestra el Label si no hay selección
+            }
+        });
 
     }
 
