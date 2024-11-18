@@ -18,11 +18,12 @@ public class Producto {
     private double precio;
     private int cantidad;
 
-    public Producto(){
+    public Producto() {
 
     }
 
-    public Producto(int id){
+
+    public Producto(int id) {
         this.id = id;
     }
 
@@ -120,6 +121,7 @@ public class Producto {
             return false;
         }
     }
+
     public boolean EliminarProducto(int id) {
         String SQL = "DELETE FROM producto WHERE producto.id = ?";
         try (Connection con = new ConexionPostgreSQL().getConnection();
@@ -134,22 +136,22 @@ public class Producto {
         }
     }
 
-    public boolean buscarProducto(int idBuscar){
+    public boolean buscarProducto(int idBuscar) {
         String SQL = "SELECT id, nombre , cantidad , precio FROM producto WHERE id = '" + idBuscar + "'";
 
-        try(Connection con = new ConexionPostgreSQL().getConnection();
-            PreparedStatement pstmt = con.prepareStatement(SQL)
-        ){
+        try (Connection con = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = con.prepareStatement(SQL)
+        ) {
             ResultSet rs = pstmt.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 this.id = rs.getInt("id");
                 this.nombre = rs.getString("nombre");
                 this.cantidad = rs.getInt("cantidad");
                 this.precio = rs.getDouble("precio");
-            return true;
+                return true;
             }
             return false;
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger lgr = Logger.getLogger(Producto.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
             return false;
@@ -159,7 +161,7 @@ public class Producto {
     public ObservableList<Producto> getProductos() {
         ObservableList<Producto> obs = FXCollections.observableArrayList();
 
-        String SQL = "SELECT * FROM producto";
+        String SQL = "SELECT * FROM producto WHERE producto.cantidad > 0";
         try (Connection con = new ConexionPostgreSQL().getConnection();
              PreparedStatement pstmt = con.prepareStatement(SQL)) {
             ResultSet rs = pstmt.executeQuery();
@@ -179,6 +181,20 @@ public class Producto {
             lgr.log(Level.SEVERE, e.getMessage(), e);
         }
         return obs;
+    }
+
+    public boolean actualizarCantidades(String idProducto, String CantidadTotal) {
+        String SQL = "UPDATE producto SET cantidad=" + CantidadTotal + " WHERE producto.id =" + idProducto;
+
+        try (Connection con = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            int filas = pstmt.executeUpdate();
+            return filas > 0;
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Producto.class.getName());
+            return false;
+        }
+
     }
 
 }
