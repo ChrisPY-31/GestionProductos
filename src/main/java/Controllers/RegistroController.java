@@ -231,8 +231,6 @@ public class RegistroController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList("Administrador", "usuario");
         RolList.setItems(list);
 
-        //lblPasswordError.setVisible(false);
-
         txtContraseñaUsuario.focusedProperty().addListener((observable, oldValue, newValue  ) -> {
             if (newValue) {
                 lblPasswordMensaje.setVisible(true);
