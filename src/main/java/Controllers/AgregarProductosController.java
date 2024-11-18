@@ -169,6 +169,7 @@ public class AgregarProductosController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList("Alimentos", "Bebidas", "Salud", "Belleza", "Hogar");
         CategoriaList.setItems(list);
 
+        //Mostrar mensaje cuando el usuario escribe en el campo
         txtPrecio.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
                 lblMensajePrecio.setVisible(false); // Oculta el mensaje
@@ -189,6 +190,7 @@ public class AgregarProductosController implements Initializable {
             }
         });
 
+        //Ocultar Label en Combobox cuando se seleccione una categoria
         txtCantidad.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
                 lblMensajeCantidad.setVisible(true); // Mostrar mensaje mientras escribe
@@ -281,7 +283,6 @@ public class AgregarProductosController implements Initializable {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-
 
 }
 
