@@ -53,10 +53,14 @@ public class CompraController {
     private TextField txtTotal;
 
     @FXML
+    private TextField txtCantidadComprar;
+
+    @FXML
     private Button Comprar;
 
     //importante esto es el id que lo llamamos en todas las ventanas
     public int idUsuario;
+    int cantidadComprar;
 
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -68,6 +72,7 @@ public class CompraController {
         Producto producto = new Producto();
         ObservableList<Producto> obs = producto.getProductos();
         tblProductos.setItems(obs);
+
     }
 
 
@@ -77,23 +82,30 @@ public class CompraController {
     @FXML
     void btnPagar(ActionEvent event) {
         String valorId = txtIdProducto.getText();
-        String valorCantidad = txtCantidad.getText();
+        String valorCantidad = txtCantidadComprar.getText();
         if (!(validacionCantidadId(valorCantidad) && validacionCantidadId(valorId))) {
             alertasValidacion("Los campos deben ser numeros positivos y mayores a 0 y no deben tener letras");
             return;
         }
-        int cantidadtxt = Integer.parseInt(txtCantidad.getText());
+        int cantidadtxt = Integer.parseInt(txtCantidadComprar.getText());
         if (cantidadtxt > cantidadProducto) {
             String mensaje = "Cantidad insuficiente";
             alertasValidacion(mensaje);
             return;
         }
 
-        Pedido pedido = new Pedido(idProducto, idUsuario, cantidadProducto);
+
+        cantidadComprar = Integer.parseInt(txtCantidadComprar.getText());
+        Pedido pedido = new Pedido(idProducto, idUsuario, cantidadComprar);
+
         boolean response = pedido.AgregarPedidoProducto();
         if (response) {
+            int cantidadExistente = cantidadProducto - cantidadComprar;
             alertasCorrectas("Producto agregado Correctamente");
             navegabilidadInicio(pedido);
+            Producto producto = new Producto();
+            boolean response1 = producto.actualizarCantidades(String.valueOf(idProducto), String.valueOf(cantidadExistente));
+            System.out.println(response1);
         }
 
     }
@@ -172,7 +184,6 @@ public class CompraController {
         Producto p = tblProductos.getSelectionModel().getSelectedItem();
         if (p != null) {
             setearValores(p);
-            Comprar.setDisable(false);
         } else {
             String mensaje = "Por favor selecione un producto";
             alertasValidacion(mensaje);
@@ -191,7 +202,6 @@ public class CompraController {
             boolean responseProductos = producto.buscarProducto(id);
             if (responseProductos) {
                 setearValores(producto);
-                Comprar.setDisable(false);
 
             } else {
                 String mensaje = "No se encontro el producto con el id: " + id;
@@ -206,9 +216,10 @@ public class CompraController {
         txtNombreProducto.setText(p.getNombre());
         txtCantidad.setText(String.valueOf(p.getCantidad()));
         txtTotal.setText(String.valueOf(p.getPrecio() * p.getCantidad()));
-        txtCantidad.setEditable(true);
-        cantidadProducto = p.getCantidad();
+        cantidadProducto = Integer.parseInt(txtCantidad.getText());
         idProducto = p.getId();
+        cantidadComprar = p.getCantidad();
+        Comprar.setDisable(false);
 
     }
 

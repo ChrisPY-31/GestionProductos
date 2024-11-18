@@ -117,9 +117,10 @@ public class Pedido {
     }
 
     public ObservableList<Pedido> getPedidos(int idBebe) {
+        //falta aqui eliminar los que sean 0
         ObservableList<Pedido> obs = FXCollections.observableArrayList();
         String SQL = "SELECT pedido.id_pedido, producto.nombre AS nombreProducto, producto.categoria, " +
-                "producto.precio, producto.cantidad AS cantidadproducto, pedido.precioventa,idusuario " +
+                "producto.precio, pedido.cantidad, pedido.precioventa,idusuario " +
                 "FROM pedido " +
                 "INNER JOIN producto ON pedido.idproducto = producto.id " +
                 "INNER JOIN usuario ON pedido.idusuario = usuario.id " +
@@ -133,7 +134,7 @@ public class Pedido {
                 String nombre = rs.getString("nombreProducto");
                 String categoria = rs.getString("categoria");
                 double precio = rs.getDouble("precio");
-                int cantidad = rs.getInt("cantidadproducto");
+                int cantidad = rs.getInt("cantidad");
                 double precioVenta = rs.getDouble("precioventa");
 
                 Pedido pedido = new Pedido(id, nombre, categoria, precio, cantidad, precioVenta);

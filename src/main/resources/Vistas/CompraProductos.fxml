@@ -74,11 +74,17 @@
          </font>
       </Text>
       <Button layoutX="449.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnAgregarProducto" prefHeight="26.0" prefWidth="177.0" text="Agregar Producto" />
-      <Text fill="WHITE" layoutX="212.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
+      <Text fill="WHITE" layoutX="206.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
          <font>
             <Font name="Britannic Bold" size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="txtNombreProducto" editable="false" layoutX="317.0" layoutY="447.0" prefHeight="26.0" prefWidth="161.0" />
+      <TextField fx:id="txtNombreProducto" editable="false" layoutX="298.0" layoutY="447.0" prefHeight="26.0" prefWidth="146.0" />
+      <Text fill="WHITE" layoutX="456.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad a Comprar" wrappingWidth="220.5250244140625">
+         <font>
+            <Font name="Britannic Bold" size="24.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtCantidadComprar" layoutX="679.0" layoutY="446.0" prefHeight="26.0" prefWidth="62.0" />
    </children>
 </AnchorPane>
