@@ -4,56 +4,75 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="498.0" prefWidth="856.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AgregarProductosController">
+<AnchorPane prefHeight="550.0" prefWidth="880.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AgregarProductosController">
    <children>
-      <Circle fill="WHITE" layoutX="338.0" layoutY="69.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label fx:id="txtAgregar" layoutX="403.0" layoutY="51.0" text="Agregar Productos" textFill="WHITE">
+      <Label fx:id="txtAgregar" layoutX="403.0" layoutY="68.0" text="Agregar Productos" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="274.0" layoutY="148.0" prefHeight="18.0" prefWidth="74.0" text="Nombre: " textFill="WHITE">
+      <Label layoutX="309.0" layoutY="166.0" prefHeight="22.0" prefWidth="110.0" text="Nombre: " textFill="WHITE">
          <font>
-            <Font name="Britannic Bold" size="18.0" />
+            <Font name="Britannic Bold" size="20.0" />
          </font></Label>
-      <TextField fx:id="txtNombreProducto" layoutX="398.0" layoutY="144.0" prefHeight="26.0" prefWidth="363.0" promptText="NombreProducto" />
-      <Label layoutX="274.0" layoutY="205.0" prefHeight="18.0" prefWidth="74.0" text="Precio:" textFill="WHITE">
+      <TextField fx:id="txtNombreProducto" layoutX="433.0" layoutY="162.0" prefHeight="26.0" prefWidth="363.0" promptText="Nombre Producto" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: white; -fx-padding: 5 0 5 0; -fx-text-fill: white;">
          <font>
-            <Font name="Britannic Bold" size="18.0" />
-         </font></Label>
-      <TextField fx:id="txtPrecio" layoutX="398.0" layoutY="201.0" prefHeight="26.0" prefWidth="363.0" promptText="\$" />
-      <Label layoutX="272.0" layoutY="263.0" prefHeight="18.0" prefWidth="99.0" text="Cantidad: " textFill="WHITE">
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="309.0" layoutY="228.0" prefHeight="18.0" prefWidth="74.0" text="Precio:" textFill="WHITE">
          <font>
-            <Font name="Britannic Bold" size="18.0" />
+            <Font name="Britannic Bold" size="20.0" />
          </font></Label>
-      <TextField fx:id="txtCantidad" layoutX="398.0" layoutY="259.0" prefHeight="26.0" prefWidth="363.0" promptText="Cantidad" />
-      <Label layoutX="273.0" layoutY="329.0" prefHeight="18.0" prefWidth="110.0" text="Categoria: " textFill="WHITE">
+      <TextField fx:id="txtPrecio" layoutX="433.0" layoutY="224.0" prefHeight="26.0" prefWidth="363.0" promptText="\$" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: white; -fx-padding: 5 0 5 0; -fx-text-fill: white;">
          <font>
-            <Font name="Britannic Bold" size="18.0" />
+            <Font size="14.0" />
+         </font></TextField>
+      <Label fx:id="lblMensajePrecio" layoutX="434.0" layoutY="255.0" prefHeight="18.0" prefWidth="164.0" text="*Numero y/con decimales" textFill="#e4b7b7" visible="false" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="308.0" layoutY="297.0" prefHeight="18.0" prefWidth="99.0" text="Cantidad: " textFill="WHITE">
+         <font>
+            <Font name="Britannic Bold" size="20.0" />
          </font></Label>
-      <ComboBox fx:id="CategoriaList" layoutX="398.0" layoutY="325.0" onAction="#ElegirCategoria" prefHeight="26.0" prefWidth="363.0" promptText="Categoria" />
-      <Button fx:id="AgregarProducto" layoutX="453.0" layoutY="404.0" mnemonicParsing="false" onAction="#btnAgregarProducto" prefHeight="31.0" prefWidth="227.0" style="-fx-background-color: #1d9627;" text="Agregar Producto" textFill="WHITE">
+      <TextField fx:id="txtCantidad" layoutX="434.0" layoutY="292.0" prefHeight="26.0" prefWidth="363.0" promptText="Cantidad" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: white; -fx-padding: 5 0 5 0; -fx-text-fill: white;" styleClass="-fx-font: white">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="308.0" layoutY="373.0" prefHeight="18.0" prefWidth="110.0" text="Categoria: " textFill="WHITE">
+         <font>
+            <Font name="Britannic Bold" size="20.0" />
+         </font></Label>
+      <ComboBox fx:id="CategoriaList" layoutX="433.0" layoutY="369.0" onAction="#ElegirCategoria" prefHeight="26.0" prefWidth="363.0" style="-fx-text-fill: white; -fx-padding: 3px; -fx-border-width: 2px; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 4px;" />
+      <Button fx:id="AgregarProducto" layoutX="439.0" layoutY="456.0" mnemonicParsing="false" onAction="#btnAgregarProducto" prefHeight="36.0" prefWidth="227.0" style="-fx-background-color: #1d9627; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.75), 13, 0.4, 0, 0);" text="+ Agregar Producto" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font></Button>
-      <Pane layoutX="-132.0" layoutY="-14.0" prefHeight="516.0" prefWidth="292.0" style="-fx-background-color: #05437e;">
+      <Pane layoutX="-108.0" layoutY="-6.0" prefHeight="562.0" prefWidth="326.0" style="-fx-background-color: #05437e;">
          <children>
-            <Button layoutX="160.0" layoutY="122.0" mnemonicParsing="false" onAction="#btnInicio" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #3383de;" text="Inicio" textFill="WHITE">
+            <Button layoutX="160.0" layoutY="224.0" mnemonicParsing="false" onAction="#btnInicio" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #3383de;" text="Inicio" textFill="WHITE">
                <font>
-                  <Font name="Britannic Bold" size="17.0" />
+                  <Font name="Britannic Bold" size="19.0" />
                </font>
             </Button>
+            <ImageView fitHeight="133.0" fitWidth="138.0" layoutX="148.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/caja.png" />
+               </image>
+            </ImageView>
          </children></Pane>
-      <Text layoutX="327.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
+      <Label layoutX="434.0" layoutY="330.0" prefHeight="18.0" prefWidth="164.0" text="*Debe ser un numero entero" textFill="#e4b7b7">
          <font>
-            <Font name="Britannic Bold" size="35.0" />
+            <Font size="10.0" />
          </font>
-      </Text>
+      </Label>
+      <Label layoutX="440.0" layoutY="378.0" prefHeight="18.0" prefWidth="227.0" text="--Selecciona una opción--" textFill="WHITE" />
    </children>
 </AnchorPane>
