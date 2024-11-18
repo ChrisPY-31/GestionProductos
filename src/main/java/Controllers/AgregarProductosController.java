@@ -41,6 +41,12 @@ public class AgregarProductosController implements Initializable {
     private Label lblMensajePrecio;
 
     @FXML
+    private Label lblMensajeCantidad;
+
+    @FXML
+    private Label lblSeleccionaCategoria;
+
+    @FXML
     void ElegirCategoria(ActionEvent event) {
 
     }
@@ -164,19 +170,41 @@ public class AgregarProductosController implements Initializable {
         CategoriaList.setItems(list);
 
         txtPrecio.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) { // Cuando pierde el foco
-                lblMensajePrecio.setVisible(false); // Ocultar el mensaje
+            if (!newValue) {
+                lblMensajePrecio.setVisible(false); // Oculta el mensaje
             }
         });
 
         txtPrecio.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
-                lblMensajePrecio.setVisible(true); // Mostrar mensaje mientras escribe
+                lblMensajePrecio.setVisible(true); // Se muestra mensaje mientras escribe
             } else {
-                lblMensajePrecio.setVisible(false); // Ocultar mensaje si está vacío
+                lblMensajePrecio.setVisible(false); // oculta mensaje
             }
         });
 
+        txtCantidad.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                lblMensajeCantidad.setVisible(false); // Ocultar el mensaje
+            }
+        });
+
+        txtCantidad.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty()) {
+                lblMensajeCantidad.setVisible(true); // Mostrar mensaje mientras escribe
+            } else {
+                lblMensajeCantidad.setVisible(false); //ocultar mensaje cuando seleccione una opcion
+            }
+        });
+
+        // Listener para detectar selección de una opción
+        CategoriaList.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && !newValue.isEmpty()) {
+                lblSeleccionaCategoria.setVisible(false); // Se oculta el Label
+            } else {
+                lblSeleccionaCategoria.setVisible(true); // Muestra el Label si no hay selección
+            }
+        });
 
     }
 
@@ -206,7 +234,6 @@ public class AgregarProductosController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Error todos lo campos son obligatorios");
         alert.showAndWait();
-
     }
 
     //este metodo cuando le das editar los atributos se rellenan con la informacion

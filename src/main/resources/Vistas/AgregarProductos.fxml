@@ -33,7 +33,7 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <Label fx:id="lblMensajePrecio" layoutX="434.0" layoutY="255.0" prefHeight="18.0" prefWidth="164.0" text="*Numero y/con decimales" textFill="#e4b7b7" visible="false" wrapText="true">
+      <Label fx:id="lblMensajePrecio" layoutX="434.0" layoutY="255.0" prefHeight="18.0" prefWidth="164.0" text="*Numero entero o decimal" textFill="#e4b7b7" visible="false" wrapText="true">
          <font>
             <Font size="10.0" />
          </font>
@@ -50,7 +50,7 @@
          <font>
             <Font name="Britannic Bold" size="20.0" />
          </font></Label>
-      <ComboBox fx:id="CategoriaList" layoutX="433.0" layoutY="369.0" onAction="#ElegirCategoria" prefHeight="26.0" prefWidth="363.0" style="-fx-text-fill: white; -fx-padding: 3px; -fx-border-width: 2px; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 4px;" />
+      <ComboBox fx:id="CategoriaList" layoutX="433.0" layoutY="369.0" onAction="#ElegirCategoria" prefHeight="26.0" prefWidth="363.0" style="-fx-padding: 3px; -fx-border-width: 2px; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 4px;" />
       <Button fx:id="AgregarProducto" layoutX="439.0" layoutY="456.0" mnemonicParsing="false" onAction="#btnAgregarProducto" prefHeight="36.0" prefWidth="227.0" style="-fx-background-color: #1d9627; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.75), 13, 0.4, 0, 0);" text="+ Agregar Producto" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="18.0" />
@@ -68,11 +68,11 @@
                </image>
             </ImageView>
          </children></Pane>
-      <Label layoutX="434.0" layoutY="330.0" prefHeight="18.0" prefWidth="164.0" text="*Debe ser un numero entero" textFill="#e4b7b7">
+      <Label fx:id="lblMensajeCantidad" layoutX="434.0" layoutY="330.0" prefHeight="18.0" prefWidth="164.0" text="*Debe ser un numero entero" textFill="#e4b7b7" visible="false" wrapText="true">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label layoutX="440.0" layoutY="378.0" prefHeight="18.0" prefWidth="227.0" text="--Selecciona una opción--" textFill="WHITE" />
+      <Label fx:id="lblSeleccionaCategoria" layoutX="439.0" layoutY="377.0" prefHeight="18.0" prefWidth="144.0" text="--Selecciona una opción--" />
    </children>
 </AnchorPane>
