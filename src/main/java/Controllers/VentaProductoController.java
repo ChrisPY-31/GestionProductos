@@ -62,6 +62,7 @@ public class VentaProductoController {
     public void initializeProductos(Pedido pedidoUsuario) {
         System.out.println("ejecutnado esto");
         this.pedidoVenderUsuario = pedidoUsuario;
+        this.cantidadUsuario = pedidoUsuario.getCantidadPedido();
         initializeVerProductos();
     }
 
@@ -119,12 +120,13 @@ public class VentaProductoController {
             alertasValidacion("El valor debe ser número positivo y no contener letras");
             return;
         }
-        if (Integer.parseInt(cantidadVender) > cantidadUsuario) {
+        int cantidadNum = Integer.parseInt(cantidadVender);
+        if (cantidadNum > cantidadUsuario) {
             alertasValidacion("Cantidad insuficiente: ");
             return;
         }
         try {
-            int cantidadExistente = cantidadUsuario - Integer.parseInt(cantidadVender);
+            int cantidadExistente = cantidadUsuario - cantidadNum;
             Pedido pedido = new Pedido();
             double precioNomal = Double.parseDouble(txtPrecio.getText());
             double precioVenta = Double.parseDouble(txtPrecioVenta.getText());

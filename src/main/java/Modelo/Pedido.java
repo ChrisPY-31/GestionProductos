@@ -202,6 +202,10 @@ public class Pedido {
     }
 
     public boolean actualizarCantidadesPedido(int idPedido, int cantidadTotalPedido, double gananciaTotal) {
+        System.out.println(idPedido);
+        System.out.println(cantidadTotalPedido);
+        System.out.println(gananciaTotal);
+
         String SQL = "UPDATE public.pedido " +
                 "SET total = COALESCE(total, 0) + ?, " +
                 "cantidad = ? " +
@@ -210,10 +214,9 @@ public class Pedido {
         try (Connection con = new ConexionPostgreSQL().getConnection();
              PreparedStatement pstmt = con.prepareStatement(SQL)) {
 
-
-            pstmt.setInt(1, idPedido);
+            pstmt.setDouble(1, gananciaTotal);  // Corrección aquí
             pstmt.setInt(2, cantidadTotalPedido);
-            pstmt.setDouble(3, gananciaTotal);
+            pstmt.setInt(3, idPedido);          // Corrección aquí
 
             int filas = pstmt.executeUpdate();
             return filas > 0;
@@ -223,6 +226,7 @@ public class Pedido {
             return false;
         }
     }
+
 
 
     public ObservableList<Pedido> filtrosUsuario(int idUsuario, String nombreFiltro, String categoriaFiltro, String ordenPrecio) {

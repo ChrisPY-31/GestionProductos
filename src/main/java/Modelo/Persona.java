@@ -67,7 +67,7 @@ public class Persona {
     }
 
 
-    public String InsertarDatos(){
+    public String InsertarDatos() {
         String SQL = "INSERT INTO usuario (nombre, correo, contrasena, rol) VALUES (?, ?, ?, ?)";
 
         try (Connection con = new ConexionPostgreSQL().getConnection();
@@ -81,12 +81,16 @@ public class Persona {
             int filas = pstmt.executeUpdate();
 
             if (filas > 0) {
+                String rol;
+
                 try (ResultSet resultSet = pstmt.getGeneratedKeys()) {
                     if (resultSet.next()) {
                         this.id = resultSet.getInt(1);
                     }
+                    rol = resultSet.getString("rol");
+
                 }
-                return "usuario";
+                return rol;
             }
 
             return "Error";
