@@ -14,7 +14,7 @@
    <children>
       <AnchorPane prefHeight="550.0" prefWidth="193.0" style="-fx-background-color: #05437e;">
          <children>
-            <Button layoutX="37.0" layoutY="292.0" mnemonicParsing="false" onAction="#btnVender" prefHeight="31.0" prefWidth="110.0" style="-fx-background-color: #1f618d; -fx-border-radius: white;" text="Vender" textFill="WHITE">
+            <Button layoutX="37.0" layoutY="282.0" mnemonicParsing="false" onAction="#btnVender" prefHeight="31.0" prefWidth="110.0" style="-fx-background-color: #1f618d; -fx-border-radius: white;" text="Vender" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font></Button>
@@ -22,7 +22,7 @@
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font></Button>
-            <Button layoutX="37.0" layoutY="367.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #1f618d;" text="Comprar" textFill="WHITE">
+            <Button layoutX="37.0" layoutY="356.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #1f618d;" text="Comprar" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font></Button>
@@ -60,7 +60,7 @@
          </font>
       </Text>
       <TextField fx:id="txtTotal" editable="false" layoutX="679.0" layoutY="424.0" prefHeight="26.0" prefWidth="134.0" promptText="\$" style="-fx-background-color: #f5f5f5;" />
-      <Button fx:id="Comprar" layoutX="695.0" layoutY="479.0" mnemonicParsing="false" onAction="#btnPagar" prefHeight="31.0" prefWidth="101.0" style="-fx-background-color: #1d9627;" stylesheets="@../CSS/style.css" text="Comprar" textFill="WHITE">
+      <Button fx:id="Comprar" disable="true" layoutX="695.0" layoutY="479.0" mnemonicParsing="false" onAction="#btnPagar" prefHeight="31.0" prefWidth="101.0" style="-fx-background-color: #1d9627;" stylesheets="@../CSS/style.css" text="Comprar" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font>
@@ -77,7 +77,7 @@
       </Text>
       <Button layoutX="711.0" layoutY="352.0" mnemonicParsing="false" onAction="#btnAgregarProducto" prefHeight="31.0" prefWidth="146.0" style="-fx-background-color: #2e86c1;" text=" Agregar Producto" textFill="WHITE">
          <font>
-            <Font name="Britannic Bold" size="14.0" />
+            <Font name="Britannic Bold" size="15.0" />
          </font></Button>
       <Text fill="WHITE" layoutX="222.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
          <font>
@@ -91,9 +91,9 @@
          </font>
       </Text>
       <TextField fx:id="txtCantidadComprar" layoutX="382.0" layoutY="494.0" prefHeight="26.0" prefWidth="146.0" promptText="Cantidad" style="-fx-border-width: 1.5px; -fx-border-color: white; -fx-background-color: transparent; -fx-text-fill: white; -fx-border-radius: 3px; -fx-padding: 4px; -fx-font-size: 13px; -fx-font-weight: bold;" />
-      <Button layoutX="545.0" layoutY="352.0" mnemonicParsing="false" onAction="#btnBuscarProducto" prefHeight="31.0" prefWidth="146.0" style="-fx-background-color: #2e86c1;" text="Buscar producto" textFill="WHITE">
+      <Button layoutX="551.0" layoutY="352.0" mnemonicParsing="false" onAction="#btnBuscarProducto" prefHeight="31.0" prefWidth="134.0" style="-fx-background-color: #315db0;" text="Buscar producto" textFill="WHITE">
          <font>
-            <Font name="Britannic Bold" size="14.0" />
+            <Font name="Britannic Bold" size="15.0" />
          </font>
       </Button>
    </children>

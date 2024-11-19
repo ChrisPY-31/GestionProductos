@@ -5,9 +5,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -15,35 +15,36 @@
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="550.0" prefWidth="178.0" style="-fx-background-color: #05437e;">
          <children>
-            <Circle fill="WHITE" layoutX="49.0" layoutY="61.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
-            <ImageView fitHeight="18.0" fitWidth="19.0" layoutX="43.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-
-            </ImageView>
-            <Text fill="WHITE" layoutX="79.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario">
+            <Text fill="WHITE" layoutX="51.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario">
                <font>
-                  <Font name="Britannic Bold" size="18.0" />
+                  <Font name="Britannic Bold" size="22.0" />
                </font>
             </Text>
-            <Button layoutX="33.0" layoutY="187.0" mnemonicParsing="false" onAction="#btnVistaVender" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #d05a04;" text="Vender" textFill="WHITE">
+            <Button layoutX="33.0" layoutY="295.0" mnemonicParsing="false" onAction="#btnVistaVender" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #1f618d;" text="Vender" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="33.0" layoutY="265.0" mnemonicParsing="false" onAction="#btnVistaComprar" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #5c4bee;" text="Comprar" textFill="WHITE">
+            <Button layoutX="33.0" layoutY="372.0" mnemonicParsing="false" onAction="#btnVistaComprar" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #1f618d;" text="Comprar" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="33.0" layoutY="109.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #3d8de8;" text="Inicio" textFill="WHITE">
+            <Button layoutX="33.0" layoutY="220.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #1f618d;" text="Inicio" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="txtCloseUsuario" layoutX="33.0" layoutY="468.0" mnemonicParsing="false" onAction="#btnCerrarSesionUsuario" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #3d8de8; -fx-border-color: white;" text="Cerrar Sesión" textFill="WHITE">
+            <Button fx:id="txtCloseUsuario" layoutX="33.0" layoutY="468.0" mnemonicParsing="false" onAction="#btnCerrarSesionUsuario" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #3d8de8; -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.75), 13, 0.4, 0, 0);" text="Cerrar Sesión" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="14.0" />
                </font>
             </Button>
+            <ImageView fitHeight="104.0" fitWidth="111.0" layoutX="37.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/16843090.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <Text fx:id="txtProductosTitulo" fill="WHITE" layoutX="395.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mis Productos">
@@ -51,31 +52,43 @@
             <Font name="Britannic Bold" size="36.0" />
          </font>
       </Text>
-      <TableView fx:id="tblPedidos" layoutX="192.0" layoutY="163.0" prefHeight="318.0" prefWidth="673.0" style="-fx-background-color: #dfe7f7;">
+      <TableView fx:id="tblPedidos" layoutX="191.0" layoutY="155.0" prefHeight="318.0" prefWidth="673.0" style="-fx-text-fill: black;">
         <columns>
-          <TableColumn fx:id="colIdPedido" prefWidth="78.39996337890625" text="ID" />
-          <TableColumn fx:id="colNombre" prefWidth="125.60003662109375" text="Nombre" />
-            <TableColumn fx:id="colCategoria" prefWidth="129.5999755859375" text="Categoria" />
-            <TableColumn fx:id="colPrecio" prefWidth="104.00006103515625" text="Precio" />
-            <TableColumn fx:id="colCantidad" prefWidth="112.79998779296875" text="Cantidad" />
-            <TableColumn fx:id="colPrecioVenta" prefWidth="127.99993896484375" text="Precio Venta" />
+          <TableColumn fx:id="colIdPedido" prefWidth="78.39996337890625" style="-fx-background-color: #ebf5fb; -fx-border-color: white; -fx-alignment: center; -fx-border-width: 2px;" text="ID" />
+          <TableColumn fx:id="colNombre" prefWidth="125.60003662109375" style="-fx-border-width: 2px; -fx-border-color: white; -fx-background-color: #e9f7ef; -fx-alignment: center;" text="Nombre" />
+            <TableColumn fx:id="colCategoria" prefWidth="129.5999755859375" style="-fx-background-color: #ebf5fb; -fx-border-color: white; -fx-alignment: center; -fx-border-width: 2px;" text="Categoria" />
+            <TableColumn fx:id="colPrecio" prefWidth="104.00006103515625" style="-fx-border-width: 2px; -fx-background-color: #e9f7ef; -fx-border-color: white; -fx-alignment: center;" text="Precio" />
+            <TableColumn fx:id="colCantidad" prefWidth="112.79998779296875" style="-fx-alignment: 2px; -fx-background-color: #ebf5fb; -fx-border-color: white; -fx-alignment: center;" text="Cantidad" />
+            <TableColumn fx:id="colPrecioVenta" prefWidth="127.99993896484375" style="-fx-background-color: #e9f7ef; -fx-border-color: white; -fx-alignment: center; -fx-border-width: 2px;" text="Precio Venta" />
         </columns>
       </TableView>
-      <Button layoutX="372.0" layoutY="492.0" mnemonicParsing="false" onAction="#btnVender" prefHeight="36.0" prefWidth="249.0" style="-fx-background-color: #315db0;" text="Vender Producto" textFill="WHITE">
+      <Button layoutX="448.0" layoutY="491.0" mnemonicParsing="false" onAction="#btnVender" prefHeight="36.0" prefWidth="159.0" style="-fx-background-color: #315db0;" text="Vender Producto" textFill="WHITE">
          <font>
-            <Font name="Britannic Bold" size="16.0" />
+            <Font name="Britannic Bold" size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="txtNombreFiltro" layoutX="245.0" layoutY="68.0" />
-      <Text fill="WHITE" layoutX="189.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" wrappingWidth="53.33673095703125" />
-      <Text fill="WHITE" layoutX="649.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" wrappingWidth="61.734375" />
-      <Text fill="WHITE" layoutX="419.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio" wrappingWidth="53.33673095703125" />
-      <Button layoutX="422.0" layoutY="112.0" mnemonicParsing="false" onAction="#btnFiltros" prefHeight="36.0" prefWidth="159.0" style="-fx-background-color: #315db0;" text="Buscar Filtro" textFill="WHITE">
+      <TextField fx:id="txtNombreFiltro" layoutX="201.0" layoutY="103.0" prefHeight="31.0" prefWidth="159.0" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 2px; -fx-padding: 4px; -fx-font-weight: bold; -fx-border-width: 1.5px;">
+         <font>
+            <Font size="13.0" />
+         </font></TextField>
+      <Text fill="WHITE" layoutX="240.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" wrappingWidth="61.73437500000023">
          <font>
             <Font name="Britannic Bold" size="16.0" />
+         </font></Text>
+      <Text fill="WHITE" layoutX="593.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" wrappingWidth="75.45312499999994">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font></Text>
+      <Text fill="WHITE" layoutX="423.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio" wrappingWidth="61.73437500000023">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font></Text>
+      <Button layoutX="742.0" layoutY="103.0" mnemonicParsing="false" onAction="#btnFiltros" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #2e86c1;" text="Buscar " textFill="WHITE">
+         <font>
+            <Font name="Britannic Bold" size="18.0" />
          </font>
       </Button>
-      <ComboBox fx:id="PrecioList" layoutX="459.0" layoutY="68.0" onAction="#ElegirFlitroPrecio" prefWidth="150.0" />
-      <ComboBox fx:id="CategListFiltro" layoutX="711.0" layoutY="66.0" onAction="#ElegirFiltroCategoria" prefWidth="150.0" />
+      <ComboBox fx:id="PrecioList" layoutX="386.0" layoutY="106.0" onAction="#ElegirFlitroPrecio" prefWidth="150.0" style="-fx-background-color: white; -fx-border-width: 2px;" />
+      <ComboBox fx:id="CategListFiltro" layoutX="558.0" layoutY="106.0" onAction="#ElegirFiltroCategoria" prefWidth="150.0" style="-fx-background-color: white;" />
    </children>
 </AnchorPane>
