@@ -66,7 +66,7 @@
             <Font name="Britannic Bold" size="16.0" />
          </font>
       </Button>
-      <TextField layoutX="245.0" layoutY="68.0" />
+      <TextField fx:id="txtNombreFiltro" layoutX="245.0" layoutY="68.0" />
       <Text fill="WHITE" layoutX="189.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" wrappingWidth="53.33673095703125" />
       <Text fill="WHITE" layoutX="649.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" wrappingWidth="61.734375" />
       <Text fill="WHITE" layoutX="419.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio" wrappingWidth="53.33673095703125" />

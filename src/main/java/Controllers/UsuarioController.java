@@ -50,6 +50,8 @@ public class UsuarioController implements Initializable {
     @FXML
     private ComboBox<String> PrecioList;
 
+    @FXML
+    private TextField txtNombreFiltro;
 
     @FXML
     private Text txtProductosTitulo;
@@ -67,7 +69,6 @@ public class UsuarioController implements Initializable {
     }
 
     public void cargarProductos() {
-
         colIdPedido.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombrePedido"));
         colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoriaPedido"));
@@ -82,8 +83,29 @@ public class UsuarioController implements Initializable {
 
     }
 
+    public void cargarProductos2(String nombreFiltro , String categoriaFiltro , String precioFiltro) {
+        colIdPedido.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombrePedido"));
+        colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoriaPedido"));
+        colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+        colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidadPedido"));
+        colPrecioVenta.setCellValueFactory(new PropertyValueFactory<>("precioVenta"));
+
+        Pedido pedido = new Pedido();
+        ObservableList<Pedido> item = pedido.filtrosUsuario(idUsuario, nombreFiltro, categoriaFiltro, precioFiltro);;
+        tblPedidos.setItems(item);
+        tblPedidos.refresh();
+
+    }
+
     @FXML
     void btnFiltros(ActionEvent event) {
+        String nombeFiltro = txtNombreFiltro.getText();
+        String categoriaFiltro = CategListFiltro.getSelectionModel().getSelectedItem();
+        String precioFiltro = PrecioList.getSelectionModel().getSelectedItem();
+
+        Pedido pedido = new Pedido();
+        cargarProductos2(nombeFiltro , categoriaFiltro ,precioFiltro);
 
     }
 
@@ -171,11 +193,6 @@ public class UsuarioController implements Initializable {
         }
     }
 
-    @FXML
-    void tblVerProductos(ActionEvent event) {
-
-    }
-
     public void closeWindowsUser() {
         try {
             Stage myStage = (Stage) this.txtProductosTitulo.getScene().getWindow();
@@ -208,12 +225,35 @@ public class UsuarioController implements Initializable {
         }
     }
 
+    public void btnInicio() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Usuario.fxml"));
+            Parent root = loader.load();
+            UsuarioController controller = loader.getController();
+            controller.setIdUsuario(idUsuario);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnCloseRequest(e -> controller.btnVistaComprar());
+            stage.setOnCloseRequest(e -> controller.closeWindowsUser());
+
+            Stage myStage = (Stage) this.txtCloseUsuario.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<String> list = FXCollections.observableArrayList("Alimentos", "Bebidas", "Salud", "Belleza", "Hogar");
+        ObservableList<String> list = FXCollections.observableArrayList(" ", "Alimentos", "Bebidas", "Salud", "Belleza", "Hogar");
         CategListFiltro.setItems(list);
 
-        ObservableList<String> listPrecio = FXCollections.observableArrayList("Menor precio", "Mayor precio");
+        ObservableList<String> listPrecio = FXCollections.observableArrayList(" ", "Menor precio", "Mayor precio");
         PrecioList.setItems(listPrecio);
 
     }

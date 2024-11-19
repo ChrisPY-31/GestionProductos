@@ -97,29 +97,6 @@ public class InicioSesionController {
         }
     }
 
-    public void navegacionUsuario(Persona persona) {
-        try {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/CompraProductos.fxml"));
-            Parent root = loader.load();
-            CompraController controller = loader.getController();
-            controller.idUsuario = persona.getId();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-
-            stage.setOnCloseRequest(e -> controller.btnInicio());
-            stage.setOnCloseRequest(e -> controller.closeWindowsCompra());
-
-            Stage myStage = (Stage) this.txtCorreo.getScene().getWindow();
-            myStage.close();
-        } catch (IOException e) {
-            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, e);
-
-        }
-    }
-
     public void navegacionComprarUsuario(Persona persona){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/CompraProductos.fxml"));
