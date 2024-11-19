@@ -60,7 +60,7 @@ public class AgregarProductosController implements Initializable {
             alertasdelFormulario();
             return ;
         }
-        if (Integer.parseInt(txtCantidad.getText()) < 1 || Integer.parseInt(txtPrecio.getText()) < 1) {
+        if (Integer.parseInt(txtCantidad.getText()) < 1 || Double.parseDouble(txtPrecio.getText()) < 1) {
             String mensaje = "la cantidad o el precion o puede ser negativa ni debe ser ceros";
             mostrarAlerta(mensaje);
             return ;

@@ -92,6 +92,7 @@ public class UsuarioController implements Initializable {
         colPrecioVenta.setCellValueFactory(new PropertyValueFactory<>("precioVenta"));
 
         Pedido pedido = new Pedido();
+
         ObservableList<Pedido> item = pedido.filtrosUsuario(idUsuario, nombreFiltro, categoriaFiltro, precioFiltro);;
         tblPedidos.setItems(item);
         tblPedidos.refresh();
@@ -104,7 +105,6 @@ public class UsuarioController implements Initializable {
         String categoriaFiltro = CategListFiltro.getSelectionModel().getSelectedItem();
         String precioFiltro = PrecioList.getSelectionModel().getSelectedItem();
 
-        Pedido pedido = new Pedido();
         cargarProductos2(nombeFiltro , categoriaFiltro ,precioFiltro);
 
     }
@@ -167,10 +167,8 @@ public class UsuarioController implements Initializable {
                 Stage stage = new Stage();
                 stage.setScene(scene);
                 stage.show();
-
                 stage.setOnCloseRequest(e -> controller.btnVistaInicio());
                 stage.setOnCloseRequest(e -> controller.closeWindowsVender());
-
                 Stage myStage = (Stage) this.txtProductosTitulo.getScene().getWindow();
                 myStage.close();
                 return;
@@ -253,7 +251,7 @@ public class UsuarioController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList(" ", "Alimentos", "Bebidas", "Salud", "Belleza", "Hogar");
         CategListFiltro.setItems(list);
 
-        ObservableList<String> listPrecio = FXCollections.observableArrayList(" ", "Menor precio", "Mayor precio");
+        ObservableList<String> listPrecio = FXCollections.observableArrayList(" ", "DESC", "ASC");
         PrecioList.setItems(listPrecio);
 
     }
