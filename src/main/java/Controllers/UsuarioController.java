@@ -9,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -62,6 +59,7 @@ public class UsuarioController implements Initializable {
 
     //importante esto es el id que lo llamamos en todas las ventanas
     public int idUsuario;
+    public Pedido pedidoVender;
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
@@ -85,11 +83,6 @@ public class UsuarioController implements Initializable {
     }
 
     @FXML
-    void btnEditarPrecio(ActionEvent event) {
-
-    }
-
-    @FXML
     void btnFiltros(ActionEvent event) {
 
     }
@@ -106,7 +99,13 @@ public class UsuarioController implements Initializable {
 
     @FXML
     void btnVender(ActionEvent event) {
-
+        Pedido p = tblPedidos.getSelectionModel().getSelectedItem();
+        if (p != null) {
+            pedidoVender = p;
+            btnVistaVender();
+        } else {
+            alertasValidacion("Seleciona un producto");
+        }
     }
 
     @FXML
@@ -135,11 +134,26 @@ public class UsuarioController implements Initializable {
 
     //Navegabilidad de la vista VenderCompletada
     @FXML
-    void btnVistaVender(ActionEvent event) {
+    void btnVistaVender() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/VentaProducto.fxml"));
             Parent root = loader.load();
             VentaProductoController controller = loader.getController();
+            if (pedidoVender == null) {
+                controller.idUsuario = idUsuario;
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
+
+                stage.setOnCloseRequest(e -> controller.btnVistaInicio());
+                stage.setOnCloseRequest(e -> controller.closeWindowsVender());
+
+                Stage myStage = (Stage) this.txtProductosTitulo.getScene().getWindow();
+                myStage.close();
+                return;
+            }
+            controller.initializeProductos(pedidoVender);
             controller.idUsuario = idUsuario;
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -156,7 +170,6 @@ public class UsuarioController implements Initializable {
 
         }
     }
-
 
     @FXML
     void tblVerProductos(ActionEvent event) {
@@ -205,5 +218,13 @@ public class UsuarioController implements Initializable {
 
     }
 
+    public void alertasValidacion(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+
+    }
 }
 

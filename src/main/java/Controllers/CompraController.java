@@ -116,6 +116,7 @@ public class CompraController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/VentaProducto.fxml"));
             Parent root = loader.load();
             VentaProductoController controller = loader.getController();
+            controller.idUsuario = idUsuario;
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);

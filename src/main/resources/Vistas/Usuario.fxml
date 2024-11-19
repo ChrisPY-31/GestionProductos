@@ -61,12 +61,7 @@
             <TableColumn fx:id="colPrecioVenta" prefWidth="127.99993896484375" text="Precio Venta" />
         </columns>
       </TableView>
-      <Button layoutX="339.0" layoutY="492.0" mnemonicParsing="false" onAction="#btnEditarPrecio" prefHeight="36.0" prefWidth="111.0" style="-fx-background-color: #315db0;" text="Editar" textFill="WHITE">
-         <font>
-            <Font name="Britannic Bold" size="16.0" />
-         </font>
-      </Button>
-      <Button layoutX="592.0" layoutY="492.0" mnemonicParsing="false" onAction="#btnVender" prefHeight="36.0" prefWidth="125.0" style="-fx-background-color: #315db0;" text="Vender" textFill="WHITE">
+      <Button layoutX="372.0" layoutY="492.0" mnemonicParsing="false" onAction="#btnVender" prefHeight="36.0" prefWidth="249.0" style="-fx-background-color: #315db0;" text="Vender Producto" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>

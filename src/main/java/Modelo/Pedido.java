@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,20 +27,22 @@ public class Pedido {
 
     }
 
-    public Pedido(int idProducto ,int idUsuario, int cantidadPedido) {
+    public Pedido(int idProducto, int idUsuario, int cantidadPedido) {
         this.idProducto = idProducto;
         this.idUsuario = idUsuario;
         this.cantidadPedido = cantidadPedido;
 
     }
 
-    public Pedido(int id ,String nombrePedido, String categoriaPedido, double precio , int cantidadPedido, double precioVenta) {
+    public Pedido(int id, String nombrePedido, String categoriaPedido, double precio, int cantidadPedido, double precioVenta) {
         this.id = id;
         this.nombrePedido = nombrePedido;
         this.categoriaPedido = categoriaPedido;
         this.cantidadPedido = cantidadPedido;
         this.precio = precio;
-        this.precioVenta = precioVenta;
+        Random random = new Random();
+        int precioVentaSugerido = random.nextInt(6) + 5;
+        this.precioVenta = precio + precioVentaSugerido;
 
     }
 
@@ -124,7 +127,38 @@ public class Pedido {
                 "FROM pedido " +
                 "INNER JOIN producto ON pedido.idproducto = producto.id " +
                 "INNER JOIN usuario ON pedido.idusuario = usuario.id " +
-                "WHERE pedido.idusuario =" +idBebe;
+                "WHERE pedido.idusuario =" + idBebe;
+
+        try (Connection con = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = con.prepareStatement(SQL)) {
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id_pedido");
+                String nombre = rs.getString("nombreProducto");
+                String categoria = rs.getString("categoria");
+                double precio = rs.getDouble("precio");
+                int cantidad = rs.getInt("cantidad");
+                double precioVenta = rs.getDouble("precioventa");
+
+                Pedido pedido = new Pedido(id, nombre, categoria, precio, cantidad, precioVenta);
+                obs.add(pedido);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obs;
+    }
+
+    public ObservableList<Pedido> getPedidosVender(int idPedidoVender) {
+        //falta aqui eliminar los que sean 0
+        ObservableList<Pedido> obs = FXCollections.observableArrayList();
+        String SQL = "SELECT pedido.id_pedido, producto.nombre AS nombreProducto, producto.categoria, " +
+                "producto.precio, pedido.cantidad, pedido.precioventa,idusuario " +
+                "FROM pedido " +
+                "INNER JOIN producto ON pedido.idproducto = producto.id " +
+                "INNER JOIN usuario ON pedido.idusuario = usuario.id " +
+                "WHERE pedido.id_pedido =" + idPedidoVender;
 
         try (Connection con = new ConexionPostgreSQL().getConnection();
              PreparedStatement pstmt = con.prepareStatement(SQL)) {
@@ -166,6 +200,30 @@ public class Pedido {
             return false;
         }
     }
+
+    public boolean actualizarCantidadesPedido(int idPedido, int cantidadTotalPedido, double gananciaTotal) {
+        String SQL = "UPDATE public.pedido " +
+                "SET total = COALESCE(total, 0) + ?, " +
+                "cantidad = ? " +
+                "WHERE id_pedido = ?";
+
+        try (Connection con = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = con.prepareStatement(SQL)) {
+
+
+            pstmt.setInt(1, idPedido);
+            pstmt.setInt(2, cantidadTotalPedido);
+            pstmt.setDouble(3, gananciaTotal);
+
+            int filas = pstmt.executeUpdate();
+            return filas > 0;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
 
     public double CalcularTotal() {
         return Total;
