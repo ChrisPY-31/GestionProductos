@@ -56,6 +56,9 @@ public class CompraController {
     private TextField txtCantidadComprar;
 
     @FXML
+    private Button txtCerrarUsuario;
+
+    @FXML
     private Button Comprar;
 
     //importante esto es el id que lo llamamos en todas las ventanas
@@ -268,5 +271,26 @@ public class CompraController {
         alert.showAndWait();
     }
 
+    @FXML
+    void btnCerrarSesionUser(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/InicioSesion.fxml"));
+            Parent root = loader.load();
+            InicioSesionController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnCloseRequest(e -> controller.btnRegister());
+            stage.setOnCloseRequest(e -> controller.closeWindowsInicioSesion());
+
+            Stage myStage = (Stage) this.txtCerrarUsuario.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            Logger.getLogger(CompraController.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+    }
 
 }

@@ -40,13 +40,13 @@
             </Button>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblProductos" layoutX="241.0" layoutY="96.0" prefHeight="350.0" prefWidth="602.0" style="-fx-background-color: #d5e0fe;">
+      <TableView fx:id="tblProductos" layoutX="241.0" layoutY="96.0" prefHeight="350.0" prefWidth="602.0">
         <columns>
-          <TableColumn fx:id="colId" prefWidth="100.79998779296875" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #dbdee2;" text="ID" />
-          <TableColumn fx:id="colNombre" prefWidth="155.20001220703125" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #bfd6f5;" text="Nombre " />
-            <TableColumn fx:id="colCategoria" prefWidth="128.00003051757812" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #dbdee2;" text="Categoria" />
-            <TableColumn fx:id="colPrecio" prefWidth="98.4000244140625" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #bfd6f5;" text="Precio" />
-            <TableColumn fx:id="colCantidad" prefWidth="116.0" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #dbdee2;" text="Cantidad " />
+          <TableColumn fx:id="colId" prefWidth="100.79998779296875" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #ebf5fb; -fx-border-width: 2px;" text="ID" />
+          <TableColumn fx:id="colNombre" prefWidth="155.20001220703125" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #d4e6f1; -fx-border-width: 2px;" text="Nombre " />
+            <TableColumn fx:id="colCategoria" prefWidth="128.00003051757812" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #ebf5fb; -fx-border-width: 2px;" text="Categoria" />
+            <TableColumn fx:id="colPrecio" prefWidth="98.4000244140625" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #d4e6f1; -fx-border-width: 2px;" text="Precio" />
+            <TableColumn fx:id="colCantidad" prefWidth="116.0" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #ebf5fb; -fx-border-width: 2px;" text="Cantidad " />
         </columns>
       </TableView>
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="359.0" layoutY="474.0" mnemonicParsing="false" onAction="#btnEditarProductos" prefHeight="36.0" prefWidth="95.0" style="-fx-background-color: #315db0;" text="Editar " textAlignment="CENTER" textFill="WHITE">
