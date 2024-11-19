@@ -225,12 +225,50 @@ public class Pedido {
     }
 
 
+    public ObservableList<Pedido> filtrosUsuario(int idUsuario, String nombreFiltro, String categoriaFiltro, String ordenPrecio) {
+
+        ObservableList<Pedido> obs = FXCollections.observableArrayList();
+        StringBuilder SQL = new StringBuilder("SELECT pedido.id_pedido, producto.nombre AS nombreProducto, producto.categoria, " + "producto.precio, pedido.cantidad, pedido.precioventa, pedido.idusuario " + "FROM pedido " + "INNER JOIN producto ON pedido.idproducto = producto.id " + "INNER JOIN usuario ON pedido.idusuario = usuario.id " + "WHERE pedido.idusuario =" + idUsuario);
+
+        if (nombreFiltro != null && !nombreFiltro.trim().isEmpty()) {
+            SQL.append(" AND producto.nombre = ?");
+        }
+        if (categoriaFiltro != null && !categoriaFiltro.trim().isEmpty()) {
+            SQL.append(" AND producto.categoria = ?");
+        }
+        if (ordenPrecio != null && ("ASC".equalsIgnoreCase(ordenPrecio) || "DESC".equalsIgnoreCase(ordenPrecio))) {
+            SQL.append(" ORDER BY producto.precio ").append(ordenPrecio);
+        }
+
+        try (Connection conn = new ConexionPostgreSQL().getConnection(); PreparedStatement pstmt = conn.prepareStatement(SQL.toString())) {
+            int index = 1;
+            if (nombreFiltro != null && !nombreFiltro.trim().isEmpty()) {
+                pstmt.setString(index++, nombreFiltro);
+            }
+            if (categoriaFiltro != null && !categoriaFiltro.trim().isEmpty()) {
+                pstmt.setString(index++, categoriaFiltro);
+            }
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id_pedido");
+                String nombre = rs.getString("nombreProducto");
+                String categoria = rs.getString("categoria");
+                double precio = rs.getDouble("precio");
+                int cantidad = rs.getInt("cantidad");
+                double precioVenta = rs.getDouble("precioventa");
+
+                Pedido pedido = new Pedido(id, nombre, categoria, precio, cantidad, precioVenta);
+                obs.add(pedido);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obs;
+    }
+
     public double CalcularTotal() {
         return Total;
     }
 
-    public boolean EliminarPedidoProducto(int idPedido) {
-        return false;
-    }
 
 }
