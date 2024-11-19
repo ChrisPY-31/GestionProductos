@@ -19,7 +19,6 @@ public class Persona {
         this.correo = correo;
         this.contrasena = contrasena;
         this.rol = rol;
-        this.id = UUID.randomUUID().hashCode();
     }
 
     public Persona(String correo, String contrasena) {
@@ -68,31 +67,37 @@ public class Persona {
     }
 
 
-    public String InsertarDatos() throws SQLException {
-        String SQL = "INSERT INTO usuario (nombre, correo, contrasena, rol) VALUES(?,?,?,?) RETURNING rol";
+    public String InsertarDatos(){
+        String SQL = "INSERT INTO usuario (nombre, correo, contrasena, rol) VALUES (?, ?, ?, ?)";
 
         try (Connection con = new ConexionPostgreSQL().getConnection();
-             PreparedStatement pstmt = con.prepareStatement(SQL)) {
+             PreparedStatement pstmt = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, getNombre());
             pstmt.setString(2, getCorreo());
             pstmt.setString(3, getContrasena());
             pstmt.setString(4, getRol());
 
-            ResultSet resultSet = pstmt.executeQuery();
+            int filas = pstmt.executeUpdate();
 
-            if (resultSet.next()) {
-                return resultSet.getString("rol");
-            } else {
-                return "Error: No se pudo obtener el rol";
+            if (filas > 0) {
+                try (ResultSet resultSet = pstmt.getGeneratedKeys()) {
+                    if (resultSet.next()) {
+                        this.id = resultSet.getInt(1);
+                    }
+                }
+                return "usuario";
             }
 
+            return "Error";
+
         } catch (SQLException ex) {
-            Logger lgr = Logger.getLogger(Persona.class.getName());
+            Logger lgr = Logger.getLogger(Pedido.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
             return "Error";
         }
     }
+
 
     public String autenticacion() {
         String query = "SELECT * FROM usuario WHERE correo = ? AND contrasena = ?";

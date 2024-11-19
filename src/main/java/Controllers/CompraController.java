@@ -65,6 +65,8 @@ public class CompraController {
     public int idUsuario;
     int cantidadComprar;
 
+
+
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
@@ -75,7 +77,7 @@ public class CompraController {
         Producto producto = new Producto();
         ObservableList<Producto> obs = producto.getProductos();
         tblProductos.setItems(obs);
-
+        System.out.println(idUsuario + "usuario");
     }
 
 
