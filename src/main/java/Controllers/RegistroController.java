@@ -81,9 +81,9 @@ public class RegistroController implements Initializable {
     }
 
     @FXML
-    void btnRegistrarUsuario(ActionEvent event) throws SQLException {
+    void btnRegistrarUsuario(ActionEvent event){
 
-        if (!FormularioCompleto()){
+        if (!FormularioCompleto()) {
             alertaFormulario();
             return;
         }
@@ -95,33 +95,30 @@ public class RegistroController implements Initializable {
 
 
         //validaciones
-        if (!validateEmail(correoUsuario)){
+        if (!validateEmail(correoUsuario)) {
             alertas("Correo invalido");
             return;
         }
 
-        if (!validatePassword(contrasenaUsuario)){
+        if (!validatePassword(contrasenaUsuario)) {
             alertas("Contraseña invalida");
             return;
         }
 
         Persona persona = new Persona(nombreUsuario, correoUsuario, contrasenaUsuario, rol);
 
-        try{
-            String response = persona.InsertarDatos();
-            if(response.equals("Administrador")){
-                navegacionAdministrador();
-            }
-            if(response.equals("usuario")){
-                navegacionUsuario();
-            }
-            if(response.equals("Error")){
-                alertas("Hubo un error intentelo mas tarde" );
-            }
-        }catch (SQLException ex) {
-            mostrarAlerta("No se registro el usuario");
-            Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
+
+        String response = persona.InsertarDatos();
+        if (response.equals("Administrador")) {
+            navegacionAdministrador();
         }
+        if (response.equals("usuario")) {
+            navegacionUsuario(persona);
+        }
+        if (response.equals("Error")) {
+            alertas("Hubo un error intentelo mas tarde");
+        }
+
 
     }
 
@@ -140,7 +137,7 @@ public class RegistroController implements Initializable {
                 && RolList.getSelectionModel().getSelectedItem() != null;
     }
 
-    public void alertaFormulario(){
+    public void alertaFormulario() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Registro incompleto");
         alert.setHeaderText(null);
@@ -148,17 +145,18 @@ public class RegistroController implements Initializable {
         alert.showAndWait();
     }
 
-    public void navegacionUsuario() {
+    public void navegacionUsuario(Persona persona) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Usuario.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/CompraProductos.fxml"));
             Parent root = loader.load();
-            UsuarioController controller = loader.getController();
+            CompraController controller = loader.getController();
+            controller.idUsuario = persona.getId();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
 
-            stage.setOnCloseRequest(e -> controller.closeWindowsUser());
+            stage.setOnCloseRequest(e -> controller.closeWindowsCompra());
 
             Stage myStage = (Stage) this.txtNombreUsuario.getScene().getWindow();
             myStage.close();
@@ -168,7 +166,7 @@ public class RegistroController implements Initializable {
         }
     }
 
-    public void navegacionAdministrador(){
+    public void navegacionAdministrador() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/Administrador.fxml"));
             Parent root = loader.load();
@@ -231,7 +229,7 @@ public class RegistroController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList("Administrador", "usuario");
         RolList.setItems(list);
 
-        txtContraseñaUsuario.focusedProperty().addListener((observable, oldValue, newValue  ) -> {
+        txtContraseñaUsuario.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 lblPasswordMensaje.setVisible(true);
             } else {
@@ -242,7 +240,7 @@ public class RegistroController implements Initializable {
         txtContraseñaUsuario.textProperty().addListener((observable, oldValue, newValue) -> {
             if (validatePassword(newValue)) {
                 lblPasswordMensaje.setVisible(false);
-            } else{
+            } else {
                 lblPasswordMensaje.setVisible(true); //invalido; muestra mensaje de error
             }
         });
@@ -250,7 +248,7 @@ public class RegistroController implements Initializable {
         txtCorreoUsuario.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 lblCorreoMensaje.setVisible(true);
-            }else {
+            } else {
                 lblCorreoMensaje.setVisible(false);
             }
         });
@@ -264,7 +262,6 @@ public class RegistroController implements Initializable {
         });
 
     }
-
 
 
 }
