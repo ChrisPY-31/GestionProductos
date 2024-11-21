@@ -41,25 +41,26 @@
       <TableView fx:id="tblVerProductos" layoutX="199.0" layoutY="228.0" prefHeight="273.0" prefWidth="659.0" styleClass="-fx-text-fill: white; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 2px; -fx-padding: 4px; -fx-font-weight: bold; -fx-border-width: 1.5px;">
         <columns>
           <TableColumn fx:id="colId" prefWidth="91.199951171875" style="-fx-background-color: #ebf5fb; -fx-border-color: white; -fx-alignment: center; -fx-border-width: center; -fx-border-width: 2px;" text="ID" />
-          <TableColumn fx:id="colNombre" prefWidth="231.20001220703125" style="-fx-border-width: 2px; -fx-border-color: white; -fx-background-color: #e9f7ef; -fx-alignment: center;" text="NOMBRE" />
-            <TableColumn fx:id="colCategoria" minWidth="0.0" prefWidth="335.99993896484375" style="-fx-background-color: #ebf5fb; -fx-border-color: white; -fx-alignment: center; -fx-border-width: 2px;" text="CATEGORIA" />
+          <TableColumn fx:id="colNombre" prefWidth="234.39996337890625" style="-fx-border-width: 2px; -fx-border-color: white; -fx-background-color: #e9f7ef; -fx-alignment: center;" text="NOMBRE" />
+            <TableColumn fx:id="colCantidad" prefWidth="175.99993896484375" style="-fx-border-width: 2px; -fx-border-color: white; -fx-background-color: #e9f7ef; -fx-alignment: center;" text="CANTIDAD" />
+            <TableColumn fx:id="colPrecioVenta" prefWidth="156.00006103515625" style="-fx-border-width: 2px; -fx-border-color: white; -fx-background-color: #e9f7ef; -fx-alignment: center;" text="PRECIO VENTA" />
         </columns>
       </TableView>
-      <Button layoutX="722.0" layoutY="517.0" mnemonicParsing="false" onAction="#btnVenderProductos" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #315db0;" text="Vender" textFill="WHITE">
+      <Button layoutX="748.0" layoutY="519.0" mnemonicParsing="false" onAction="#btnVenderProductos" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #315db0;" text="Vender" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font></Button>
-      <Text fill="WHITE" layoutX="271.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Producto">
+      <Text fill="WHITE" layoutX="215.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Producto">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="460.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad">
+      <Text fill="WHITE" layoutX="575.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="656.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio">
+      <Text fill="WHITE" layoutX="407.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font>
@@ -69,25 +70,47 @@
             <Font name="Britannic Bold" size="18.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="195.0" layoutY="540.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ganancias del dia ">
+      <Text fill="WHITE" layoutX="193.0" layoutY="540.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ganancias del dia ">
          <font>
             <Font name="Britannic Bold" size="20.0" />
          </font>
       </Text>
-      <TextField editable="false" layoutX="369.0" layoutY="520.0" prefHeight="26.0" prefWidth="160.0" promptText="\$ 0" style="-fx-background-color: #ebf5fb; -fx-border-color: #7fb3d5; -fx-border-width: 2px; -fx-border-radius: 5px;" />
-      <TextField fx:id="txtIdProducto" layoutX="255.0" layoutY="109.0" prefHeight="26.0" prefWidth="126.0" promptText="ID" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-border-color: white; -fx-background-radius: 2px; -fx-padding: 4px; -fx-font-weight: bold; -fx-border-width: 1.5px;" />
-      <TextField fx:id="txtPrecio" editable="false" layoutX="607.0" layoutY="109.0" prefHeight="26.0" prefWidth="150.0" promptText="0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 2px; -fx-font-weight: bold; -fx-border-width: 1.5px;" />
-      <TextField fx:id="txtCantidad" editable="false" layoutX="426.0" layoutY="109.0" prefHeight="26.0" prefWidth="139.0" promptText="0" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 2px; -fx-padding: 4px; -fx-font-weight: bold; -fx-border-width: 1.5px;" />
-      <TextField fx:id="txtPrecioVenta" editable="false" layoutX="532.0" layoutY="182.0" prefHeight="26.0" prefWidth="150.0" promptText="0" style="-fx-border-radius: 2px; -fx-text-fill: white; -fx-background-color: transparent; -fx-padding: 4px; -fx-border-color: white; -fx-font-weight: bold; -fx-border-width: 1.5px;" />
-      <Button layoutX="750.0" layoutY="171.0" mnemonicParsing="false" onAction="#buscarProductoVendido" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #2e86c1;" text="Buscar " textFill="WHITE">
+      <TextField fx:id="txtGananciasDelDia" editable="false" layoutX="359.0" layoutY="520.0" prefHeight="26.0" prefWidth="160.0" promptText="\\$ 0" style="-fx-background-color: #ebf5fb; -fx-border-color: #7fb3d5; -fx-border-width: 2px; -fx-border-radius: 5px;" />
+      <TextField fx:id="txtIdProducto" layoutX="199.0" layoutY="109.0" prefHeight="26.0" prefWidth="126.0" promptText="ID" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-border-color: white; -fx-background-radius: 2px; -fx-padding: 4px; -fx-font-weight: bold; -fx-border-width: 1.5px;" />
+      <TextField fx:id="txtPrecio" editable="false" layoutX="378.0" layoutY="180.0" prefHeight="29.0" prefWidth="126.0" promptText="0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 2px; -fx-font-weight: bold; -fx-border-width: 1.5px;" />
+      <TextField fx:id="txtCantidad" editable="false" layoutX="557.0" layoutY="108.0" prefHeight="29.0" prefWidth="126.0" promptText="0" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 2px; -fx-padding: 4px; -fx-font-weight: bold; -fx-border-width: 1.5px;" />
+      <TextField fx:id="txtPrecioVenta" editable="false" layoutX="556.0" layoutY="182.0" prefHeight="29.0" prefWidth="126.0" promptText="0" style="-fx-border-radius: 2px; -fx-text-fill: white; -fx-background-color: transparent; -fx-padding: 4px; -fx-border-color: white; -fx-font-weight: bold; -fx-border-width: 1.5px;" />
+      <Button fx:id="btnAgregarProducto" layoutX="748.0" layoutY="133.0" mnemonicParsing="false" onAction="#AgregarProductoVendido" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #2e86c1;" text="Agregar" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font></Button>
-      <Text disable="true" fill="WHITE" layoutX="301.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero de cantidad">
+      <Text disable="true" fill="WHITE" layoutX="195.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero de cantidad">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="txtCantidadNum" layoutX="306.0" layoutY="182.0" prefHeight="26.0" prefWidth="150.0" promptText="0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 2px; -fx-padding: 4px; -fx-font-weight: bold; -fx-border-width: 1.5px;" />
+      <TextField fx:id="txtCantidadNum" layoutX="199.0" layoutY="182.0" prefHeight="29.0" prefWidth="126.0" promptText="0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 2px; -fx-padding: 4px; -fx-font-weight: bold; -fx-border-width: 1.5px;" />
+      <Text fill="WHITE" layoutX="531.0" layoutY="541.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total">
+         <font>
+            <Font name="Britannic Bold" size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtTotalProductos" layoutX="587.0" layoutY="523.0" promptText="\\$ 0" />
+      <Text fill="WHITE" layoutX="407.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+         <font>
+            <Font name="Britannic Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtNombre" editable="false" layoutX="376.0" layoutY="108.0" prefHeight="29.0" prefWidth="160.0" promptText="Nombre" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-border-color: white; -fx-background-radius: 2px; -fx-padding: 4px; -fx-font-weight: bold; -fx-border-width: 1.5px;" />
+      <Button layoutX="748.0" layoutY="182.0" mnemonicParsing="false" onAction="#buscarProductoVendido" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #2e86c1;" text="Buscar " textFill="WHITE">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="748.0" layoutY="78.0" mnemonicParsing="false" onAction="#ElilminarProductoVendido" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #2e86c1;" text="Eliminar" textFill="WHITE">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

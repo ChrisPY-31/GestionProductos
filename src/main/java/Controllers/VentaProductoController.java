@@ -9,10 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -27,13 +24,19 @@ public class VentaProductoController {
     private Text TituloProductos;
 
     @FXML
-    private TableColumn<Pedido, String> colCategoria;
+    private Button btnAgregarProducto;
 
     @FXML
     private TableColumn<Pedido, Integer> colId;
 
     @FXML
     private TableColumn<Pedido, String> colNombre;
+
+    @FXML
+    private TableColumn<Pedido, Integer> colCantidad;
+
+    @FXML
+    private TableColumn<Pedido, Double> colPrecioVenta;
 
     @FXML
     private TextField txtCantidad;
@@ -51,6 +54,15 @@ public class VentaProductoController {
     private TextField txtPrecioVenta;
 
     @FXML
+    private TextField txtNombre;
+
+    @FXML
+    private TextField txtTotalProductos;
+
+    @FXML
+    private TextField txtGananciasDelDia;
+
+    @FXML
     private TableView<Pedido> tblVerProductos;
 
     //importante esto es el id que lo llamamos en todas las ventanas
@@ -58,7 +70,9 @@ public class VentaProductoController {
     public int idUsuario;
     public Pedido pedidoVenderUsuario;
     int cantidadUsuario;
+    double precioAcoumuladoTotal = 0;
 
+    //este viene desde usuario
     public void initializeProductos(Pedido pedidoUsuario) {
         System.out.println("ejecutnado esto");
         this.pedidoVenderUsuario = pedidoUsuario;
@@ -69,36 +83,40 @@ public class VentaProductoController {
 
     public void initializeVerProductos() {
         txtIdProducto.setText(String.valueOf(pedidoVenderUsuario.getId()));
+        txtNombre.setText(pedidoVenderUsuario.getNombrePedido());
         txtPrecio.setText(String.valueOf(pedidoVenderUsuario.getPrecio()));
         txtCantidad.setText(String.valueOf(pedidoVenderUsuario.getCantidadPedido()));
         txtPrecioVenta.setText(String.valueOf(pedidoVenderUsuario.getPrecioVenta()));
         txtPrecio.setEditable(false);
         txtCantidad.setEditable(false);
         txtPrecioVenta.setEditable(false);
-        initializeTablas();
+        //initializeTablas();
     }
 
-    public void initializeTablas() {
-        ObservableList<Pedido> obs = FXCollections.observableArrayList();
-        obs.add(pedidoVenderUsuario);
+    private ObservableList<Pedido> obs;
+
+
+    public void initialize() {
+        obs = FXCollections.observableArrayList();
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombrePedido"));
-        colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoriaPedido"));
+        colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidadPedido"));
+        colPrecioVenta.setCellValueFactory(new PropertyValueFactory<>("precioVenta"));
         tblVerProductos.setItems(obs);
 
+        Pedido pedido = new Pedido();
+        String ganaciasDelDia = pedido.getTotalPedidos();
+        txtGananciasDelDia.setText(ganaciasDelDia);
     }
 
 
     public void initializeBuscar(int id) {
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombrePedido"));
-        colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoriaPedido"));
 
         Pedido pedido = new Pedido();
         ObservableList<Pedido> obs = pedido.getPedidosVender(id);
-        tblVerProductos.setItems(obs);
         for (Pedido elemento : obs) {
             txtIdProducto.setText(String.valueOf(elemento.getId()));
+            txtNombre.setText(elemento.getNombrePedido());
             txtPrecio.setText(String.valueOf(elemento.getPrecio()));
             txtCantidad.setText(String.valueOf(elemento.getCantidadPedido()));
             txtPrecioVenta.setText(String.valueOf(elemento.getPrecioVenta()));
@@ -109,38 +127,74 @@ public class VentaProductoController {
 
     @FXML
     void btnVenderProductos() {
-        String idProductoPedido = txtIdProducto.getText();
-        String cantidadVender = txtCantidadNum.getText();
+        for (Pedido p : obs) {
+            int cantidadExistencia = p.getCantidad() - p.getCantidadPedido();
+            double precioProductoIndividual = p.getPrecioVenta() - p.getPrecio();
+            double precioTotalProducto = precioProductoIndividual * p.getCantidadPedido();
 
-        if (idProductoPedido.trim().isEmpty() || cantidadVender.trim().isEmpty()) {
-            alertasValidacion("Seleccione un ID continuar");
-            return;
-        }
-        if (!esNumeroPositivo(idProductoPedido) || !esNumeroPositivo(cantidadVender)) {
-            alertasValidacion("El valor debe ser número positivo y no contener letras");
-            return;
-        }
-        int cantidadNum = Integer.parseInt(cantidadVender);
-        if (cantidadNum > cantidadUsuario) {
-            alertasValidacion("Cantidad insuficiente: ");
-            return;
-        }
-        try {
-            int cantidadExistente = cantidadUsuario - cantidadNum;
+            System.out.println(precioProductoIndividual + "desde vender");
             Pedido pedido = new Pedido();
-            double precioNomal = Double.parseDouble(txtPrecio.getText());
-            double precioVenta = Double.parseDouble(txtPrecioVenta.getText());
-            double gananciasTotales = precioVenta-precioNomal;
-            boolean response = pedido.actualizarCantidadesPedido(Integer.parseInt(idProductoPedido), cantidadExistente ,gananciasTotales);
-            if(response){
-                alertasCorrectas("Producto ventido correctamente");
-                resetearValores();
+            boolean response = pedido.actualizarCantidadesPedido(p.getId(), cantidadExistencia, precioTotalProducto);
+            if (!response) {
+                alertasValidacion("Error productos no vendidos por favor revise la venta");
+                return;
             }
-            else{
-                alertasValidacion("Error al vender revisa bien las cosas chaval");
-            }
-        } catch (NumberFormatException e) {
-            alertasValidacion("El ID del producto no es válido");
+        }
+        alertasCorrectas("Producto Vendido correctamente");
+        tblVerProductos.getItems().clear();
+
+    }
+
+
+    @FXML
+    void AgregarProductoVendido(ActionEvent event) {
+
+        if (txtIdProducto.getText().equals("") || txtCantidadNum.getText().equals("")) {
+            alertasValidacion("El id y la cantidad no pueden ir vacios");
+            return;
+        }
+
+        if (Integer.parseInt(txtCantidadNum.getText()) > Integer.parseInt(txtCantidad.getText())) {
+            alertasValidacion("Cantidad insuficiente");
+            return;
+        }
+
+        if (!esNumeroPositivo(txtIdProducto.getText()) || !esNumeroPositivo(txtCantidadNum.getText())) {
+            alertasValidacion("El id y la cantidad no pueden ser negativos");
+        }
+
+        if (!esEntero(txtCantidadNum.getText())) {
+            alertasValidacion("la cantidad debe ser entero");
+            return;
+        }
+
+        int idPedido = Integer.parseInt(txtIdProducto.getText());
+        String nombre = txtNombre.getText();
+        int cantidadPedido = Integer.parseInt(txtCantidadNum.getText());
+        double precioVenta = Double.parseDouble(txtPrecioVenta.getText());
+        double precioNormal = Double.parseDouble(txtPrecio.getText());
+        int cantidadProductoOrignal = Integer.parseInt(txtCantidad.getText());
+
+        Pedido pedido = new Pedido(idPedido, nombre, cantidadPedido, precioNormal, precioVenta, cantidadProductoOrignal);
+        if (!this.obs.contains(pedido)) {
+            double precioTotal = pedido.getPrecioVenta() - Double.parseDouble(txtPrecio.getText());
+            precioAcoumuladoTotal = precioAcoumuladoTotal + (precioTotal * cantidadPedido);
+            txtTotalProductos.setText(String.valueOf(precioAcoumuladoTotal));
+            this.obs.add(pedido);
+            resetearValores();
+        }
+
+    }
+
+    @FXML
+    void ElilminarProductoVendido(ActionEvent event) {
+        Pedido p = tblVerProductos.getSelectionModel().getSelectedItem();
+
+        if (p == null) {
+            alertasValidacion("Seleccione un producto");
+        }
+        else{
+            obs.remove(p);
         }
     }
 
@@ -165,6 +219,8 @@ public class VentaProductoController {
 
         }
     }
+
+    //buscar prodcutos
     @FXML
     void buscarProductoVendido(ActionEvent event) {
         String idProducto = txtIdProducto.getText();
@@ -186,6 +242,7 @@ public class VentaProductoController {
         try {
             initializeBuscar(Integer.parseInt(idProducto.trim()));
             txtCantidadNum.setEditable(true);
+            btnAgregarProducto.setDisable(false);
         } catch (NumberFormatException e) {
             alertasValidacion("El ID del producto no es válido");
             return;
@@ -243,18 +300,29 @@ public class VentaProductoController {
         alert.showAndWait();
     }
 
-    public void alertasCorrectas(String mensaje){
+    public void alertasCorrectas(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Correcto");
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-    public void resetearValores(){
+
+    public void resetearValores() {
         txtIdProducto.setText("");
+        txtNombre.setText("");
         txtCantidadNum.setText("");
         txtPrecioVenta.setText("");
         txtPrecio.setText("");
         txtCantidad.setText("");
+    }
+
+    public boolean esEntero(String valor) {
+        try {
+            Integer.parseInt(valor);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

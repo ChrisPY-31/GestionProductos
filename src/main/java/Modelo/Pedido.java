@@ -22,6 +22,7 @@ public class Pedido {
     private int cantidadPedido;
     private double precioVenta;
     private double Total;
+    private int cantidad;
 
     public Pedido() {
 
@@ -46,6 +47,14 @@ public class Pedido {
 
     }
 
+    public Pedido(int id, String nombrePedido, int cantidadPedido, double precio, double precioVenta, int cantidad) {
+        this.id = id;
+        this.nombrePedido = nombrePedido;
+        this.cantidadPedido = cantidadPedido;
+        this.precioVenta = precioVenta;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
 
     public int getId() {
         return id;
@@ -117,6 +126,14 @@ public class Pedido {
 
     public void setTotal(double total) {
         Total = total;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public ObservableList<Pedido> getPedidos(int idBebe) {
@@ -202,9 +219,7 @@ public class Pedido {
     }
 
     public boolean actualizarCantidadesPedido(int idPedido, int cantidadTotalPedido, double gananciaTotal) {
-        System.out.println(idPedido);
-        System.out.println(cantidadTotalPedido);
-        System.out.println(gananciaTotal);
+        System.out.println(gananciaTotal + " la clase");
 
         String SQL = "UPDATE public.pedido " +
                 "SET total = COALESCE(total, 0) + ?, " +
@@ -227,6 +242,23 @@ public class Pedido {
         }
     }
 
+    public String getTotalPedidos() {
+        String SQL = "SELECT SUM(total) AS total FROM pedido";
+
+        try (Connection conn = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            if (rs.next()) {
+                return rs.getString("total");
+            }
+            return "0";
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
+            return "0";
+        }
+    }
 
 
     public ObservableList<Pedido> filtrosUsuario(int idUsuario, String nombreFiltro, String categoriaFiltro, String ordenPrecio) {
