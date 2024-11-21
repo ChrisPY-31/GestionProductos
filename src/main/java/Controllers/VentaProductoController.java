@@ -127,6 +127,12 @@ public class VentaProductoController {
 
     @FXML
     void btnVenderProductos() {
+
+        if(obs.size() == 0){
+            alertasValidacion("Tienes que agregar el producto: ");
+            return;
+        }
+
         for (Pedido p : obs) {
             int cantidadExistencia = p.getCantidad() - p.getCantidadPedido();
             double precioProductoIndividual = p.getPrecioVenta() - p.getPrecio();
@@ -166,6 +172,10 @@ public class VentaProductoController {
         if (!esEntero(txtCantidadNum.getText())) {
             alertasValidacion("la cantidad debe ser entero");
             return;
+        }
+
+        if(txtNombre.equals("") || txtPrecio.equals("") || txtPrecioVenta.equals("") || txtCantidad.equals("")){
+            alertasValidacion("Todos los campos son obligatorios: ");
         }
 
         int idPedido = Integer.parseInt(txtIdProducto.getText());
@@ -238,16 +248,20 @@ public class VentaProductoController {
             return;
         }
 
-        // Intentar inicializar con el ID del producto
-        try {
-            initializeBuscar(Integer.parseInt(idProducto.trim()));
-            txtCantidadNum.setEditable(true);
-            btnAgregarProducto.setDisable(false);
-        } catch (NumberFormatException e) {
-            alertasValidacion("El ID del producto no es válido");
-            return;
+        Pedido pedido = new Pedido();
+        boolean reponse = pedido.getBuscarPedidoId(Integer.parseInt(idProducto));
+        if(!reponse){
+            alertasValidacion("Error no se encontro el producto con el id: "+idProducto);
+        }else{
+            try {
+                initializeBuscar(Integer.parseInt(idProducto.trim()));
+                txtCantidadNum.setEditable(true);
+                btnAgregarProducto.setDisable(false);
+            } catch (NumberFormatException e) {
+                alertasValidacion("El ID del producto no es válido");
+                return;
+            }
         }
-
     }
 
     public boolean esNumeroPositivo(String texto) {
