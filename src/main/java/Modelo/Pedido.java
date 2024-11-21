@@ -1,6 +1,7 @@
 package Modelo;
 
 import BaseDatos.ConexionPostgreSQL;
+import com.sun.source.tree.TryTree;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -165,6 +166,22 @@ public class Pedido {
             Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obs;
+    }
+
+    public boolean getBuscarPedidoId(int id){
+        String SQL = "SELECT pedido.id_pedido FROM pedido WHERE id_pedido =" + id;
+
+        try(Connection conn = new ConexionPostgreSQL().getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(SQL)){
+            ResultSet rs = pstmt.executeQuery();
+
+            return rs.next();
+
+        }catch(SQLException ex) {
+            Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
     }
 
     public ObservableList<Pedido> getPedidosVender(int idPedidoVender) {

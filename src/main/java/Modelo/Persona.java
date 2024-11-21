@@ -125,6 +125,23 @@ public class Persona {
         }
     }
 
+    public boolean getBuscarCorreo(String correo) {
+        String SQL = "SELECT correo FROM usuario WHERE correo ="+correo;
+
+        try(Connection conn = new ConexionPostgreSQL().getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(SQL)){
+            ResultSet rs = pstmt.executeQuery();
+
+            return rs.next();
+
+        }catch(SQLException ex) {
+            Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+
+    }
+
     public boolean actualizarDatos() throws SQLException {
         return false;
     }

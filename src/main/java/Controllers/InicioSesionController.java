@@ -30,6 +30,17 @@ public class InicioSesionController {
         String contrasena = txtContraseña.getText();
         Persona persona = new Persona(correo, contrasena);
 
+        /*
+
+        boolean response = persona.getBuscarCorreo(correo);
+        if(response) {
+            System.out.println("correo valido");
+        }else{
+            System.out.println("El correo no se encontro crea una cuenta");
+        }
+
+        */
+
         String role = persona.autenticacion();
         if(role.equals("Administrador")){
             alertaSesion("Administrador");
