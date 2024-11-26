@@ -30,17 +30,15 @@ public class InicioSesionController {
         String contrasena = txtContraseña.getText();
         Persona persona = new Persona(correo, contrasena);
 
-        /*
-
-        boolean response = persona.getBuscarCorreo(correo);
-        if(response) {
-            System.out.println("correo valido");
-        }else{
-            System.out.println("El correo no se encontro crea una cuenta");
+        if(correo.equals("") || contrasena.equals("")){
+            alertaSesion("Todos los campos son obligatorios");
+            return;
         }
-
-        */
-
+        boolean response = persona.getBuscarCorreo(correo);
+        if(!response) {
+            alertas("El correo no esta registrado, crea una cuenta" , false);
+            return;
+        }
         String role = persona.autenticacion();
         if(role.equals("Administrador")){
             alertaSesion("Administrador");
@@ -53,9 +51,8 @@ public class InicioSesionController {
 
         }
         if(role.equals("Error de contraseña")){
-            alertas("La contraseña o el correo son incorrectos" ,false);
+            alertas("La contraseña es incorrecta" ,false);
         }
-
     }
 
     public void alertas(String mensaje, boolean rol) {
