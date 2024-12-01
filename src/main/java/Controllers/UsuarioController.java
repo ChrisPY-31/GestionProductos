@@ -264,5 +264,8 @@ public class UsuarioController implements Initializable {
         alert.showAndWait();
 
     }
+
+    public void btnVistaCuenta(ActionEvent actionEvent) {
+    }
 }
 
