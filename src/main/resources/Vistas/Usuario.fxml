@@ -20,24 +20,24 @@
                   <Font name="Britannic Bold" size="22.0" />
                </font>
             </Text>
-            <Button layoutX="33.0" layoutY="295.0" mnemonicParsing="false" onAction="#btnVistaVender" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #1f618d;" text="Vender" textFill="WHITE">
+            <Button layoutX="33.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnVistaVender" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #3d8de8;" text="Vender" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="33.0" layoutY="372.0" mnemonicParsing="false" onAction="#btnVistaComprar" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #1f618d;" text="Comprar" textFill="WHITE">
+            <Button layoutX="33.0" layoutY="384.0" mnemonicParsing="false" onAction="#btnVistaComprar" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #3d8de8;" text="Comprar" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="33.0" layoutY="220.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #1f618d;" text="Inicio" textFill="WHITE">
+            <Button layoutX="33.0" layoutY="266.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #3d8de8;" text="Inicio" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="txtCloseUsuario" layoutX="33.0" layoutY="468.0" mnemonicParsing="false" onAction="#btnCerrarSesionUsuario" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #3d8de8; -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.75), 13, 0.4, 0, 0);" text="Cerrar Sesión" textFill="WHITE">
+            <Button fx:id="txtCloseUsuario" layoutX="51.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnCerrarSesionUsuario" prefHeight="30.0" prefWidth="118.0" style="-fx-background-color: transparent; -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.75), 13, 0.4, 0, 0);" text="Cerrar Sesión" textFill="WHITE">
                <font>
-                  <Font name="Britannic Bold" size="14.0" />
+                  <Font name="Britannic Bold" size="15.0" />
                </font>
             </Button>
             <ImageView fitHeight="104.0" fitWidth="111.0" layoutX="37.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
@@ -45,21 +45,31 @@
                   <Image url="@../images/16843090.png" />
                </image>
             </ImageView>
+            <Button layoutX="33.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnVistaCuenta" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #3d8de8;" text="Mi cuenta" textFill="WHITE">
+               <font>
+                  <Font name="Britannic Bold" size="16.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="22.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cerrarSe.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <Text fx:id="txtProductosTitulo" fill="WHITE" layoutX="395.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mis Productos">
+      <Text fx:id="txtProductosTitulo" fill="WHITE" layoutX="416.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mis Productos">
          <font>
             <Font name="Britannic Bold" size="36.0" />
          </font>
       </Text>
-      <TableView fx:id="tblPedidos" layoutX="191.0" layoutY="155.0" prefHeight="318.0" prefWidth="673.0" style="-fx-text-fill: black;">
+      <TableView fx:id="tblPedidos" layoutX="197.0" layoutY="155.0" prefHeight="318.0" prefWidth="665.0" style="-fx-text-fill: black;">
         <columns>
           <TableColumn fx:id="colIdPedido" prefWidth="78.39996337890625" style="-fx-background-color: #ebf5fb; -fx-border-color: white; -fx-alignment: center; -fx-border-width: 2px;" text="ID" />
           <TableColumn fx:id="colNombre" prefWidth="125.60003662109375" style="-fx-border-width: 2px; -fx-border-color: white; -fx-background-color: #e9f7ef; -fx-alignment: center;" text="Nombre" />
             <TableColumn fx:id="colCategoria" prefWidth="129.5999755859375" style="-fx-background-color: #ebf5fb; -fx-border-color: white; -fx-alignment: center; -fx-border-width: 2px;" text="Categoria" />
-            <TableColumn fx:id="colPrecio" prefWidth="104.00006103515625" style="-fx-border-width: 2px; -fx-background-color: #e9f7ef; -fx-border-color: white; -fx-alignment: center;" text="Precio" />
-            <TableColumn fx:id="colCantidad" prefWidth="112.79998779296875" style="-fx-alignment: 2px; -fx-background-color: #ebf5fb; -fx-border-color: white; -fx-alignment: center;" text="Cantidad" />
-            <TableColumn fx:id="colPrecioVenta" prefWidth="127.99993896484375" style="-fx-background-color: #e9f7ef; -fx-border-color: white; -fx-alignment: center; -fx-border-width: 2px;" text="Precio Venta" />
+            <TableColumn fx:id="colPrecio" prefWidth="99.199951171875" style="-fx-border-width: 2px; -fx-background-color: #e9f7ef; -fx-border-color: white; -fx-alignment: center;" text="Precio" />
+            <TableColumn fx:id="colCantidad" prefWidth="108.7999267578125" style="-fx-alignment: 2px; -fx-background-color: #ebf5fb; -fx-border-color: white; -fx-alignment: center;" text="Cantidad" />
+            <TableColumn fx:id="colPrecioVenta" prefWidth="138.4000244140625" style="-fx-background-color: #e9f7ef; -fx-border-color: white; -fx-alignment: center; -fx-border-width: 2px;" text="Precio Venta" />
         </columns>
       </TableView>
       <Button layoutX="448.0" layoutY="491.0" mnemonicParsing="false" onAction="#btnVender" prefHeight="36.0" prefWidth="159.0" style="-fx-background-color: #315db0;" text="Vender Producto" textFill="WHITE">
@@ -71,19 +81,19 @@
          <font>
             <Font size="13.0" />
          </font></TextField>
-      <Text fill="WHITE" layoutX="240.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" wrappingWidth="61.73437500000023">
+      <Text fill="WHITE" layoutX="250.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" wrappingWidth="61.73437500000023">
          <font>
-            <Font name="Britannic Bold" size="16.0" />
+            <Font name="Britannic Bold" size="18.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="593.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" wrappingWidth="75.45312499999994">
+      <Text fill="WHITE" layoutX="590.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" wrappingWidth="85.05310058593744">
          <font>
-            <Font name="Britannic Bold" size="16.0" />
+            <Font name="Britannic Bold" size="18.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="423.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio" wrappingWidth="61.73437500000023">
+      <Text fill="WHITE" layoutX="440.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio" wrappingWidth="61.73437500000023">
          <font>
-            <Font name="Britannic Bold" size="16.0" />
+            <Font name="Britannic Bold" size="18.0" />
          </font></Text>
-      <Button layoutX="742.0" layoutY="103.0" mnemonicParsing="false" onAction="#btnFiltros" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #2e86c1;" text="Buscar " textFill="WHITE">
+      <Button layoutX="738.0" layoutY="103.0" mnemonicParsing="false" onAction="#btnFiltros" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #3d8de8;" text="Buscar " textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font>

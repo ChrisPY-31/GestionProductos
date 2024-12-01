@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="880.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AgregarProductosController">
+<AnchorPane prefHeight="556.0" prefWidth="880.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AgregarProductosController">
    <children>
       <Label fx:id="txtAgregar" layoutX="403.0" layoutY="68.0" text="Agregar Productos" textFill="WHITE">
          <font>
@@ -51,7 +51,7 @@
             <Font name="Britannic Bold" size="20.0" />
          </font></Label>
       <ComboBox fx:id="CategoriaList" layoutX="433.0" layoutY="369.0" onAction="#ElegirCategoria" prefHeight="26.0" prefWidth="363.0" style="-fx-padding: 3px; -fx-border-width: 2px; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 4px;" />
-      <Button fx:id="AgregarProducto" layoutX="455.0" layoutY="458.0" mnemonicParsing="false" onAction="#btnAgregarProducto" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #1d9627; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.75), 13, 0.4, 0, 0);" text="+ Agregar Producto" textFill="WHITE">
+      <Button fx:id="AgregarProducto" layoutX="455.0" layoutY="458.0" mnemonicParsing="false" onAction="#btnAgregarProducto" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #1d9627; -fx-border-radius: 5px;" text="+ Agregar Producto" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font></Button>
