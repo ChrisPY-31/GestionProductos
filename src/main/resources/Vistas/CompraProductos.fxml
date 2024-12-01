@@ -38,14 +38,14 @@
             </Button>
          </children>
       </AnchorPane>
-      <Text fx:id="txtCompraTitulo" fill="WHITE" layoutX="363.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comprar Productos">
+      <Text fx:id="txtCompraTitulo" fill="WHITE" layoutX="362.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comprar Productos">
          <font>
-            <Font name="Britannic Bold" size="40.0" />
+            <Font name="Britannic Bold" size="38.0" />
          </font>
       </Text>
       <TextField fx:id="txtCantidad" editable="false" layoutX="381.0" layoutY="445.0" prefHeight="26.0" prefWidth="146.0" promptText="Stock" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 3px; -fx-padding: 4px; -fx-font-size: 13px; -fx-font-weight: bold; -fx-border-width: 1.5px;" />
       <TextField fx:id="txtIdProducto" layoutX="381.0" layoutY="352.0" prefHeight="26.0" prefWidth="146.0" promptText="ID producto" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 3px; -fx-padding: 4px; -fx-font-size: 13px; -fx-font-weight: bold; -fx-border-width: 1.5px;" />
-      <TableView fx:id="tblProductos" layoutX="209.0" layoutY="81.0" prefHeight="247.0" prefWidth="655.0" style="-fx-text-fill: black;" stylesheets="@../CSS/style.css">
+      <TableView fx:id="tblProductos" layoutX="210.0" layoutY="69.0" prefHeight="247.0" prefWidth="655.0" style="-fx-text-fill: black;" stylesheets="@../CSS/style.css">
         <columns>
           <TableColumn fx:id="colId" prefWidth="83.20001220703125" style="-fx-background-color: #ebf5fb; -fx-border-color: white; -fx-alignment: center; -fx-border-width: 2px;" text="ID" />
           <TableColumn fx:id="colNombre" prefWidth="176.0" style="-fx-background-color: #e9f7ef; -fx-border-color: white; -fx-alignment: center; -fx-border-width: 2px;" text="NOMBRE" />
@@ -60,7 +60,7 @@
          </font>
       </Text>
       <TextField fx:id="txtTotal" editable="false" layoutX="679.0" layoutY="424.0" prefHeight="26.0" prefWidth="134.0" promptText="\$" style="-fx-background-color: #f5f5f5;" />
-      <Button fx:id="Comprar" disable="true" layoutX="695.0" layoutY="479.0" mnemonicParsing="false" onAction="#btnPagar" prefHeight="31.0" prefWidth="101.0" style="-fx-background-color: #1d9627;" stylesheets="@../CSS/style.css" text="Comprar" textFill="WHITE">
+      <Button fx:id="Comprar" disable="true" layoutX="667.0" layoutY="478.0" mnemonicParsing="false" onAction="#btnPagar" prefHeight="31.0" prefWidth="101.0" style="-fx-background-color: #1d9627;" stylesheets="@../CSS/style.css" text="Comprar" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="18.0" />
          </font>

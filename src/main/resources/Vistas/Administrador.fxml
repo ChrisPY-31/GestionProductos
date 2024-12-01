@@ -9,26 +9,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="550.0" prefWidth="880.0" style="-fx-background-color: #012E46; -fx-text-fill: #003366;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdministradorController">
+<AnchorPane prefHeight="558.0" prefWidth="880.0" style="-fx-background-color: #012E46; -fx-text-fill: #003366;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdministradorController">
    <children>
-      <Text fill="WHITE" layoutX="450.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Productos" wrappingWidth="206.39999999999998">
+      <Text fill="WHITE" layoutX="454.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Productos" wrappingWidth="206.39999999999998">
          <font>
             <Font name="Britannic Bold" size="36.0" />
          </font>
       </Text>
       <AnchorPane layoutY="-4.0" prefHeight="562.0" prefWidth="206.0" style="-fx-background-color: #05437e;">
          <children>
-            <ImageView fitHeight="124.0" fitWidth="126.0" layoutX="45.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="111.0" fitWidth="114.0" layoutX="52.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/admi1.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="33.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMINISTRADOR" wrappingWidth="147.1136474609375">
+            <Text fill="WHITE" layoutX="33.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMINISTRADOR" wrappingWidth="147.1136474609375">
                <font>
                   <Font name="Britannic Bold" size="20.0" />
                </font>
             </Text>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="40.0" layoutY="247.0" mnemonicParsing="false" onAction="#btnVentanaAgregarProductos" prefHeight="42.0" prefWidth="125.0" style="-fx-background-color: #1d9627;" text="+ Agregar" textFill="WHITE">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="40.0" layoutY="247.0" mnemonicParsing="false" onAction="#btnVentanaAgregarProductos" prefHeight="36.0" prefWidth="126.0" style="-fx-background-color: #1d9627;" text="+ Agregar" textFill="WHITE">
                <font>
                   <Font name="Britannic Bold" size="18.0" />
                </font>
@@ -40,13 +40,13 @@
             </Button>
          </children>
       </AnchorPane>
-      <TableView fx:id="tblProductos" layoutX="241.0" layoutY="96.0" prefHeight="350.0" prefWidth="602.0">
+      <TableView fx:id="tblProductos" layoutX="231.0" layoutY="96.0" prefHeight="350.0" prefWidth="631.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="100.79998779296875" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #ebf5fb; -fx-border-width: 2px;" text="ID" />
           <TableColumn fx:id="colNombre" prefWidth="155.20001220703125" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #d4e6f1; -fx-border-width: 2px;" text="Nombre " />
-            <TableColumn fx:id="colCategoria" prefWidth="128.00003051757812" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #ebf5fb; -fx-border-width: 2px;" text="Categoria" />
-            <TableColumn fx:id="colPrecio" prefWidth="98.4000244140625" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #d4e6f1; -fx-border-width: 2px;" text="Precio" />
-            <TableColumn fx:id="colCantidad" prefWidth="116.0" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #ebf5fb; -fx-border-width: 2px;" text="Cantidad " />
+            <TableColumn fx:id="colCategoria" prefWidth="137.60003662109375" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #ebf5fb; -fx-border-width: 2px;" text="Categoria" />
+            <TableColumn fx:id="colPrecio" prefWidth="120.79998779296875" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #d4e6f1; -fx-border-width: 2px;" text="Precio" />
+            <TableColumn fx:id="colCantidad" prefWidth="113.60009765625" style="-fx-border-color: white; -fx-alignment: center; -fx-background-color: #ebf5fb; -fx-border-width: 2px;" text="Cantidad " />
         </columns>
       </TableView>
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="359.0" layoutY="474.0" mnemonicParsing="false" onAction="#btnEditarProductos" prefHeight="36.0" prefWidth="95.0" style="-fx-background-color: #315db0;" text="Editar " textAlignment="CENTER" textFill="WHITE">
@@ -54,7 +54,7 @@
             <Font name="Britannic Bold" size="16.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="635.0" layoutY="474.0" mnemonicParsing="false" onAction="#btnEliminarProductos" prefHeight="36.0" prefWidth="95.0" style="-fx-background-color: #cf2525;" text="Eliminar" textAlignment="CENTER" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="635.0" layoutY="474.0" mnemonicParsing="false" onAction="#btnEliminarProductos" prefHeight="36.0" prefWidth="95.0" style="-fx-background-color: #db2516;" text="Eliminar" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="16.0" />
          </font>

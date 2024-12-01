@@ -166,7 +166,8 @@ public class AgregarProductosController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> list = FXCollections.observableArrayList("Alimentos", "Bebidas", "Salud", "Belleza", "Hogar");
+        ObservableList<String> list = FXCollections.observableArrayList(
+                "Alimentos", "Bebidas", "Hogar", "Limpieza", "Salud", "Belleza", "Juguetes", "Ropa/Accesorios", "Tecnologia", "Ofertas");
         CategoriaList.setItems(list);
 
         //Mostrar mensaje cuando el usuario escribe en el campo
