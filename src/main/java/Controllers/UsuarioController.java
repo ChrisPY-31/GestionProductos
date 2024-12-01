@@ -59,6 +59,9 @@ public class UsuarioController implements Initializable {
     @FXML
     private Button txtCloseUsuario;
 
+    @FXML
+    private Button txtcuenta;
+
     //importante esto es el id que lo llamamos en todas las ventanas
     public int idUsuario;
     public Pedido pedidoVender;
@@ -83,7 +86,7 @@ public class UsuarioController implements Initializable {
 
     }
 
-    public void cargarProductos2(String nombreFiltro , String categoriaFiltro , String precioFiltro) {
+    public void cargarProductos2(String nombreFiltro, String categoriaFiltro, String precioFiltro) {
         colIdPedido.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombrePedido"));
         colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoriaPedido"));
@@ -93,7 +96,8 @@ public class UsuarioController implements Initializable {
 
         Pedido pedido = new Pedido();
 
-        ObservableList<Pedido> item = pedido.filtrosUsuario(idUsuario, nombreFiltro, categoriaFiltro, precioFiltro);;
+        ObservableList<Pedido> item = pedido.filtrosUsuario(idUsuario, nombreFiltro, categoriaFiltro, precioFiltro);
+        ;
         tblPedidos.setItems(item);
         tblPedidos.refresh();
 
@@ -105,7 +109,7 @@ public class UsuarioController implements Initializable {
         String categoriaFiltro = CategListFiltro.getSelectionModel().getSelectedItem();
         String precioFiltro = PrecioList.getSelectionModel().getSelectedItem();
 
-        cargarProductos2(nombeFiltro , categoriaFiltro ,precioFiltro);
+        cargarProductos2(nombeFiltro, categoriaFiltro, precioFiltro);
 
     }
 
@@ -132,7 +136,7 @@ public class UsuarioController implements Initializable {
 
     @FXML
     void btnVistaComprar() {
-        //Navegabilidad de la vista Comprar comcluida
+        //Navegabilidad de la vista Comprar concluida
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/CompraProductos.fxml"));
             Parent root = loader.load();
@@ -266,6 +270,47 @@ public class UsuarioController implements Initializable {
     }
 
     public void btnVistaCuenta(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/CuentaUsuario.fxml"));
+            Parent root = loader.load();
+            CuentaUsuarioController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnCloseRequest(e -> controller.btnInicioCuenta());
+            stage.setOnCloseRequest(e -> controller.closeWindowsUsuario());
+
+            Stage myStage = (Stage) this.txtcuenta.getScene().getWindow();
+            myStage.close();
+        } catch (IOException e) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+    }
+
+    public void closeWindowsInicioSesion() {
+        try {
+            Stage myStage = (Stage) this.txtcuenta.getScene().getWindow();
+            myStage.close();
+
+        } catch (Exception e) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+    }
+
+    public void closeWindowsUserCuenta() {
+        try {
+            Stage myStage = (Stage) this.txtcuenta.getScene().getWindow();
+            myStage.close();
+
+        } catch (Exception e) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+
     }
 }
 
