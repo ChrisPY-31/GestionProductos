@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="558.0" prefWidth="880.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vistas.CuentaUsuario">
+<AnchorPane prefHeight="558.0" prefWidth="880.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CuentaUsuarioController">
    <children>
       <Label layoutX="319.0" layoutY="176.0" prefHeight="22.0" prefWidth="110.0" text="Nombre: " textFill="WHITE">
          <font>
@@ -72,7 +72,7 @@
             </Button>
             <ImageView fitHeight="32.0" fitWidth="38.0" layoutX="34.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/compra%20color.png" />
+                  <Image url="@../images/compracolor.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="31.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
