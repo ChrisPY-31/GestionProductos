@@ -274,6 +274,7 @@ public class UsuarioController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vistas/CuentaUsuario.fxml"));
             Parent root = loader.load();
             CuentaUsuarioController controller = loader.getController();
+            controller.initializeIdUser(idUsuario);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
