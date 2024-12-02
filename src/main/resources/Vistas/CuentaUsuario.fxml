@@ -10,7 +10,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="558.0" prefWidth="880.0" style="-fx-background-color: #012E46;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CuentaUsuarioController">
    <children>
       <Label layoutX="319.0" layoutY="176.0" prefHeight="22.0" prefWidth="110.0" text="Nombre: " textFill="WHITE">
@@ -18,7 +17,7 @@
             <Font name="Britannic Bold" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="NombreCuenta" layoutX="443.0" layoutY="172.0" prefHeight="26.0" prefWidth="363.0" promptText="Nombre usuario" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: white; -fx-padding: 5 0 5 0; -fx-text-fill: white;">
+      <TextField fx:id="txtNombre" layoutX="443.0" layoutY="172.0" prefHeight="26.0" prefWidth="363.0" promptText="Nombre usuario" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: white; -fx-padding: 5 0 5 0; -fx-text-fill: white;">
          <font>
             <Font size="14.0" />
          </font>
@@ -28,7 +27,7 @@
             <Font name="Britannic Bold" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="CorreoCuenta" layoutX="443.0" layoutY="234.0" prefHeight="26.0" prefWidth="363.0" promptText="correo@gmail.com" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: white; -fx-padding: 5 0 5 0; -fx-text-fill: white;">
+      <TextField fx:id="txtCorreo" editable="false" layoutX="443.0" layoutY="234.0" prefHeight="26.0" prefWidth="363.0" promptText="correo@gmail.com" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: white; -fx-padding: 5 0 5 0; -fx-text-fill: white;">
          <font>
             <Font size="14.0" />
          </font>
@@ -38,7 +37,7 @@
             <Font name="Britannic Bold" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="PasswordCuenta" layoutX="444.0" layoutY="302.0" prefHeight="26.0" prefWidth="363.0" promptText="*******" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: white; -fx-padding: 5 0 5 0; -fx-text-fill: white;" styleClass="-fx-font: white">
+      <TextField fx:id="txtContrasena" layoutX="444.0" layoutY="302.0" prefHeight="26.0" prefWidth="363.0" promptText="*******" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: white; -fx-padding: 5 0 5 0; -fx-text-fill: white;" styleClass="-fx-font: white">
          <font>
             <Font size="14.0" />
          </font>
@@ -87,7 +86,7 @@
             <Font name="Britannic Bold" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="PasswordCuenta1" layoutX="444.0" layoutY="374.0" prefHeight="26.0" prefWidth="363.0" promptText="Rol" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: white; -fx-padding: 5 0 5 0; -fx-text-fill: white;" styleClass="-fx-font: white">
+      <TextField fx:id="txtRol" editable="false" layoutX="444.0" layoutY="374.0" prefHeight="26.0" prefWidth="363.0" promptText="Rol" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: white; -fx-padding: 5 0 5 0; -fx-text-fill: white;" styleClass="-fx-font: white">
          <font>
             <Font size="14.0" />
          </font>
@@ -97,12 +96,7 @@
             <Font name="Britannic Bold" size="25.0" />
          </font>
       </Label>
-      <Button layoutX="361.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnEditarCuenta" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #3383de;" text="Editar" textFill="WHITE">
-         <font>
-            <Font name="Britannic Bold" size="19.0" />
-         </font>
-      </Button>
-      <Button layoutX="577.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnGuardarInfo" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #3383de;" text="Guardar" textFill="WHITE">
+      <Button layoutX="498.0" layoutY="457.0" mnemonicParsing="false" onAction="#btnEditarCuenta" prefHeight="32.0" prefWidth="190.0" style="-fx-background-color: #3383de;" text="Editar Informacion" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="19.0" />
          </font>

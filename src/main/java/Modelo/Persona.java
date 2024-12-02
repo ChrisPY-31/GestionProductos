@@ -3,6 +3,7 @@ package Modelo;
 import BaseDatos.ConexionPostgreSQL;
 
 import java.sql.*;
+import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +25,10 @@ public class Persona {
     public Persona(String correo, String contrasena) {
         this.correo = correo;
         this.contrasena = contrasena;
+    }
+
+    public Persona() {
+
     }
 
     public int getId() {
@@ -126,15 +131,15 @@ public class Persona {
     }
 
     public boolean getBuscarCorreo(String correo) {
-        String SQL = "SELECT correo FROM usuario WHERE correo ="+correo;
+        String SQL = "SELECT correo FROM usuario WHERE correo =" + correo;
 
-        try(Connection conn = new ConexionPostgreSQL().getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(SQL)){
+        try (Connection conn = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             ResultSet rs = pstmt.executeQuery();
 
             return rs.next();
 
-        }catch(SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
@@ -142,9 +147,69 @@ public class Persona {
 
     }
 
-    public boolean actualizarDatos() throws SQLException {
-        return false;
+    public Persona getInformationUser(int id) {
+        String SQL = "SELECT * FROM usuario WHERE usuario.id =" + id;
+        try (Connection conn = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                this.nombre = rs.getString("nombre");
+                this.correo = rs.getString("correo");
+                this.contrasena = rs.getString("contrasena");
+                this.rol = rs.getString("rol");
+            }
+            return new Persona(nombre, correo, contrasena, rol);
+        } catch (SQLException ex) {
+            Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return null;
     }
+
+    public boolean actualizarDatos(int id, String nombre, String contrasena) {
+        StringBuilder SQL = new StringBuilder("UPDATE usuario SET ");
+        boolean hasPrevious = false;
+
+        if (nombre != null && !nombre.isEmpty()) {
+            SQL.append("nombre = ?");
+            hasPrevious = true;
+        }
+
+        if (contrasena != null && !contrasena.isEmpty()) {
+            if (hasPrevious) {
+                SQL.append(", ");
+            }
+            SQL.append("contrasena = ?");
+        }
+
+        SQL.append(" WHERE id = ?");
+
+        if (!hasPrevious) {
+            System.out.println("No se proporcionaron datos para actualizar.");
+            return false;
+        }
+
+        try (Connection conn = new ConexionPostgreSQL().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL.toString())) {
+
+            int paramIndex = 1;
+            if (nombre != null && !nombre.isEmpty()) {
+                pstmt.setString(paramIndex++, nombre);
+            }
+            if (contrasena != null && !contrasena.isEmpty()) {
+                pstmt.setString(paramIndex++, contrasena);
+            }
+            pstmt.setInt(paramIndex, id);
+
+            int rowsUpdated = pstmt.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
 
 
 }
