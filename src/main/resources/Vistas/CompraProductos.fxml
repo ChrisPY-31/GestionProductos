@@ -54,12 +54,12 @@
             <TableColumn fx:id="colPrecio" prefWidth="121.60009765625" style="-fx-background-color: #ebf5fb; -fx-border-color: white; -fx-alignment: center; -fx-border-width: 2px;" text="PRECIO" />
         </columns>
       </TableView>
-      <Text fill="#ffffffde" layoutX="618.0" layoutY="445.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total:">
+      <Text fill="#ffffffde" layoutX="558.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total:">
          <font>
             <Font name="Britannic Bold" size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="txtTotal" editable="false" layoutX="679.0" layoutY="424.0" prefHeight="26.0" prefWidth="134.0" promptText="\$" style="-fx-background-color: #f5f5f5;" />
+      <TextField fx:id="txtTotal" editable="false" layoutX="625.0" layoutY="399.0" prefHeight="26.0" prefWidth="134.0" promptText="\\$" style="-fx-background-color: #f5f5f5;" />
       <Button fx:id="Comprar" disable="true" layoutX="667.0" layoutY="478.0" mnemonicParsing="false" onAction="#btnPagar" prefHeight="31.0" prefWidth="101.0" style="-fx-background-color: #1d9627;" stylesheets="@../CSS/style.css" text="Comprar" textFill="WHITE">
          <font>
             <Font name="Britannic Bold" size="18.0" />
@@ -96,5 +96,11 @@
             <Font name="Britannic Bold" size="15.0" />
          </font>
       </Button>
+      <Text fill="#ffffffde" layoutX="558.0" layoutY="466.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total descuento">
+         <font>
+            <Font name="Britannic Bold" size="20.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtTotalDescuento" editable="false" layoutX="710.0" layoutY="445.0" promptText="\\$" />
    </children>
 </AnchorPane>
