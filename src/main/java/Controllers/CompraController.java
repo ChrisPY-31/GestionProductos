@@ -2,6 +2,8 @@ package Controllers;
 
 import Modelo.Pedido;
 import Modelo.Producto;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -53,6 +56,9 @@ public class CompraController {
     private TextField txtTotal;
 
     @FXML
+    private TextField txtTotalDescuento;
+
+    @FXML
     private TextField txtCantidadComprar;
 
     @FXML
@@ -77,7 +83,53 @@ public class CompraController {
         Producto producto = new Producto();
         ObservableList<Producto> obs = producto.getProductos();
         tblProductos.setItems(obs);
-        System.out.println(idUsuario + "usuario");
+
+        txtCantidadComprar.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                // Si no hay producto seleccionado, salir
+                Producto productoSeleccionado = tblProductos.getSelectionModel().getSelectedItem();
+                if (productoSeleccionado == null) {
+                    txtTotal.setText("0.00");
+                    txtTotalDescuento.setText("0.00");
+                    return;
+                }
+
+                // Si el campo está vacío, reinicia los textos
+                if (newValue.isEmpty()) {
+                    txtTotal.setText("0.00");
+                    txtTotalDescuento.setText("0.00");
+                    return;
+                }
+
+                // Validar que el nuevo valor sea un número positivo
+                int cantidad = Integer.parseInt(newValue);
+                if (cantidad > 0) {
+                    double precioUnitario = productoSeleccionado.getPrecio();
+                    double subtotal = precioUnitario * cantidad;
+
+                    // Calcular descuento
+                    double descuento = 0;
+                    if (cantidad >= 5 && cantidad <= 9) {
+                        descuento = subtotal * 0.02; // 2% de descuento
+                    } else if (cantidad >= 10) {
+                        descuento = subtotal * 0.05; // 5% de descuento
+                    }
+
+                    double totalConDescuento = subtotal - descuento;
+
+                    // Mostrar los valores en los campos
+                    txtTotal.setText(String.format("%.2f", subtotal)); // Total sin descuento
+                    txtTotalDescuento.setText(String.format("%.2f", totalConDescuento)); // Total con descuento (si aplica)
+                } else {
+                    txtTotal.setText("0.00");
+                    txtTotalDescuento.setText("0.00");
+                }
+            } catch (NumberFormatException e) {
+                // Si se ingresa texto no válido, reinicia los campos
+                txtTotal.setText("0.00");
+                txtTotalDescuento.setText("0.00");
+            }
+        });
     }
 
 
@@ -197,6 +249,8 @@ public class CompraController {
 
     }
 
+
+
     @FXML
     void btnBuscarProducto(ActionEvent event) {
         if (txtIdProducto.getText().equals("")) {
@@ -208,7 +262,7 @@ public class CompraController {
             boolean responseProductos = producto.buscarProducto(id);
             if (responseProductos) {
                 setearValores(producto);
-
+                txtCantidadComprar.setText("");
             } else {
                 String mensaje = "No se encontro el producto con el id: " + id;
                 reinicarValores();
@@ -218,16 +272,58 @@ public class CompraController {
     }
 
     public void setearValores(Producto p) {
+        // Asignar valores a los campos de texto
         txtIdProducto.setText(String.valueOf(p.getId()));
         txtNombreProducto.setText(p.getNombre());
         txtCantidad.setText(String.valueOf(p.getCantidad()));
-        txtTotal.setText(String.valueOf(p.getPrecio() * p.getCantidad()));
+
+        // Variables necesarias para los cálculos
         cantidadProducto = Integer.parseInt(txtCantidad.getText());
         idProducto = p.getId();
         cantidadComprar = p.getCantidad();
         Comprar.setDisable(false);
 
+        // Listener para actualizar el total y descuento en tiempo real
+        txtCantidadComprar.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                // Si el campo está vacío, reinicia los textos
+                if (newValue.isEmpty()) {
+                    txtTotal.setText("0.00");
+                    txtTotalDescuento.setText("0.00");
+                    return;
+                }
+
+                // Validar que el nuevo valor sea un número positivo
+                int cantidad = Integer.parseInt(newValue);
+                if (cantidad > 0) {
+                    double precioUnitario = p.getPrecio();
+                    double subtotal = precioUnitario * cantidad;
+
+                    // Calcular descuento
+                    double descuento = 0;
+                    if (cantidad >= 5 && cantidad <= 9) {
+                        descuento = subtotal * 0.02; // 2% de descuento
+                    } else if (cantidad >= 10) {
+                        descuento = subtotal * 0.05; // 5% de descuento
+                    }
+
+                    double totalConDescuento = subtotal - descuento;
+
+                    // Mostrar los valores en los campos
+                    txtTotal.setText(String.format("%.2f", subtotal)); // Total sin descuento
+                    txtTotalDescuento.setText(String.format("%.2f", totalConDescuento)); // Total con descuento (si aplica)
+                } else {
+                    txtTotal.setText("0.00");
+                    txtTotalDescuento.setText("0.00");
+                }
+            } catch (NumberFormatException e) {
+                // Si se ingresa texto no válido, reinicia los campos
+                txtTotal.setText("0.00");
+                txtTotalDescuento.setText("0.00");
+            }
+        });
     }
+
 
     public void reinicarValores() {
         txtIdProducto.setText("");
