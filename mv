@@ -1,0 +1,21 @@
+  ActualizacionB      [m dae96a1 Se agrego base de datos remota
+  AdmiVistas          [m 9be6421 [[34morigin/AdmiVistas[m] Cambios vistas Administrador
+  AdmiVistasCambios   [m 42f82d2 Cambios Vistas Administrador
+  Alertas             [m b32e794 Alertas Formularios
+  CambioButtons       [m 3a46b5d [[34morigin/CambioButtons[m] Se agrego cerrar sesion de usuario
+  CambioVistas        [m c436c1a Se termino diseño de Vistas Usuario
+  CreacionMetodos     [m 53484af eliminar productos se agrego
+  Filtros             [m 13b43ef Se agrego filtros vista usuario
+  ListaCategorias     [m c44dc8f Se agrego lista de categorias
+  MetodoModelos       [m b8be882 Merge pull request #23 from ChrisPY-31/agregarProductos
+  MetodoUsuario       [m ecfcc2e Se agrego metodo
+* [32mMetodosNuevos       [m 4695a4e Se agrego navegabilidad con nueva interfaz
+  ModificacionRegistro[m cb1e5d6 Merge pull request #21 from ChrisPY-31/modificadoModelos
+  ModificarRegistro   [m c44dc8f Se agrego lista de categorias
+  NewMetodos          [m cb1e5d6 Merge pull request #21 from ChrisPY-31/modificadoModelos
+  NuevaInterfaz       [m 5da5e34 Nueva interfaz y agregamos mas categorias
+  NuevoBoton          [m de30de8 [[34morigin/NuevoBoton[m: ahead 5] Merge pull request #26 from ChrisPY-31/editarProducto
+  ValidacionPass      [m e6de2c9 Validacion de password
+  VistaInicio         [m 5073169 Modificacion vistaCompraUsuario
+  conectandoFormulario[m cb1e5d6 Merge pull request #21 from ChrisPY-31/modificadoModelos
+  main                [m 539bf73 [[34morigin/main[m] Merge pull request #45 from ChrisPY-31/validandoVenderProductos
