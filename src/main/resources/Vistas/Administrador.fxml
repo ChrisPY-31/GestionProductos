@@ -16,7 +16,7 @@
             <Font name="Britannic Bold" size="36.0" />
          </font>
       </Text>
-      <AnchorPane layoutY="-4.0" prefHeight="562.0" prefWidth="206.0" style="-fx-background-color: #05437e;">
+      <AnchorPane layoutY="-2.0" prefHeight="562.0" prefWidth="206.0" style="-fx-background-color: #05437e;">
          <children>
             <ImageView fitHeight="111.0" fitWidth="114.0" layoutX="52.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,9 +33,9 @@
                   <Font name="Britannic Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="txtCerrarV" layoutX="41.0" layoutY="470.0" mnemonicParsing="false" onAction="#btnCerrarSesion" prefHeight="36.0" prefWidth="132.0" style="-fx-background-color: #3383de; -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.75), 13, 0.4, 0, 0);" text=" Cerrar Sesión" textFill="WHITE">
+            <Button fx:id="txtCerrarV" layoutX="60.0" layoutY="491.0" mnemonicParsing="false" onAction="#btnCerrarSesion" prefHeight="36.0" prefWidth="126.0" style="-fx-background-color: transparent; -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.75), 13, 0.4, 0, 0);" text=" Cerrar Sesión" textFill="WHITE">
                <font>
-                  <Font name="Britannic Bold" size="16.0" />
+                  <Font name="Britannic Bold" size="15.0" />
                </font>
             </Button>
          </children>
@@ -59,5 +59,10 @@
             <Font name="Britannic Bold" size="16.0" />
          </font>
       </Button>
+      <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="32.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cerrarSe.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
